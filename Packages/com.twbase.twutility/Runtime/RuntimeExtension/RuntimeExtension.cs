@@ -12,37 +12,34 @@ namespace TW.Utility
         /// <summary>
         /// This is a public static boolean variable that can be used to check if the UI is currently being touched by the user.
         /// </summary>
-        public static bool IsTouchingUI;
+        public static bool m_IsTouchingUI;
         /// <summary>
         /// This method checks if the mouse pointer or touch is currently over a UI element and returns a boolean value indicating whether it is or not.
         /// </summary>
         /// <returns></returns>
+
         public static bool IsPointerOverUIGameObject()
         {
             //check mouse
             if (EventSystem.current.IsPointerOverGameObject())
-            {
-                IsTouchingUI = true;
                 return true;
-            }
-
 
             //check touch
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
             {
                 if (EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
                 {
-                    IsTouchingUI = true;
+                    m_IsTouchingUI = true;
                     return true;
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Mouse0) && IsTouchingUI)
+            if (Input.GetKeyUp(KeyCode.Mouse0) && m_IsTouchingUI)
             {
-                IsTouchingUI = false;
+                m_IsTouchingUI = false;
                 return true;
             }
 
-            return IsTouchingUI;
+            return m_IsTouchingUI;
         }
         /// <summary>
         /// This method extends the TimeSpan class and converts a given TimeSpan object to a human-readable string format that includes days, hours, minutes, and seconds.
