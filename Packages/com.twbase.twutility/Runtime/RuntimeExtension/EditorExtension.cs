@@ -156,10 +156,33 @@ namespace TW.Utility
 
             return color;
         }
-
-        public static string GetColorStringResolve(string colorPaletteName)
+        /// <summary>
+        /// Finds all prefabs within the specified folders.
+        /// </summary>
+        /// <param name="searchInFolders">The folders to search for prefabs in.</param>
+        /// <returns>An array of GameObjects representing the found prefabs. Returns null if not in the Unity Editor.</returns>
+        public static GameObject[] FindPrefabInFolders(params string[] searchInFolders)
         {
-            return $"MyExtension.EditorExtension.GetColor(\"{colorPaletteName}\", $value)";
+#if UNITY_EDITOR
+            string[] guids = AssetDatabase.FindAssets("t:Prefab", searchInFolders);
+            return guids.Select(x => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(x))).ToArray();
+#else
+            return null;
+#endif
+        }
+        /// <summary>
+        /// Finds the asset paths of all prefabs within the specified folders.
+        /// </summary>
+        /// <param name="searchInFolders">The folders to search for prefabs in.</param>
+        /// <returns>An array of strings representing the asset paths of the found prefabs. Returns null if not in the Unity Editor.</returns>
+        public static string[] FindPrefabAssetPathInFolders(params string[] searchInFolders)
+        {
+#if UNITY_EDITOR
+            string[] guids = AssetDatabase.FindAssets("t:Prefab", searchInFolders);
+            return guids.Select(AssetDatabase.GUIDToAssetPath).ToArray();
+#else
+            return null;
+#endif
         }
     }
 }
