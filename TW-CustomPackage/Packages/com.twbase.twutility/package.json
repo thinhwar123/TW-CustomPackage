@@ -1,0 +1,13 @@
+{
+  "name": "com.twbase.twutility",
+  "version": "1.0.0",
+  "displayName": "TW Utility",
+  "description": "My Unity Custom Package",
+  "unity": "2019.1",
+  "author": {
+    "name": "thinhwar123",
+    "email": "thinhwar123@gmail.com",
+    "url": "https://github.com/thinhwar123"
+  },
+  "dependencies": {}
+}

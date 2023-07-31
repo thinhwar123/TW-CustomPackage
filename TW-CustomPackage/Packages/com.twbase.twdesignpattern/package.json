@@ -1,9 +1,13 @@
 {
-  "name": "com.tw.twbase",
+  "name": "com.twbase.twdesignpattern",
   "version": "1.0.0",
-  "displayName": "TWBase",
+  "displayName": "TW Design Pattern",
   "description": "My Unity Custom Package",
   "unity": "2019.1",
+  "unityRelease": "0b5",
+  "dependencies": {
+    "com.cysharp.unitask": "2.3.3"
+ },
   "author": {
     "name": "thinhwar123",
     "email": "thinhwar123@gmail.com",
