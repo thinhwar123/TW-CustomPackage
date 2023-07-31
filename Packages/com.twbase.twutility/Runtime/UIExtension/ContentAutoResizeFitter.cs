@@ -1,4 +1,4 @@
-namespace TW.UIHelper
+namespace TW.Utility
 {
     using UnityEngine;
     using UnityEngine.UI;
