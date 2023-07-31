@@ -4,7 +4,7 @@ Some simple code used to help me play in Unity
 ## Dependencies
 - [com.cysharp.unitask](https://github.com/Cysharp/UniTask)
 - [Sirenix Odin - Inspector and Serializer](https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041)
-- [Anti-Cheat Toolkit] (https://assetstore.unity.com/packages/tools/utilities/anti-cheat-toolkit-2023-202695)
+- [Anti-Cheat Toolkit](https://assetstore.unity.com/packages/tools/utilities/anti-cheat-toolkit-2023-202695)
 
 # Installation
 ## Install via git URL
