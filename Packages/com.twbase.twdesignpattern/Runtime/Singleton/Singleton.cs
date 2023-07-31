@@ -4,29 +4,29 @@ namespace TW.DesignPattern
 {
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        private static T m_Ins;
+        private static T instance;
 
-        public static T Ins
+        public static T Instance
         {
             get
             {
-                if (m_Ins == null)
+                if (instance == null)
                 {
                     // Find singleton
-                    m_Ins = FindObjectOfType<T>();
+                    instance = FindObjectOfType<T>();
 
                     // Create new instance if one doesn't already exist.
-                    if (m_Ins == null)
+                    if (instance == null)
                     {
                         // Need to create a new GameObject to attach the singleton to.
                         GameObject singletonObject = new GameObject();
-                        m_Ins = singletonObject.AddComponent<T>();
+                        instance = singletonObject.AddComponent<T>();
                         singletonObject.name = typeof(T).ToString() + " (Singleton)";
 
                     }
 
                 }
-                return m_Ins;
+                return instance;
             }
         }
     }
