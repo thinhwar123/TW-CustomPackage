@@ -1,8 +1,8 @@
 namespace TW.Utility
 {
+#if UNITY_EDITOR
     using UnityEngine;
     using UnityEditor;
-
 
     public class NiceAssetModificationProcessor : AssetModificationProcessor
     {
@@ -29,5 +29,6 @@ namespace TW.Utility
 
             return paths;
         }
-    } 
+    }
+#endif
 }
