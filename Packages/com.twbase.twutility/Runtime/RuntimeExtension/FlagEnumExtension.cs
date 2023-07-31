@@ -2,7 +2,6 @@ namespace TW.Utility
 {
     using System;
     using System.Linq;
-    using UnityEngine;
 
     public static class FlagEnumExtension
 	{

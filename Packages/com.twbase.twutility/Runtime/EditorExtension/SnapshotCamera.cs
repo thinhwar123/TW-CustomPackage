@@ -5,7 +5,6 @@ namespace TW.Utility
     using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
-    using UnityEngine.Serialization;
 
     // Object rendering code based on Dave Carlile's "Create a GameObject Image Using Render Textures" post
     // Link: http://crappycoding.com/2014/12/create-gameobject-image-using-render-textures/

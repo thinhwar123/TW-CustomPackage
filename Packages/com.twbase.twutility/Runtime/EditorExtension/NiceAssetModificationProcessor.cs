@@ -1,10 +1,7 @@
 namespace TW.Utility
 {
     using UnityEngine;
-    using System;
-    using System.IO;
     using UnityEditor;
-    using static UnityEditor.Progress;
 
 
     public class NiceAssetModificationProcessor : AssetModificationProcessor
