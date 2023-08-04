@@ -24,7 +24,7 @@ namespace TW.DesignPattern
             private readonly Queue<GameObject> m_Inactive;
             //A Hashset which contains all GetInstanceIDs from the instantiated GameObjects 
             //so we know which GameObject is a member of this pool.
-            public readonly HashSet<int> memberIDs;
+            public readonly HashSet<int> m_MemberIDs;
 
 
             // The prefab that we are pooling
@@ -40,7 +40,7 @@ namespace TW.DesignPattern
                 // whole initialQty thing is a placebo that we could
                 // strip out for more minimal code. But it can't *hurt*.
                 m_Inactive = new Queue<GameObject>(initialQty);
-                memberIDs = new HashSet<int>();
+                m_MemberIDs = new HashSet<int>();
             }
 
             public void Preload(int initialQty, Transform parent = null)
@@ -52,7 +52,7 @@ namespace TW.DesignPattern
                     obj.name = $"{m_Prefab.name} ({m_NextId++})";
 
                     // Add the unique GameObject ID to our MemberHashset so we know this GO belongs to us.
-                    memberIDs.Add(obj.GetInstanceID());
+                    m_MemberIDs.Add(obj.GetInstanceID());
 
                     obj.SetActive(false);
 
@@ -74,7 +74,7 @@ namespace TW.DesignPattern
                         obj.name = $"{m_Prefab.name} ({m_NextId++})";
 
                         // Add the unique GameObject ID to our MemberHashset so we know this GO belongs to us.
-                        memberIDs.Add(obj.GetInstanceID());
+                        m_MemberIDs.Add(obj.GetInstanceID());
                     }
                     else
                     {
@@ -113,7 +113,7 @@ namespace TW.DesignPattern
                         obj.name = $"{m_Prefab.name} ({m_NextId++})";
 
                         // Add the unique GameObject ID to our MemberHashset so we know this GO belongs to us.
-                        memberIDs.Add(obj.GetInstanceID());
+                        m_MemberIDs.Add(obj.GetInstanceID());
                     }
                     else
                     {
@@ -174,40 +174,40 @@ namespace TW.DesignPattern
         // Note, you can also use Preload() to set the initial size
         // of a pool -- this can be handy if only some of your pools
         // are going to be exceptionally large (for example, your bullets.)
-        private const int DefaultPoolSize = 3;
+        private const int DefaultPoolSize = 10;
         // Dictionary to store cached transforms for GameObjects
         private static readonly Dictionary<GameObject, Transform> CachedTransforms = new Dictionary<GameObject, Transform>();
         // Dictionary to store cached components for GameObjects
         private static readonly Dictionary<GameObject, Dictionary<Type, Component>> CachedComponents = new Dictionary<GameObject, Dictionary<Type, Component>>();
 
-        static Transform m_sRoot = null;
+        private static Transform sRoot = null;
 
 
         // All of our pools
-        public static Dictionary<int, Pool> _pools;
+        private static Dictionary<int, Pool> pools;
 
         /// <summary>
         /// Initialize our dictionary.
         /// </summary>
         private static void Init(GameObject prefab = null, int qty = DefaultPoolSize)
         {
-            if (_pools == null)
-                _pools = new Dictionary<int, Pool>();
+            if (pools == null)
+                pools = new Dictionary<int, Pool>();
 
             if (prefab != null)
             {
                 //changed from (prefab, Pool) to (int, Pool) which should be faster if we have 
                 //many different prefabs.
                 var prefabID = prefab.GetInstanceID();
-                if (!_pools.ContainsKey(prefabID))
-                    _pools[prefabID] = new Pool(prefab, qty);
+                if (!pools.ContainsKey(prefabID))
+                    pools[prefabID] = new Pool(prefab, qty);
             }
         }
 
         public static void PoolPreLoad(GameObject prefab, int qty, Transform newParent = null)
         {
             Init(prefab, 1);
-            _pools[prefab.GetInstanceID()].Preload(qty, newParent);
+            pools[prefab.GetInstanceID()].Preload(qty, newParent);
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace TW.DesignPattern
         {
             Init(prefab);
 
-            return _pools[prefab.GetInstanceID()].Spawn(pos, rot);
+            return pools[prefab.GetInstanceID()].Spawn(pos, rot);
         }
 
         public static GameObject Spawn(GameObject prefab)
@@ -268,12 +268,12 @@ namespace TW.DesignPattern
         public static T Spawn<T>(T prefab, Vector3 pos, Quaternion rot) where T : Component
         {
             Init(prefab.gameObject);
-            return _pools[prefab.gameObject.GetInstanceID()].Spawn<T>(pos, rot);
+            return pools[prefab.gameObject.GetInstanceID()].Spawn<T>(pos, rot);
         }
         public static T Spawn<T>(T prefab, Vector3 pos, Quaternion rot, Transform parent) where T : Component
         {
             Init(prefab.gameObject);
-            return _pools[prefab.gameObject.GetInstanceID()].Spawn<T>(pos, rot, parent);
+            return pools[prefab.gameObject.GetInstanceID()].Spawn<T>(pos, rot, parent);
         }
 
         /// <summary>
@@ -282,9 +282,9 @@ namespace TW.DesignPattern
         public static void DeSpawn(GameObject obj)
         {
             Pool p = null;
-            foreach (var pool in _pools.Values)
+            foreach (var pool in pools.Values)
             {
-                if (pool.memberIDs.Contains(obj.GetInstanceID()))
+                if (pool.m_MemberIDs.Contains(obj.GetInstanceID()))
                 {
                     p = pool;
                     break;
@@ -305,28 +305,28 @@ namespace TW.DesignPattern
 
         public static int GetStackCount(GameObject prefab)
         {
-            if (_pools == null)
-                _pools = new Dictionary<int, Pool>();
+            if (pools == null)
+                pools = new Dictionary<int, Pool>();
             if (prefab == null) return 0;
-            return _pools.ContainsKey(prefab.GetInstanceID()) ? _pools[prefab.GetInstanceID()].StackCount : 0;
+            return pools.ContainsKey(prefab.GetInstanceID()) ? pools[prefab.GetInstanceID()].StackCount : 0;
         }
 
         public static void ClearPool()
         {
-            if (_pools != null)
+            if (pools != null)
             {
-                _pools.Clear();
+                pools.Clear();
             }
         }
         private static Transform GetRootGameObject()
         {
-            if (m_sRoot == null)
+            if (sRoot == null)
             {
                 GameObject go = new GameObject();
                 go.name = "PoolingRoot";
-                m_sRoot = go.transform;
+                sRoot = go.transform;
             }
-            return m_sRoot;
+            return sRoot;
         }
 
         // Helper method to get the cached component for a GameObject
