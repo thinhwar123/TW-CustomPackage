@@ -19,6 +19,7 @@ namespace TW.Analytics
             if (Instance == null)
             {
                 Instance = this;
+                transform.SetParent(null);
                 DontDestroyOnLoad(this.gameObject);
             }
         }
@@ -38,7 +39,7 @@ namespace TW.Analytics
                 }
             }
         }
-        private async Task InitService()
+        private static async Task InitService()
         {
             await UnityServices.InitializeAsync();
             Debug.Log("UnityServices Initialize: Complete");
