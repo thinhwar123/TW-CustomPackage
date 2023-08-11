@@ -9,7 +9,7 @@ namespace TW.DesignPattern
 	{
         private static readonly Queue<UnityAction> ExecutionQueue = new Queue<UnityAction>();
 
-        public static void Enqueue(UnityAction actionCallback)
+        public void Enqueue(UnityAction actionCallback)
         {
             lock (ExecutionQueue)
             {

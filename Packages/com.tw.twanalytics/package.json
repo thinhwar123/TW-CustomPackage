@@ -1,0 +1,13 @@
+{
+  "name": "com.twbase.twanalytics",
+  "version": "1.0.0",
+  "displayName": "TW Analytics",
+  "description": "My Unity Custom Package",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "author": {
+    "name": "thinhwar123",
+    "email": "thinhwar123@gmail.com",
+    "url": "https://github.com/thinhwar123"
+  }
+}

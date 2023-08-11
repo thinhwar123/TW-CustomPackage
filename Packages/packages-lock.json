@@ -7,8 +7,14 @@
       "dependencies": {},
       "hash": "d210e3d76adc0cce77f4ad2af1ade88dad6b1d5a"
     },
+    "com.twbase.twanalytics": {
+      "version": "file:com.tw.twanalytics",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.twbase.twdesignpattern": {
-      "version": "file:com.twbase.twdesignpattern",
+      "version": "file:com.tw.twdesignpattern",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
@@ -16,13 +22,13 @@
       }
     },
     "com.twbase.twmathematical": {
-      "version": "file:com.twbase.twmathematical",
+      "version": "file:com.tw.twmathematical",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
     },
     "com.twbase.twutility": {
-      "version": "file:com.twbase.twutility",
+      "version": "file:com.tw.twutility",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
@@ -87,11 +93,40 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.performance.profile-analyzer": {
       "version": "1.2.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.services.analytics": {
+      "version": "5.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.services.core": "1.10.1"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.services.core": {
+      "version": "1.10.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.nuget.newtonsoft-json": "3.2.1",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.settings-manager": {
