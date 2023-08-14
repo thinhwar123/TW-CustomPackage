@@ -12,7 +12,7 @@ namespace TW.Analytics
         public static UnityAnalytics Instance { get; private set; }
 
         private static readonly Queue<UnityAction> ExecutionEvent = new Queue<UnityAction>();
-        private static bool isInitialized = false;
+        private static bool m_IsInitialized = false;
 
         private void Awake()
         {
@@ -22,6 +22,10 @@ namespace TW.Analytics
                 transform.SetParent(null);
                 DontDestroyOnLoad(this.gameObject);
             }
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
 
         private async void Start()
@@ -30,7 +34,7 @@ namespace TW.Analytics
         }
         private void Update()
         {
-            if (!isInitialized) return;
+            if (!m_IsInitialized) return;
             lock (ExecutionEvent)
             {
                 while (ExecutionEvent.Count > 0)
@@ -43,9 +47,11 @@ namespace TW.Analytics
         {
             await UnityServices.InitializeAsync();
             Debug.Log("UnityServices Initialize: Complete");
+#if UNITY_ANALYTICS_5
             AnalyticsService.Instance.StartDataCollection();
-            Debug.Log("UnityServices ConsentGiven: Complete");
-            isInitialized = true;
+            Debug.Log("UnityServices ConsentGiven: Complete"); 
+#endif
+            m_IsInitialized = true;
         }
         public static void SendCustomEvent(string eventName, IDictionary<string, object> eventParams)
         {
