@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Entities;
+using UnityEngine;
+
+namespace MyAspect
+{
+    public readonly partial struct #SCRIPTNAME# : IAspect
+    {
+        /// <summary>
+        /// The temp data can be delete if not need
+        /// </summary>
+        public struct #SCRIPTNAME#Data : IComponentData
+        {
+
+        }
+
+        public readonly Entity entity;
+        public readonly RefRO<#SCRIPTNAME#Data>  tempData;
+    }
+}

@@ -2,6 +2,8 @@
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.unity.collab-proxy": "2.0.4",
+    "com.unity.entities": "1.0.14",
+    "com.unity.entities.graphics": "1.0.14",
     "com.unity.feature.development": "1.0.1",
     "com.unity.services.analytics": "5.0.0",
     "com.unity.textmeshpro": "3.0.6",

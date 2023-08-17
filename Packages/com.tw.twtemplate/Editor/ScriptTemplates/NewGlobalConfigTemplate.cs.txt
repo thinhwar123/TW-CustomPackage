@@ -1,0 +1,9 @@
+using UnityEngine;
+using Sirenix.Utilities;
+
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "GlobalConfigs/#SCRIPTNAME#")]
+[GlobalConfig("Assets/Resources/GlobalConfig/")]
+public class #SCRIPTNAME# : GlobalConfig<#SCRIPTNAME#>
+{
+
+}

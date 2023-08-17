@@ -1,5 +1,5 @@
 {
-  "name": "com.twbase.twutility",
+  "name": "com.tw.twutility",
   "version": "1.0.0",
   "displayName": "TW Utility",
   "description": "My Unity Custom Package",
@@ -8,6 +8,5 @@
     "name": "thinhwar123",
     "email": "thinhwar123@gmail.com",
     "url": "https://github.com/thinhwar123"
-  },
-  "dependencies": {}
+  }
 }
