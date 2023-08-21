@@ -17,5 +17,10 @@ namespace TW.DesignPattern
         {
             DataAccess.SetData<T>(dataKey, value);
         }
+
+        public void ClearAllData()
+        {
+            DataAccess.ClearAllData();
+        }
     } 
 }

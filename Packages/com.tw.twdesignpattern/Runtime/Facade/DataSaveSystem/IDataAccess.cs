@@ -17,6 +17,11 @@ namespace TW.DesignPattern
         /// <param name="defaultValue">default value</param>
         /// <returns>Return defaultValue</returns>
         public T GetData<T>(string dataKey, T defaultValue = default(T));
+
+        /// <summary>
+        /// Clear all data
+        /// </summary>
+        public void ClearAllData();
     }
 
 }

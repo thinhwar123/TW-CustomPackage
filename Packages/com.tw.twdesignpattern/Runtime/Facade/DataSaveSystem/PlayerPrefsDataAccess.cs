@@ -42,6 +42,11 @@ namespace TW.DesignPattern
                 return defaultValue;
             }
         }
+
+        public void ClearAllData()
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 
 }
