@@ -14,6 +14,11 @@ namespace TW.Utility
             };
             return currentSWaiter;
         }
+        public static SWaiter DependOn(this Tween currentSWaiter, SWaiter dependSWaiter)
+        {
+            SWaiter sWaiter = currentSWaiter;
+            return sWaiter.DependOn(dependSWaiter);
+        }
         public static SWaiter DelayCall(this Action action, float time)
         {
             float process = 0; 
