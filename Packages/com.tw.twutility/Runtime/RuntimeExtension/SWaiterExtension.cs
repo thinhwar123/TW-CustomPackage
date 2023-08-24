@@ -3,7 +3,7 @@ using DG.Tweening;
 
 namespace TW.Utility
 {
-    public static class AwaiterExtension
+    public static class SWaiterExtension
 	{
         public static SWaiter DependOn(this SWaiter currentSWaiter, SWaiter dependSWaiter)
         {
