@@ -1,7 +1,7 @@
 {
-  "name": "com.tw.twecs",
+  "name": "com.tw.twjtween",
   "version": "1.0.0",
-  "displayName": "TW ECS",
+  "displayName": "TW JTween",
   "description": "My Unity Custom Package",
   "unity": "2019.1",
   "author": {

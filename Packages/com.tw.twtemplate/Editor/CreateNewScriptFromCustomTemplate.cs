@@ -1,10 +1,13 @@
 using UnityEngine;
-using UnityEditor;
+#if UNITY_EDITOR
+using UnityEditor; 
+#endif
 
 namespace TW.Template
 {
     public class CreateNewScriptFromCustomTemplate
     {
+#if UNITY_EDITOR
         #region Scriptable Object Scripts
         [MenuItem(itemName: "Assets/CustomTemplate/Create New Scriptable Object", isValidateFunction: false, priority: 1)]
         public static void CreateScriptScriptableObjectFromTemplate()
@@ -54,7 +57,8 @@ namespace TW.Template
             string[] findAssets = AssetDatabase.FindAssets($"t:TextAsset {templateName}");
 
             ProjectWindowUtil.CreateScriptAssetFromTemplateFile(AssetDatabase.GUIDToAssetPath(findAssets[0]), defaultFileName);
-        }
+        } 
+#endif
     }
 
 }
