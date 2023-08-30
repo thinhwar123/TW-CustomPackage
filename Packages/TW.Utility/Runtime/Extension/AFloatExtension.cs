@@ -14,6 +14,20 @@ namespace TW.Utility.Extension
         {
             return Mathf.Round(value * Mathf.Pow(10, decimalPlaces)) / Mathf.Pow(10, decimalPlaces);
         }
+        /// <summary>
+        /// Remaps a value from one range to another.
+        /// </summary>
+        /// <param name="value">The original value to be remapped.</param>
+        /// <param name="fromMin">The minimum value of the original range.</param>
+        /// <param name="fromMax">The maximum value of the original range.</param>
+        /// <param name="toMin">The minimum value of the target range.</param>
+        /// <param name="toMax">The maximum value of the target range.</param>
+        /// <returns>The remapped value in the target range.</returns>
+        public static float Remap(this float value, float fromMin, float fromMax, float toMin, float toMax)
+        {
+            float normalizedValue = Mathf.InverseLerp(fromMin, fromMax, value);
+            return Mathf.Lerp(toMin, toMax, normalizedValue);
+        }
     }
 
 }

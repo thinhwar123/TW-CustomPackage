@@ -45,5 +45,18 @@ namespace TW.Utility.Extension
             IEnumerable<T> enumerable1 = enumerable as T[] ?? enumerable.ToArray();
             return enumerable1.ElementAt(UnityEngine.Random.Range(0, enumerable1.Count()));
         }
+        /// <summary>
+        /// Converts an IEnumerator&lt;T&gt; to an IEnumerable&lt;T&gt;.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the enumerator.</typeparam>
+        /// <param name="enumerator">The IEnumerator&lt;T&gt; to convert.</param>
+        /// <returns>An IEnumerable&lt;T&gt; that contains the elements from the original IEnumerator&lt;T&gt;.</returns>
+        public static IEnumerable<T> AsEnumerable<T>(this IEnumerator<T> enumerator)
+        {
+            while (enumerator.MoveNext())
+            {
+                yield return enumerator.Current;
+            }
+        }
     } 
 }
