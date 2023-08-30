@@ -1,0 +1,16 @@
+{
+    "name": "TW.Utility.Extension",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1e995d05e0656b64ab721f1837984e85"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
