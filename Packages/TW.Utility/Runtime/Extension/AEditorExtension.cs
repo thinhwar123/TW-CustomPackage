@@ -113,7 +113,7 @@ namespace TW.Utility.Extension
         public static Color GetColorInGlobalConfig(string colorPaletteName, int index)
         {
 
-            return Color.white;
+            return EditorColorGlobalConfig.Instance.GetColor(colorPaletteName, index);
         }
         /// <summary>
         /// Finds all prefabs within the specified folders.
