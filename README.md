@@ -12,27 +12,7 @@ Some simple code used to help me play in Unity
 2. Select the **Add package from git URL** option from the `+` dropdown
 3. Enter this git url:
 
-### Design Pattern
-```
-https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/com.tw.twdesignpattern
-```
-
-### Mathematical
-```
-https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/com.tw.twmathematical
-```
-
 ### Utility
 ```
-https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/com.tw.twutility
-```
-
-### Analytics
-```
-https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/com.tw.twanalytics
-```
-
-### Custom Template
-```
-https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/com.tw.twtemplate
+https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.Utility
 ```
