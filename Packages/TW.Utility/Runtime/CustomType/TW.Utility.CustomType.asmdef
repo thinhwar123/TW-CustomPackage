@@ -1,5 +1,5 @@
 {
-    "name": "TW.Utility.BasicType",
+    "name": "TW.Utility.CustomType",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [],

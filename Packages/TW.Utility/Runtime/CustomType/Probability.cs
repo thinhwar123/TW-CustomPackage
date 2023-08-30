@@ -1,11 +1,11 @@
-namespace TW.Utility.BasicType
+using System.Collections.Generic;
+using UnityEngine;
+using Sirenix.OdinInspector;
+using System.Linq;
+using UnityEngine.Events;
+
+namespace TW.Utility.CustomType
 {
-    using System.Collections.Generic;
-    using UnityEngine;
-    using Sirenix.OdinInspector;
-    using System.Linq;
-    using UnityEngine.Events;
-    using UnityEditor;
 
     [System.Serializable]
     public class Probability<T>

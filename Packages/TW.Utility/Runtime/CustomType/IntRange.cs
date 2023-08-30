@@ -1,12 +1,13 @@
-namespace TW.Utility.BasicType
-{
-    using UnityEngine;
+using UnityEngine;
 
 #if UNITY_EDITOR
-    using Sirenix.OdinInspector.Editor;
-    using Sirenix.Utilities;
-    using UnityEditor;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using UnityEditor;
 #endif
+
+namespace TW.Utility.CustomType
+{
 
     [System.Serializable]
     public struct IntRange

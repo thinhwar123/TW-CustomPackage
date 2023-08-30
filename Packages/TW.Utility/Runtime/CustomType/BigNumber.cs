@@ -132,7 +132,7 @@
 using System;
 using System.Globalization;
 
-namespace TW.Utility.BasicType
+namespace TW.Utility.CustomType
 {
     [Serializable]
     public struct BigNumber : IFormattable

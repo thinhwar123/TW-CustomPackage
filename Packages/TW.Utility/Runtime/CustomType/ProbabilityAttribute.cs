@@ -1,17 +1,18 @@
-namespace TW.Utility.BasicType
-{
-    using System.Collections.Generic;
-    using UnityEngine;
-    using System;
-    using Sirenix.Utilities;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using Sirenix.Utilities;
 
 
 #if UNITY_EDITOR
-    using Sirenix.Utilities.Editor;
-    using Sirenix.OdinInspector.Editor;
-    using UnityEditor;
-    using Sirenix.OdinInspector.Editor.ValueResolvers;
+using Sirenix.Utilities.Editor;
+using Sirenix.OdinInspector.Editor;
+using UnityEditor;
+using Sirenix.OdinInspector.Editor.ValueResolvers;
 #endif
+
+namespace TW.Utility.CustomType
+{
 
     [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public sealed class ProbabilityAttribute : Attribute

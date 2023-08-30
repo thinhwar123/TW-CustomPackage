@@ -1,6 +1,7 @@
-namespace TW.Utility.BasicType
+using UnityEngine;
+
+namespace TW.Utility.CustomType
 {
-    using UnityEngine;
     /// <summary>
     /// The BitMask class represents a bitmask, which is a way of compactly storing a set of boolean values as individual bits of an integer.
     /// </summary>

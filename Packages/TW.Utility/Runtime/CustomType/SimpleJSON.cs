@@ -40,7 +40,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace TW.Utility.BasicType
+namespace TW.Utility.CustomType
 {
     namespace SimpleJSON
     {

@@ -1,13 +1,14 @@
-namespace TW.Utility.BasicType
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using UnityEditor;
-    using UnityEngine;
-    using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
+using System.Text.RegularExpressions;
 #if UNITY_EDITOR
-    using Sirenix.OdinInspector.Editor;
+using Sirenix.OdinInspector.Editor;
 #endif
+
+namespace TW.Utility.CustomType
+{
 
     [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public sealed class BigNumberEditorAttribute : System.Attribute
