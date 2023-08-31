@@ -9,9 +9,9 @@ namespace TW.Utility.Extension
 {
     public static class AEditorExtension
     {
-        public static string formatGetColorInPalette = "@TW.Utility.Extension.AEditorExtension.GetColorInPalette(\"{0}\", (int)$value)";
-        public static string formatGetColorById = "@TW.Utility.Extension.AEditorExtension.GetColorById((int)$value, {0})";
-        public static string formatGetColorInGlobalConfig = "@TW.Utility.Extension.AEditorExtension.GetColorInGlobalConfig(\"{0}\", (int)$value)";
+        public const string FormatGetColorInPalette = "@TW.Utility.Extension.AEditorExtension.GetColorInPalette(\"{0}\", (int)$value)";
+        public const string FormatGetColorById = "@TW.Utility.Extension.AEditorExtension.GetColorById((int)$value, {0})";
+        public const string FormatGetColorInGlobalConfig = "@TW.Utility.Extension.AEditorExtension.GetColorInGlobalConfig(\"{0}\", (int)$value)";
 
         /// <summary>
         /// Returns a boolean indicating whether the current stage of the editor is a prefab stage.
@@ -68,71 +68,7 @@ namespace TW.Utility.Extension
             return null;
 #endif
         }
-        /// <summary>
-        /// Retrieves a color from the specified color palette with the specified index.
-        /// Returns white if the color palette or index cannot be found.
-        /// This method requires the Sirenix.OdinInspector.Editor namespace.
-        /// </summary>
-        /// <param name="colorPaletteName">The name of the color palette to search for the color in.</param>
-        /// <param name="index">The index of the color in the color palette to retrieve.</param>
-        /// <returns></returns>
-        public static Color GetColorInPalette(string colorPaletteName, int index)
-        {
-#if UNITY_EDITOR
-            Sirenix.OdinInspector.Editor.ColorPalette colorPalette = Sirenix.OdinInspector.Editor.ColorPaletteManager.Instance.ColorPalettes.FirstOrDefault(x => x.Name == colorPaletteName);
-            return colorPalette != null ? colorPalette.Colors[index] : Color.white;
-#else
-            return Color.white;
-#endif
-        }
-        /// <summary>
-        /// Returns a color generated based on the provided ID.
-        /// Colors with IDs closer to each other will have a greater difference. White text is easily visible on the background color.
-        /// </summary>
-        /// <param name="id">The ID used to generate the color.</param>
-        /// <param name="range">The number of the color.</param>
-        /// <returns>A color generated based on the provided ID.</returns>
-        public static Color GetColorById(int id, int range)
-        {
-            // Define the range of hues for the colors (0-360 degrees)
-            float hueRange = 360f;
-
-            // Calculate the hue for this ID (wrapping around after 100 IDs)
-            float hue = Mathf.Repeat((float)id / range * hueRange, hueRange);
-
-            // Define the saturation and value for the colors
-            float saturation = 0.7f;
-            float value = 0.9f;
-
-            // Adjust the hue based on neighboring IDs to increase the difference
-            float hueAdjustment = Mathf.Clamp01(1f / 100f * hueRange);
-            hue += hueAdjustment * ((id / 10) % 2 == 0 ? 1 : -1);
-
-            // Create the color from the hue, saturation, and value
-            Color color = Color.HSVToRGB(hue / hueRange, saturation, value);
-
-            return color;
-        }
-
-        public static Color GetColorInGlobalConfig(string colorPaletteName, int index)
-        {
-
-            return EditorColorGlobalConfig.Instance.GetColor(colorPaletteName, index);
-        }
-        /// <summary>
-        /// Finds all prefabs within the specified folders.
-        /// </summary>
-        /// <param name="searchInFolders">The folders to search for prefabs in.</param>
-        /// <returns>An array of GameObjects representing the found prefabs. Returns null if not in the Unity Editor.</returns>
-        public static GameObject[] FindPrefabInFolders(params string[] searchInFolders)
-        {
-#if UNITY_EDITOR
-            string[] guids = AssetDatabase.FindAssets("t:Prefab", searchInFolders);
-            return guids.Select(x => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(x))).ToArray();
-#else
-            return null;
-#endif
-        }
+        
         /// <summary>
         /// Finds the asset paths of all prefabs within the specified folders.
         /// </summary>
