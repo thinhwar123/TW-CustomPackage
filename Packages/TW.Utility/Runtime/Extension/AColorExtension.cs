@@ -9,9 +9,9 @@ using UnityEngine;
 
 public static class AColorExtension 
 {
-    public const string FormatGetColorInPalette = "@TW.Utility.Extension.AEditorExtension.GetColorInPalette(\"{paletteName}\", (int)$value)";
-    public const string FormatGetColorById = "@TW.Utility.Extension.AEditorExtension.GetColorById((int)$value, {range})";
-    public const string FormatGetColorInGlobalConfig = "@TW.Utility.Extension.AEditorExtension.GetColorInGlobalConfig(\"{name}\", (int)$value)";
+    public const string FormatGetColorInPalette = "@TW.Utility.Extension.AColorExtension.GetColorInPalette(\"{paletteName}\", (int)$value)";
+    public const string FormatGetColorById = "@TW.Utility.Extension.AColorExtension.GetColorById((int)$value, {range})";
+    public const string FormatGetColorInGlobalConfig = "@TW.Utility.Extension.AColorExtension.GetColorInGlobalConfig(\"{name}\", (int)$value)";
 
     /// <summary>
     /// Retrieves a color from the specified color palette with the specified index.
