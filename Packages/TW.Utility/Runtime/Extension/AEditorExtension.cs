@@ -9,6 +9,10 @@ namespace TW.Utility.Extension
 {
     public static class AEditorExtension
     {
+        public static string formatGetColorInPalette = "@TW.Utility.Extension.AEditorExtension.GetColorInPalette(\"{0}\", (int)$value)";
+        public static string formatGetColorById = "@TW.Utility.Extension.AEditorExtension.GetColorById((int)$value, {0})";
+        public static string formatGetColorInGlobalConfig = "@TW.Utility.Extension.AEditorExtension.GetColorInGlobalConfig(\"{0}\", (int)$value)";
+
         /// <summary>
         /// Returns a boolean indicating whether the current stage of the editor is a prefab stage.
         /// </summary>
