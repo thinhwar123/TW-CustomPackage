@@ -9,16 +9,26 @@ namespace TW.Utility.Editor.Template
     {
 #if UNITY_EDITOR
         #region Scriptable Object Scripts
-        [MenuItem(itemName: "Assets/CustomTemplate/Create New Scriptable Object", isValidateFunction: false, priority: 1)]
+        [MenuItem(itemName: "Assets/CustomTemplate/Scriptable Object/Create New Scriptable Object", isValidateFunction: false, priority: 1)]
         public static void CreateScriptScriptableObjectFromTemplate()
         {
             CreateScriptFromTemplate("NewScriptableObjectTemplate.cs", "NewScriptableObject.cs");
         }
-        [MenuItem(itemName: "Assets/CustomTemplate/Create New Global Config", isValidateFunction: false, priority: 1)]
+        [MenuItem(itemName: "Assets/CustomTemplate/Scriptable Object/Create New Global Config", isValidateFunction: false, priority: 1)]
         public static void CreateScriptGlobalDataFromTemplate()
         {
             CreateScriptFromTemplate("NewGlobalConfigTemplate.cs", "NewGlobalConfig.cs");
         }
+        #endregion
+
+        #region Useful Built-in Scripts
+
+        [MenuItem(itemName: "Assets/CustomTemplate/Useful Built-in/Create New Asset Modification Processor", isValidateFunction: false, priority: 1)]
+        public static void CreateScriptFromTemplate()
+        {
+            CreateScriptFromTemplate("NewMyAssetModificationProcessor.cs", "MyAssetModificationProcessor.cs");
+        }
+
         #endregion
 
         #region ECS Scripts
