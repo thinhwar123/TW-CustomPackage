@@ -61,7 +61,6 @@ namespace TW.Utility.Extension
 
         public static Color GetColorInGlobalConfig(string colorPaletteName, int index)
         {
-
             return EditorColorGlobalConfig.Instance.GetColor(colorPaletteName, index);
         }
         /// <summary>
