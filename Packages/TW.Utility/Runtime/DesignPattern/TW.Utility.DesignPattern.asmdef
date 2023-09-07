@@ -5,7 +5,8 @@
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:5c01796d064528144a599661eaab93a6",
         "GUID:50757a2d4eb920f4e8e5acda38d2b179",
-        "TW.Utility.Component"
+        "TW.Utility.Component",
+        "TW.Utility.CustomComponent"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
