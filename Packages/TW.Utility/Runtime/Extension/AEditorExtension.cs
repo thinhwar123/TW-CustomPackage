@@ -90,8 +90,8 @@ namespace TW.Utility.Extension
         public static T FindObjectOfType<T>(string name = "") where T : Object
         {
 #if UNITY_EDITOR
-            string objectName = name == "" ? nameof(T) : name;
-            string[] findAssets = AssetDatabase.FindAssets($"t:{nameof(T)} {objectName}");
+            string objectName = name == "" ? typeof(T).Name : name;
+            string[] findAssets = AssetDatabase.FindAssets($"t:{typeof(T).Name} {objectName}");
             return findAssets.Length > 0 ? AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(findAssets[0])) : null;
 #else
             return null;
