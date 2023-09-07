@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TW.Utility.Component
+namespace TW.Utility.CustomComponent
 {
     public abstract class ContentAutoResizeFitter : LayoutGroup
     {

@@ -1,5 +1,5 @@
 {
-    "name": "TW.Utility.Component",
+    "name": "TW.Utility.CustomComponent",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [],

@@ -1,9 +1,10 @@
-﻿using TW.Utility.CustomComponent;
+using TW.Utility.CustomComponent;
 using UnityEngine;
 
 namespace TW.Utility.DesignPattern
 {
-    public class Singleton<T> : AwaitableCachedMonoBehaviour where T : AwaitableCachedMonoBehaviour
+    [RequireComponent(typeof(DontDestroyOnLoadMonoBehavior))]
+    public class DDOLSingleton<T> : AwaitableCachedMonoBehaviour where T : AwaitableCachedMonoBehaviour
     {
         private static T instance;
 
@@ -23,6 +24,7 @@ namespace TW.Utility.DesignPattern
                         GameObject singletonObject = new GameObject();
                         instance = singletonObject.AddComponent<T>();
                         singletonObject.name = typeof(T).ToString() + " (Singleton)";
+                        singletonObject.AddComponent<DontDestroyOnLoadMonoBehavior>();
 
                     }
 
@@ -31,5 +33,6 @@ namespace TW.Utility.DesignPattern
             }
         }
     }
-
 }
+
+

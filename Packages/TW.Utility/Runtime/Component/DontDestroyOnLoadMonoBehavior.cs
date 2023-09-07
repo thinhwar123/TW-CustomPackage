@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TW.Utility.Component
+namespace TW.Utility.CustomComponent
 {
     public class DontDestroyOnLoadMonoBehavior : MonoBehaviour
     {

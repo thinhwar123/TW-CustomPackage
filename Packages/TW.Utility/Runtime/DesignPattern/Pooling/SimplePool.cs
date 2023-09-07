@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Component = UnityEngine.Component;
 using Object = UnityEngine.Object;
 
 namespace TW.Utility.DesignPattern

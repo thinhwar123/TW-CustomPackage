@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
-namespace TW.Utility.Component
+namespace TW.Utility.CustomComponent
 {
     [RequireComponent(typeof(LayoutElement))]
     public class VerticalAutoResizeFitter : ContentAutoResizeFitter
