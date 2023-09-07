@@ -79,6 +79,25 @@ namespace TW.Utility.Extension
             return null;
 #endif
         }
+        /// <summary>
+        /// Finds and returns an instance of a specified Unity Object type in the project's assets or scene hierarchy. 
+        /// </summary>
+        /// <typeparam name="T">The type of Unity Object to find (e.g., GameObject, ScriptableObject).</typeparam>
+        /// <param name="name">Optional. The name or partial name of the object to search for.</param>
+        /// <returns>
+        /// Returns an instance of the specified type if found; otherwise, returns null.
+        /// </returns>
+        public static T FindObjectOfType<T>(string name = "") where T : Object
+        {
+#if UNITY_EDITOR
+            string objectName = name == "" ? nameof(T) : name;
+            string[] findAssets = AssetDatabase.FindAssets($"t:{nameof(T)} {objectName}");
+            return findAssets.Length > 0 ? AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(findAssets[0])) : null;
+#else
+            return null;
+#endif
+        }
+
     }
 }
 
