@@ -2,7 +2,7 @@ using System.Threading;
 
 namespace TW.Utility.CustomComponent
 {
-    public abstract class AwaitableCachedMonoBehaviour : CachedMonoBehaviour
+    public abstract class AwaitableCachedMonoBehaviour : ACachedMonoBehaviour
     {
         private CancellationTokenSource m_MyCancellationTokenSource;
 
