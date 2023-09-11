@@ -62,5 +62,16 @@ namespace TW.Utility.Extension
 
             throw new ArgumentException($"Type {type.Name} is not supported.");
         }
+        /// <summary>
+        /// Converts an enumeration value of type T to its integer representation as a string.
+        /// </summary>
+        /// <param name="enumType">The enumeration value to be converted.</param>
+        /// <typeparam name="T">The enumeration type.</typeparam>
+        /// <returns>A string representation of the integer value corresponding to the enumeration value.</returns>
+        public static string ToIntString<T>(this T enumType) where T : System.Enum
+        {
+            return $"{((int)(object)enumType).ToString()}";
+        }
+
     } 
 }
