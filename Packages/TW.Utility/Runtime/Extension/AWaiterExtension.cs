@@ -22,15 +22,23 @@ namespace TW.Utility.Extension
         public static AWaiter DelayCall(this Action action, float time)
         {
             float process = 0; 
+            
             return DOTween.To(() => process, value => process = value, 1, time).OnComplete(() => action?.Invoke());
+        }
+
+        public static AWaiter DelayCall(this AWaiter aWaiter, float time)
+        {
+            float process = 0;
+            aWaiter.OwnTween = DOTween.To(() => process, value => process = value, 1, time).OnComplete(() => aWaiter.OnTweenCompleteCallback?.Invoke());
+            return aWaiter;
         }
     }
 
     public class AWaiter
     {
-        public Tween OwnTween { get; private set; }
         public bool IsComplete { get; private set; }
-        private Action OnTweenCompleteCallback { get; set; }
+        public Tween OwnTween { get; set; }
+        public Action OnTweenCompleteCallback { get; set; }
 
         public AWaiter()
         {
@@ -64,6 +72,17 @@ namespace TW.Utility.Extension
         {
             OnTweenCompleteCallback = action;
             return this;
+        }
+
+        public void Kill()
+        {
+            OwnTween?.Kill();
+        }
+        public void InstanceComplete()
+        {
+            Kill();
+            IsComplete = true;
+            OnTweenCompleteCallback?.Invoke();
         }
     }
 }
