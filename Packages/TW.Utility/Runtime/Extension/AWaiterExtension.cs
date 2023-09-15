@@ -31,6 +31,18 @@ namespace TW.Utility.Extension
         public Tween OwnTween { get; private set; }
         public bool IsComplete { get; private set; }
         private Action OnTweenCompleteCallback { get; set; }
+
+        public AWaiter()
+        {
+            IsComplete = false;
+            OnTweenCompleteCallback = null;
+        }
+
+        public AWaiter(Action onCompleteAction)
+        {
+            IsComplete = false;
+            OnTweenCompleteCallback = onCompleteAction;
+        }
         public AWaiter(Tween tween)
         {
             IsComplete = false;
