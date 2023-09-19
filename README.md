@@ -20,7 +20,7 @@ https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.Utility
 ```
 https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.UI
 ```
-### Package
+### Help Package
 ```
-https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.Package
+https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.HelpPackage
 ```
