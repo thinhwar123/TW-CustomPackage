@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cfb2353d8d555e4492c239e981846cf, type: 3}
+  m_Name: AUISwitchToggleButtonConfig
+  m_EditorClassIdentifier: 
+  <ActiveSwitchColor>k__BackingField: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
+  <ActiveBackgroundColor>k__BackingField: {r: 0.39776266, g: 0.8396226, b: 0.38416696, a: 1}
+  <DeActiveSwitchColor>k__BackingField: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  <DeActiveBackgroundColor>k__BackingField: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+  <OnClickSound>k__BackingField: {fileID: 8300000, guid: 717ded1747861eb4e96b4181001bc8a2, type: 3}
