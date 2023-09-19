@@ -1,35 +1,40 @@
 using Sirenix.OdinInspector;
 using TW.Utility.CustomComponent;
 
-public abstract class AUIVisualElement : AwaitableCachedMonoBehaviour
+namespace TW.UI.CustomComponent
 {
-    #region Unity Function
-
-    protected virtual void Awake()
+    public abstract class AUIVisualElement : AwaitableCachedMonoBehaviour
     {
-        Setup();
-        Config();
-    }
+        #region Unity Function
 
-    protected void OnValidate()
-    {
-        Config();
-    }
+        protected virtual void Awake()
+        {
+            Setup();
+            Config();
+        }
 
-    protected void Reset()
-    {
-        Setup();
-        Config();
-    }
+        protected void OnValidate()
+        {
+            Config();
+        }
 
-    #endregion
+        protected void Reset()
+        {
+            Setup();
+            Config();
+        }
 
-    public void SetActive(bool isActive)
-    {
-        gameObject.SetActive(isActive);
+        #endregion
+
+        public void SetActive(bool isActive)
+        {
+            gameObject.SetActive(isActive);
+        }
+
+        [Button, PropertyOrder(200)]
+        protected abstract void Setup();
+
+        [Button, PropertyOrder(200)]
+        protected abstract void Config();
     }
-    [Button, PropertyOrder(200)]
-    protected abstract void Setup();
-    [Button, PropertyOrder(200)]
-    protected abstract void Config();
 }

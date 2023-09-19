@@ -3,75 +3,82 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class AUIRepeatableButton : AUIButton
+namespace TW.UI.CustomComponent
 {
-    private const float MinTimeInterval = 0.1f;
-    private const float MaxTimeInterval = 0.5f;
-    private float m_CurrentTimeInterval;
-    private Coroutine m_RepeatCoroutine;
-    private bool m_IsClickDone;
-    
-    protected override void Init()
+    public class AUIRepeatableButton : AUIButton
     {
-        MainButton.OnPointerDownAction.AddListener((eventData) =>
-        {
-            if (eventData.button != PointerEventData.InputButton.Left) return;
-            m_IsClickDone = false;
-            m_RepeatCoroutine = StartCoroutine(CoRepeat());
-        });
-        
-        MainButton.OnPointerUpAction.AddListener((eventData) =>
-        {
-            if (eventData.button != PointerEventData.InputButton.Left) return;
-            StopCoroutine(m_RepeatCoroutine);
-            if (!m_IsClickDone)
-            {
-                PressRepeat();
-            }
-        });
-        
-        MainButton.OnPointerExitAction.AddListener((eventData) =>
-        {
-            if (!MainButton.IsPointerDown) return;
-            StopCoroutine(m_RepeatCoroutine);
-            if (!m_IsClickDone)
-            {
-                PressRepeat();
-            }
-        });
-        
-        if (AUIButtonConfig != null)
-        {
-            AUIButtonConfig.SetupSoundEffect(this);
-            AUIButtonConfig.SetupAnimEffect(this);
-        }
-    }
+        private const float MinTimeInterval = 0.1f;
+        private const float MaxTimeInterval = 0.5f;
+        private float m_CurrentTimeInterval;
+        private Coroutine m_RepeatCoroutine;
+        private bool m_IsClickDone;
 
-    [SuppressMessage("ReSharper", "IteratorNeverReturns")]
-    private IEnumerator CoRepeat()
-    {
-        m_CurrentTimeInterval = MaxTimeInterval;
-        while (true)
+        protected override void Init()
         {
-            yield return new WaitForSeconds(m_CurrentTimeInterval);
-            if (m_CurrentTimeInterval > MaxTimeInterval)
+            MainButton.OnPointerDownAction.AddListener((eventData) =>
             {
-                m_CurrentTimeInterval = MaxTimeInterval;
-            }
-            if (m_CurrentTimeInterval > MinTimeInterval)
+                if (eventData.button != PointerEventData.InputButton.Left) return;
+                m_IsClickDone = false;
+                m_RepeatCoroutine = StartCoroutine(CoRepeat());
+            });
+
+            MainButton.OnPointerUpAction.AddListener((eventData) =>
             {
-                m_CurrentTimeInterval -= 0.5f * m_CurrentTimeInterval;
+                if (eventData.button != PointerEventData.InputButton.Left) return;
+                StopCoroutine(m_RepeatCoroutine);
+                if (!m_IsClickDone)
+                {
+                    PressRepeat();
+                }
+            });
+
+            MainButton.OnPointerExitAction.AddListener((eventData) =>
+            {
+                if (!MainButton.IsPointerDown) return;
+                StopCoroutine(m_RepeatCoroutine);
+                if (!m_IsClickDone)
+                {
+                    PressRepeat();
+                }
+            });
+
+            if (AUIButtonConfig != null)
+            {
+                AUIButtonConfig.SetupSoundEffect(this);
+                AUIButtonConfig.SetupAnimEffect(this);
             }
-            PressRepeat();
-            m_IsClickDone = true;
         }
-    }
-    private void PressRepeat()
-    {
-        OnClickButton?.Invoke();
-    }
-    public void SetTimeInterval(float time)
-    {
-        m_CurrentTimeInterval = time;
+
+        [SuppressMessage("ReSharper", "IteratorNeverReturns")]
+        private IEnumerator CoRepeat()
+        {
+            m_CurrentTimeInterval = MaxTimeInterval;
+            while (true)
+            {
+                yield return new WaitForSeconds(m_CurrentTimeInterval);
+                if (m_CurrentTimeInterval > MaxTimeInterval)
+                {
+                    m_CurrentTimeInterval = MaxTimeInterval;
+                }
+
+                if (m_CurrentTimeInterval > MinTimeInterval)
+                {
+                    m_CurrentTimeInterval -= 0.5f * m_CurrentTimeInterval;
+                }
+
+                PressRepeat();
+                m_IsClickDone = true;
+            }
+        }
+
+        private void PressRepeat()
+        {
+            OnClickButton?.Invoke();
+        }
+
+        public void SetTimeInterval(float time)
+        {
+            m_CurrentTimeInterval = time;
+        }
     }
 }

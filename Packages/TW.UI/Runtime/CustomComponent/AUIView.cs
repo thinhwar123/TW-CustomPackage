@@ -3,26 +3,31 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class AUIView : AUIVisualElement
+namespace TW.UI.CustomComponent
 {
-    [field: SerializeField, InlineEditor] public AUIViewConfig AUIViewConfig {get; private set;}
-    [field: SerializeField] public LayoutElement Header {get; private set;}
-    [field: SerializeField] public LayoutElement Body {get; private set;}
-    [field: SerializeField] public LayoutElement Footer {get; private set;}
-
-
-    #region View Function
-
-    protected override void Setup()
+    public abstract class AUIView : AUIVisualElement
     {
-        Header = GetComponentsInChildren<LayoutElement>().FirstOrDefault(x => x.name == "Header");
-        Body = GetComponentsInChildren<LayoutElement>().FirstOrDefault(x => x.name == "Body");
-        Footer = GetComponentsInChildren<LayoutElement>().FirstOrDefault(x => x.name == "Footer");
-    }
-    protected override void Config()
-    {
-        
+        [field: SerializeField, InlineEditor] public AUIViewConfig AUIViewConfig { get; private set; }
+        [field: SerializeField] public LayoutElement Header { get; private set; }
+        [field: SerializeField] public LayoutElement Body { get; private set; }
+        [field: SerializeField] public LayoutElement Footer { get; private set; }
+
+
+        #region View Function
+
+        protected override void Setup()
+        {
+            Header = GetComponentsInChildren<LayoutElement>().FirstOrDefault(x => x.name == "Header");
+            Body = GetComponentsInChildren<LayoutElement>().FirstOrDefault(x => x.name == "Body");
+            Footer = GetComponentsInChildren<LayoutElement>().FirstOrDefault(x => x.name == "Footer");
+        }
+
+        protected override void Config()
+        {
+
+        }
+
+        #endregion
     }
 
-    #endregion
 }
