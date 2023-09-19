@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f45a3772efe7a42adfc5cba89f0ff2, type: 3}
+  m_Name: AUITextConfigDemo
+  m_EditorClassIdentifier: 
+  <TextFontAsset>k__BackingField: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+    type: 2}
+  <TextSpriteAsset>k__BackingField: {fileID: 11400000, guid: c41005c129ba4d66911b75229fd70b45,
+    type: 2}
+  <TextStyleSheet>k__BackingField: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e,
+    type: 2}
+  <Presets>k__BackingField:
+  - m_PresetName: Normal
+    m_PresetSize: 35
+    m_PresetStyle: 0
+  - m_PresetName: Heading 1
+    m_PresetSize: 60
+    m_PresetStyle: 1
+  - m_PresetName: Heading 2
+    m_PresetSize: 55
+    m_PresetStyle: 1
+  - m_PresetName: Title
+    m_PresetSize: 50
+    m_PresetStyle: 1
+  - m_PresetName: Subtitle
+    m_PresetSize: 40
+    m_PresetStyle: 1
+  - m_PresetName: Subtitle Emphasis
+    m_PresetSize: 40
+    m_PresetStyle: 2
+  - m_PresetName: Emphasis
+    m_PresetSize: 37
+    m_PresetStyle: 1
+  - m_PresetName: Strong
+    m_PresetSize: 35
+    m_PresetStyle: 1
+  - m_PresetName: Quote
+    m_PresetSize: 30
+    m_PresetStyle: 1
