@@ -10,9 +10,9 @@ using Sirenix.OdinInspector.Editor;
 
 namespace TW.UI.CustomComponent
 {
-    [CreateAssetMenu(fileName = "AUIColorPalletGlobalConfig", menuName = "GlobalConfigs/AUIColorPalettesGlobalConfig")] 
+    [CreateAssetMenu(fileName = "UIColorPalletGlobalConfig", menuName = "GlobalConfigs/UIColorPalettesGlobalConfig")] 
     [GlobalConfig("Assets/Resources/GlobalConfig/")]
-    public class AUIColorPalettesGlobalConfig : GlobalConfig<AUIColorPalettesGlobalConfig>
+    public class UIColorPalettesGlobalConfig : GlobalConfig<UIColorPalettesGlobalConfig>
     {
         [Serializable]
         public class ColorPalette
@@ -36,7 +36,7 @@ namespace TW.UI.CustomComponent
 
     }
 #if UNITY_EDITOR
-    public sealed class ColorPaletteAttributeDrawer : OdinAttributeDrawer<ColorPaletteEditorAttribute, AUIColorPalettesGlobalConfig.ColorPalette>
+    public sealed class ColorPaletteAttributeDrawer : OdinAttributeDrawer<ColorPaletteEditorAttribute, UIColorPalettesGlobalConfig.ColorPalette>
     {
         private bool IsEditing { get; set; }
         protected override void Initialize()
@@ -71,7 +71,7 @@ namespace TW.UI.CustomComponent
             else
             {
                 // draw color range
-                AUIColorPalettesGlobalConfig.ColorPalette colorPalette = this.ValueEntry.SmartValue;
+                UIColorPalettesGlobalConfig.ColorPalette colorPalette = this.ValueEntry.SmartValue;
                 Color[] colorArray = colorPalette.m_PaletteColor;
                 if (colorArray == null || colorArray.Length == 0) return;
                 Rect colorRectFull = EditorGUILayout.GetControlRect();
