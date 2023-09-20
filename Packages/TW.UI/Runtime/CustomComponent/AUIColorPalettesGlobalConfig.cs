@@ -18,8 +18,9 @@ namespace TW.UI.CustomComponent
         public class ColorPalette
         {
             public string m_PaletteName;
+
             [ListDrawerSettings(CustomAddFunction = nameof(CustomAddColor))]
-            public Color[] m_PaletteColor;
+            public Color[] m_PaletteColor = new Color[1] { Color.white };
             
             public Color CustomAddColor()
             {
@@ -61,6 +62,8 @@ namespace TW.UI.CustomComponent
             {
                 IsEditing = !IsEditing;
             }
+
+
             if (IsEditing)
             {
                 this.Property.Children[1].Draw();
@@ -70,6 +73,7 @@ namespace TW.UI.CustomComponent
                 // draw color range
                 AUIColorPalettesGlobalConfig.ColorPalette colorPalette = this.ValueEntry.SmartValue;
                 Color[] colorArray = colorPalette.m_PaletteColor;
+                if (colorArray == null || colorArray.Length == 0) return;
                 Rect colorRectFull = EditorGUILayout.GetControlRect();
                 float colorWidth = colorRectFull.width / colorArray.Length;
                 for (int i = 0; i < colorArray.Length; i++)
