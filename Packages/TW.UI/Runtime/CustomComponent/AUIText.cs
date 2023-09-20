@@ -15,8 +15,7 @@ namespace TW.UI.CustomComponent
         [field: SerializeField] public Color TextColor { get; private set; }
 
         [field: ValueDropdown(nameof(CustomChangeTextPreset), DrawDropdownForListElements = false)]
-        [field: SerializeField]
-        public string TextPreset { get; private set; }
+        [field: SerializeField] public string TextPreset { get; private set; }
 
         public string Text
         {

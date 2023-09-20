@@ -1,4 +1,6 @@
+using System;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,7 +10,15 @@ namespace TW.UI.CustomComponent
 
     public class AUIButtonConfig : ScriptableObject
     {
+        [Serializable]
+        public struct Preset
+        {
+            public string m_PresetName;
+            public Vector2 m_PresetSize;
+        }
+        
         [field: SerializeField] public AudioClip OnClickSound { get; private set; }
+        [field: SerializeField] public Preset[] Presets { get; private set; }
 
         //override this to set sound effect when click button
         public virtual void SetupSoundEffect(AUIButton auiButton)

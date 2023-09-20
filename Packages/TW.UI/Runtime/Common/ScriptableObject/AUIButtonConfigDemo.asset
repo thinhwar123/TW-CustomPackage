@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdeb4edcb3d034d4ebdb97868b5c5b60, type: 3}
   m_Name: AUIButtonConfigDemo
   m_EditorClassIdentifier: 
-  <OnClickSound>k__BackingField: {fileID: 8300000, guid: 717ded1747861eb4e96b4181001bc8a2,
-    type: 3}
+  <OnClickSound>k__BackingField: {fileID: 8300000, guid: 717ded1747861eb4e96b4181001bc8a2, type: 3}
+  <Presets>k__BackingField:
+  - m_PresetName: NormalSize
+    m_PresetSize: {x: 220, y: 120}
+  - m_PresetName: BigSize
+    m_PresetSize: {x: 320, y: 220}
+  - m_PresetName: SquareSize
+    m_PresetSize: {x: 100, y: 110}

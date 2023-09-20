@@ -50,7 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AUIButtonConfig>k__BackingField: {fileID: 11400000, guid: 3e02b82a0416b0f41a737f1aa73ffcc3, type: 2}
+  <RectTransform>k__BackingField: {fileID: 3077998146506594210}
   <MainButton>k__BackingField: {fileID: 3077998147144638628}
+  <TextPreset>k__BackingField: NormalSize
 --- !u!1 &3077998146783695624
 GameObject:
   m_ObjectHideFlags: 0
