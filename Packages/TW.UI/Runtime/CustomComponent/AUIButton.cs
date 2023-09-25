@@ -27,7 +27,7 @@ namespace TW.UI.CustomComponent
 
         protected virtual void Init()
         {
-            MainButton.OnPointerUpAction.AddListener((eventData) =>
+            MainButton.OnPointerClickAction.AddListener((eventData) =>
             {
                 if (eventData.button != PointerEventData.InputButton.Left) return;
                 if (!MainButton.IsPointerClick) return;
