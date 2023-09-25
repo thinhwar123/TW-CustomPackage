@@ -60,6 +60,12 @@ namespace TW.UI.CustomComponent
                 auiButton.AnimTween.Clear();
                 auiButton.AnimTween.Add(auiButton.MainButton.Transform.DOScale(Vector3.one, 0.3f));
             });
+            
+            auiButton.MainButton.OnDestroyButtonAction.AddListener(() =>
+            {
+                auiButton.AnimTween.ForEach(t => t?.Kill());
+                auiButton.AnimTween.Clear();
+            });
         }
 
     }

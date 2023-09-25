@@ -19,7 +19,7 @@ namespace TW.UI.CustomComponent
         public UnityEvent<BaseEventData> OnSelectAction { get; set; } = new UnityEvent<BaseEventData>();
         public UnityEvent<BaseEventData> OnDeselectAction { get; set; } = new UnityEvent<BaseEventData>();
         public UnityEvent<PointerEventData> OnPointerClickAction { get; set; } = new UnityEvent<PointerEventData>();
-
+        public UnityEvent OnDestroyButtonAction { get; set; } = new UnityEvent();
 
         public override void OnPointerDown(PointerEventData eventData)
         {
@@ -68,6 +68,12 @@ namespace TW.UI.CustomComponent
         {
             base.OnPointerClick(eventData);
             OnPointerClickAction?.Invoke(eventData);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            OnDestroyButtonAction?.Invoke();
         }
     }
 }
