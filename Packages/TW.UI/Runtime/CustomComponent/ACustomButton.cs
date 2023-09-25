@@ -63,7 +63,6 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("123");
             OnPointerClickAction?.Invoke(eventData);
         }
 
