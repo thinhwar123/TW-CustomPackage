@@ -11,7 +11,6 @@ namespace TW.UI.CustomComponent
         public Transform Transform => m_Transform = m_Transform != null ? m_Transform : transform;
         public bool IsPointerDown { get; private set; }
         public bool IsPointerEnter { get; private set; }
-        public bool IsPointerClick { get; private set; }
         public UnityEvent<PointerEventData> OnPointerDownAction { get; set; } = new UnityEvent<PointerEventData>();
         public UnityEvent<PointerEventData> OnPointerUpAction { get; set; } = new UnityEvent<PointerEventData>();
         public UnityEvent<PointerEventData> OnPointerEnterAction { get; set; } = new UnityEvent<PointerEventData>();
@@ -31,10 +30,8 @@ namespace TW.UI.CustomComponent
         public override void OnPointerUp(PointerEventData eventData)
         {
             base.OnPointerUp(eventData);
-            IsPointerClick = IsPointerDown;
             OnPointerUpAction?.Invoke(eventData);
             IsPointerDown = false;
-            IsPointerClick = false;
         }
 
         public override void OnPointerEnter(PointerEventData eventData)
@@ -66,7 +63,7 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerClick(PointerEventData eventData)
         {
-            base.OnPointerClick(eventData);
+            Debug.Log("123");
             OnPointerClickAction?.Invoke(eventData);
         }
 

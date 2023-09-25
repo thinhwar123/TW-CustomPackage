@@ -33,13 +33,12 @@ namespace TW.UI.CustomComponent
 
         protected virtual void Init()
         {
-            MainButton.OnPointerUpAction.AddListener((eventData) =>
+            MainButton.OnPointerClickAction.AddListener((eventData) =>
             {
                 if (eventData.button != PointerEventData.InputButton.Left) return;
                 Value = !Value;
                 TargetSwitchPosition =
                     new Vector3(-TargetSwitchPosition.x, TargetSwitchPosition.y, TargetSwitchPosition.z);
-                if (!MainButton.IsPointerClick) return;
                 OnClickButton?.Invoke(Value);
             });
             if (AUISwitchToggleButtonConfig != null)

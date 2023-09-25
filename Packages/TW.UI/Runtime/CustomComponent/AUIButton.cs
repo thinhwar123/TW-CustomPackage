@@ -30,7 +30,6 @@ namespace TW.UI.CustomComponent
             MainButton.OnPointerClickAction.AddListener((eventData) =>
             {
                 if (eventData.button != PointerEventData.InputButton.Left) return;
-                if (!MainButton.IsPointerClick) return;
                 OnClickButton?.Invoke();
             });
 
