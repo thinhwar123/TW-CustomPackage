@@ -39,6 +39,18 @@ namespace TW.UI.CustomComponent
 
             return (T)AUIPanels[typeof(T)];
         }
+        
+        public bool TryGetUI<T>(out T ui) where T : AUIPanel
+        {
+            if (AUIPanels.ContainsKey(typeof(T)) && AUIPanels[typeof(T)] != null)
+            {
+                ui = AUIPanels[typeof(T)] as T;
+                return true;
+            }
+
+            ui = null;
+            return false;
+        }
 
         public T OpenUI<T>() where T : AUIPanel
         {
