@@ -21,20 +21,16 @@ namespace TW.UI.CustomComponent
         {
             [HideInInspector] Normal = 0,
 
-            [LabelText(" ", SdfIconType.TypeBold), LabelWidth(10)]
-            Bold = 1,
+            [LabelText("<b>B</b>"), LabelWidth(10)] Bold = 1,
 
-            [LabelText(" ", SdfIconType.TypeItalic), LabelWidth(10)]
-            Italic = 2,
+            [LabelText("<i>I</i>"), LabelWidth(10)] Italic = 2,
 
-            [LabelText(" ", SdfIconType.TypeUnderline), LabelWidth(10)]
-            Underline = 4,
+            [LabelText("<b>U</b>"), LabelWidth(10)] Underline = 4,
             [LabelText("ab"), LabelWidth(10)] LowerCase = 8,
             [LabelText("AB"), LabelWidth(10)] UpperCase = 16, // 0x00000010
             [LabelText("SC"), LabelWidth(10)] SmallCaps = 32, // 0x00000020
 
-            [LabelText(" ", SdfIconType.TypeStrikethrough), LabelWidth(10)]
-            Strikethrough = 64, // 0x00000040
+            [HideInInspector] Strikethrough = 64, // 0x00000040
             [HideInInspector] Superscript = 128, // 0x00000080
             [HideInInspector] Subscript = 256, // 0x00000100
             [HideInInspector] Highlight = 512, // 0x00000200
