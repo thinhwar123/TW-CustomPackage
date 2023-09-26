@@ -9,9 +9,9 @@ using UnityEditor;
 #endif
 
 
+#if UNITY_EDITOR
 public class UIColorPalettesEditorWindow : OdinMenuEditorWindow
 {
-#if UNITY_EDITOR
     [MenuItem("Tools/Editor Windows/Game Config Editor Window %#/")]
     private static void Open()
     {
@@ -40,6 +40,5 @@ public class UIColorPalettesEditorWindow : OdinMenuEditorWindow
         GUIHelper.CurrentWindow.Repaint();
 
     }
-#endif
-
 }
+#endif
