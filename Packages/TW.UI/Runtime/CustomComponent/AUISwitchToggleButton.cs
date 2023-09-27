@@ -24,7 +24,7 @@ namespace TW.UI.CustomComponent
 
         public UnityEvent<bool> OnClickButton { get; private set; } = new UnityEvent<bool>();
         public List<Tween> AnimTween { get; private set; } = new List<Tween>();
-
+        private bool IsInit { get; set; } = false;
         protected override void Awake()
         {
             base.Awake();
@@ -33,6 +33,7 @@ namespace TW.UI.CustomComponent
 
         protected virtual void Init()
         {
+            if (IsInit) return;
             MainButton.OnPointerClickAction.AddListener((eventData) =>
             {
                 if (eventData.button != PointerEventData.InputButton.Left) return;
@@ -46,6 +47,8 @@ namespace TW.UI.CustomComponent
                 AUISwitchToggleButtonConfig.SetupSoundEffect(this);
                 AUISwitchToggleButtonConfig.SetupAnimEffect(this);
             }
+
+            IsInit = true;
         }
 
         protected override void Setup()
@@ -68,6 +71,7 @@ namespace TW.UI.CustomComponent
         public void SetupValue(bool value)
         {
             if (value == Value) return;
+            if (!IsInit) Init();
 
             Value = !Value;
             TargetSwitchPosition = new Vector3(-TargetSwitchPosition.x, TargetSwitchPosition.y, TargetSwitchPosition.z);
