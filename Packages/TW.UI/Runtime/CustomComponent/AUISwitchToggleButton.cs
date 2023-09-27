@@ -34,6 +34,11 @@ namespace TW.UI.CustomComponent
         protected virtual void Init()
         {
             if (IsInit) return;
+            if (Switch != null)
+            {
+                TargetSwitchPosition = Switch.localPosition;
+            }
+
             MainButton.OnPointerClickAction.AddListener((eventData) =>
             {
                 if (eventData.button != PointerEventData.InputButton.Left) return;
@@ -61,10 +66,6 @@ namespace TW.UI.CustomComponent
 
         protected override void Config()
         {
-            if (Switch != null)
-            {
-                TargetSwitchPosition = Switch.localPosition;
-            }
 
         }
 
