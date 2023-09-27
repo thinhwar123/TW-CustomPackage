@@ -76,6 +76,7 @@ namespace TW.UI.CustomComponent
 
             Value = !Value;
             TargetSwitchPosition = new Vector3(-TargetSwitchPosition.x, TargetSwitchPosition.y, TargetSwitchPosition.z);
+            Switch.localPosition = TargetSwitchPosition;
             if (AUISwitchToggleButtonConfig != null)
             {
                 ImageBackground.color =
