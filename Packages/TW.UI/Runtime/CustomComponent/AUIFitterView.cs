@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TW.Utility.CustomComponent;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +31,7 @@ namespace TW.UI.CustomComponent
         {
             if (AUIViewConfig == null) return;
 #if UNITY_EDITOR
-            EditorUtility.SetDirty(this);
+            UnityEditor.EditorUtility.SetDirty(this);
 #endif
             if (VerticalAutoResizeFitter == null) return;
             VerticalAutoResizeFitter.padding = AUIViewConfig.Padding;
