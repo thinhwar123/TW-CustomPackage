@@ -1,0 +1,39 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using TW.Utility.DesignPattern;
+
+public class #SCRIPTNAME# : UniTaskState<IStateHandler>
+{
+    private static #SCRIPTNAME# m_Instance;
+    public static #SCRIPTNAME# Instance => m_Instance ??= new #SCRIPTNAME#();
+    
+    public interface I#SCRIPTNAME#Handler
+    {
+        public void On#SCRIPTNAME#Request();
+        public UniTask On#SCRIPTNAME#Enter(CancellationToken token);
+        public UniTask On#SCRIPTNAME#Execute(CancellationToken token);
+        public UniTask On#SCRIPTNAME#Exit(CancellationToken token);
+    }
+    
+    public override void OnRequest(IStateHandler owner)
+    {
+        owner.On#SCRIPTNAME#Request();
+    }
+    public override UniTask OnEnter(IStateHandler owner, CancellationToken token)
+    {
+        return owner.On#SCRIPTNAME#Enter(token);
+    }
+    public override UniTask OnExecute(IStateHandler owner, CancellationToken token)
+    {
+        return owner.On#SCRIPTNAME#Execute(token);
+    }
+    public override UniTask OnExit(IStateHandler owner, CancellationToken token)
+    {
+        return owner.On#SCRIPTNAME#Exit(token);
+    }
+}
+
+public partial interface IStateHandler : #SCRIPTNAME#.I#SCRIPTNAME#Handler
+{
+    
+}

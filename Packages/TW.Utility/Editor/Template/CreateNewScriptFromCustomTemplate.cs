@@ -24,10 +24,16 @@ namespace TW.Utility.Editor.Template
         #region Useful Built-in Scripts
 
         [MenuItem(itemName: "Assets/CustomTemplate/Useful Built-in/Create New Asset Modification Processor", isValidateFunction: false, priority: 1)]
-        public static void CreateScriptFromTemplate()
+        public static void CreateScriptAssetModificationProcessorFromTemplate()
         {
             CreateScriptFromTemplate("NewMyAssetModificationProcessor.cs", "MyAssetModificationProcessor.cs");
         }
+        [MenuItem(itemName: "Assets/CustomTemplate/Useful Built-in/Create New State", isValidateFunction: false, priority: 1)]
+        public static void CreateScriptFromTemplate()
+        {
+            CreateScriptFromTemplate("NewStateTemplate.cs", "NewState.cs");
+        }
+
 
         #endregion
 
