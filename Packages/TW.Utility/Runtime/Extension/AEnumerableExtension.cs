@@ -58,5 +58,35 @@ namespace TW.Utility.Extension
                 yield return enumerator.Current;
             }
         }
+        /// <summary>
+        /// Extension method for adding an item to a list if it is not already present.
+        /// If the input list is null, a new list is created and the item is added.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the list.</typeparam>
+        /// <param name="list">The input list to which the item is attempted to be added.</param>
+        /// <param name="item">The item to be added to the list.</param>
+        /// <returns>The updated list with the item added if it was not already present.</returns>
+        public static List<T> TryAdd<T>(this List<T> list, T item)
+        {
+            list ??= new List<T>();
+            if (!list.Contains(item)) list.Add(item);
+            return list;
+        }
+
+        /// <summary>
+        /// Extension method for removing an item from a list if it is present.
+        /// If the input list is null, a new list is created (if the item is present, it is removed).
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the list.</typeparam>
+        /// <param name="list">The input list from which the item is attempted to be removed.</param>
+        /// <param name="item">The item to be removed from the list.</param>
+        /// <returns>The updated list with the item removed if it was present.</returns>
+        public static List<T> TryRemove<T>(this List<T> list, T item)
+        {
+            list ??= new List<T>();
+            if (list.Contains(item)) list.Remove(item);
+            return list;
+        }
+
     } 
 }
