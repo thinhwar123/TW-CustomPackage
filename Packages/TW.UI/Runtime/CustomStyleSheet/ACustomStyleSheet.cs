@@ -64,7 +64,6 @@ namespace TW.UI.CustomStyleSheet
                     canvasGroup.blocksRaycasts = visible;
                 }
             }
-
             if (visualElement.TryGetComponent(out Image image))
             {
                 if (Properties.TryGetProperty("background-color", out AProperty backgroundColor))
@@ -77,7 +76,6 @@ namespace TW.UI.CustomStyleSheet
                     image.sprite = backgroundImage.SpriteValue;
                 }
             }
-
             if (visualElement.TryGetComponent(out TextMeshProUGUI textMeshProUGUI))
             {
                 if (Properties.TryGetProperty("unity-font", out AProperty unityFont))
