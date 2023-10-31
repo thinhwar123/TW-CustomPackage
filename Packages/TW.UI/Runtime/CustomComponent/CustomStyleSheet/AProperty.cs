@@ -2,12 +2,15 @@
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using TMPro;
 using TW.Utility.Extension;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using Sirenix.OdinInspector.Editor;
+using UnityEditor;
+#endif
 
 namespace TW.UI.CustomStyleSheet
 {
@@ -116,8 +119,6 @@ namespace TW.UI.CustomStyleSheet
 
             FormatPropertiesName = PropertiesName.Select(FormatPropertyType).ToArray();
         }
-        
-
         protected override void DrawPropertyLayout(GUIContent label)
         {
             AProperty value = new AProperty(this.ValueEntry.SmartValue);
@@ -175,7 +176,6 @@ namespace TW.UI.CustomStyleSheet
                     throw new ArgumentOutOfRangeException();
             }
         }
-
         private void DrawStringValue(AProperty value, Rect fullRect, float rectValueWidth, float rectUnitWidth, float space)
         {
             Rect rectValue = fullRect.AlignRight(fullRect.width * rectValueWidth);
@@ -191,7 +191,6 @@ namespace TW.UI.CustomStyleSheet
             }
 
         }
-
         private void DrawFloatValue(AProperty value, Rect fullRect, float rectValueWidth, float rectUnitWidth, float space)
         {
             Rect rectValue = fullRect.AlignRight(fullRect.width * rectValueWidth);
@@ -291,7 +290,6 @@ namespace TW.UI.CustomStyleSheet
                 value.Vector2Value = (0, 0);
             }
         }
-
         private void DrawSpecialValue(AProperty value, Rect fullRect, float rectValueWidth, float rectUnitWidth, float space)
         {
             Rect rectValue = fullRect.AlignRight(fullRect.width * rectValueWidth);
@@ -325,7 +323,6 @@ namespace TW.UI.CustomStyleSheet
                 value.StringUnit = string.Empty;
             }
         }
-
         private string FormatPropertyType(string propertyType)
         {
             // convert string like "unity-font-sprite" to "Unity Font Sprite" by replace "-" with " " and capitalize first letter

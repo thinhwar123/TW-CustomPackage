@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using TMPro;
-using TW.UI.CustomComponent;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +11,10 @@ namespace TW.UI.CustomStyleSheet
     {
         [field: SerializeField, ASelectorEditor] public ASelector Selector { get; private set; }
         [field: SerializeField, ReadOnly] public AProperties Properties { get; private set; }
-
         public ACustomStyleSheet()
         {
             
         }
-        
         public ACustomStyleSheet(ASelector selector)
         {
             Selector = selector;

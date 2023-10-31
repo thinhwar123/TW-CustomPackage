@@ -16,13 +16,11 @@ namespace TW.UI.CustomStyleSheet
     public class GUIColorScope : IDisposable
     {
         private readonly Color m_OldColor;
-
         public GUIColorScope(Color color)
         {
             m_OldColor = GUI.color;
             GUI.color = color;
         }
-
         public void Dispose()
         {
             GUI.color = m_OldColor;

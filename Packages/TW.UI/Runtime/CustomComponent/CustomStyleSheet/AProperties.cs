@@ -14,7 +14,6 @@ namespace TW.UI.CustomStyleSheet
         [field: ValueDropdown(nameof(CustomAddPropertiesButton), IsUniqueList = true, DrawDropdownForListElements = false, DropdownTitle = "Modify Properties")]
         [field: OnValueChanged(nameof(CustomChangeProperties))]
         [field: SerializeField, APropertyEditor] public List<AProperty> Properties {get; private set;}
-        
         public int Count => Properties.Count();
         public AProperties()
         {
