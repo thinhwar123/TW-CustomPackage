@@ -63,8 +63,6 @@ namespace TW.UI.CustomStyleSheet
                 ? state
                 : AVisualElement.State.Default;
         }
-        
-
         protected override void DrawPropertyLayout(GUIContent label)
         {
             ASelector value = new ASelector(this.ValueEntry.SmartValue);
@@ -101,7 +99,6 @@ namespace TW.UI.CustomStyleSheet
             this.ValueEntry.WeakValues.ForceMarkDirty();
             this.ValueEntry.SmartValue = value;
         }
-
         private void SelectPresetButton(Rect rect, string[] menu, UnityAction<string> onSelectedCallback)
         {
             if (!GUI.Button(rect, "-")) return;
