@@ -63,19 +63,15 @@ namespace TW.Utility.Extension
         {
             return EditorColorGlobalConfig.Instance.GetColor(colorPaletteName, index);
         }
+
         /// <summary>
-        /// Finds all prefabs within the specified folders.
+        /// Returns string representation of the color in hexadecimal format.
         /// </summary>
-        /// <param name="searchInFolders">The folders to search for prefabs in.</param>
-        /// <returns>An array of GameObjects representing the found prefabs. Returns null if not in the Unity Editor.</returns>
-        public static GameObject[] FindPrefabInFolders(params string[] searchInFolders)
+        /// <param name="color">Origin color.</param>
+        /// <returns>String hexadecimal format.</returns>
+        public static string ToHex(this Color color)
         {
-#if UNITY_EDITOR
-            string[] guids = AssetDatabase.FindAssets("t:Prefab", searchInFolders);
-            return guids.Select(x => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(x))).ToArray();
-#else
-            return null;
-#endif
+            return $"#{ColorUtility.ToHtmlStringRGB(color)}";
         }
     } 
 }

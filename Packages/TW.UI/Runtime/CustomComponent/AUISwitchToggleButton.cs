@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -8,10 +7,8 @@ using UnityEngine.UI;
 
 namespace TW.UI.CustomComponent
 {
-    public class AUISwitchToggleButton : AUIVisualElement
+    public class AUISwitchToggleButton : AVisualElement
     {
-        [field: SerializeField, InlineEditor]
-        public AUISwitchToggleButtonConfig AUISwitchToggleButtonConfig { get; private set; }
 
         [field: SerializeField] public ACustomButton MainButton { get; private set; }
         [field: SerializeField] public Image ImageSwitch { get; private set; }
@@ -25,9 +22,12 @@ namespace TW.UI.CustomComponent
         public UnityEvent<bool> OnClickButton { get; private set; } = new UnityEvent<bool>();
         public List<Tween> AnimTween { get; private set; } = new List<Tween>();
         private bool IsInit { get; set; } = false;
-        protected override void Awake()
+        protected virtual void Awake()
         {
-            base.Awake();
+            if (MainButton == null)
+            {
+                MainButton = GetComponentInChildren<ACustomButton>();
+            }
             Init();
         }
 
@@ -47,26 +47,7 @@ namespace TW.UI.CustomComponent
                     new Vector3(-TargetSwitchPosition.x, TargetSwitchPosition.y, TargetSwitchPosition.z);
                 OnClickButton?.Invoke(Value);
             });
-            if (AUISwitchToggleButtonConfig != null)
-            {
-                AUISwitchToggleButtonConfig.SetupSoundEffect(this);
-                AUISwitchToggleButtonConfig.SetupAnimEffect(this);
-            }
-
             IsInit = true;
-        }
-
-        protected override void Setup()
-        {
-            if (MainButton == null)
-            {
-                MainButton = GetComponentInChildren<ACustomButton>();
-            }
-        }
-
-        protected override void Config()
-        {
-
         }
 
         public void SetupValue(bool value)
@@ -77,17 +58,6 @@ namespace TW.UI.CustomComponent
             Value = !Value;
             TargetSwitchPosition = new Vector3(-TargetSwitchPosition.x, TargetSwitchPosition.y, TargetSwitchPosition.z);
             Switch.localPosition = TargetSwitchPosition;
-            if (AUISwitchToggleButtonConfig != null)
-            {
-                ImageBackground.color =
-                    Value
-                        ? AUISwitchToggleButtonConfig.ActiveBackgroundColor
-                        : AUISwitchToggleButtonConfig.DeActiveBackgroundColor;
-                ImageSwitch.color =
-                    Value
-                        ? AUISwitchToggleButtonConfig.ActiveSwitchColor
-                        : AUISwitchToggleButtonConfig.DeActiveSwitchColor;
-            }
         }
     }
 

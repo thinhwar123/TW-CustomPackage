@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIFitterView.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIFitterView.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIFixedView.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIFixedView.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIPanel.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIPanel.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIProcessBar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIProcessBar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIRepeatableButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIRepeatableButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISwitchTab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISwitchTab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISwitchToggleButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISwitchToggleButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIText.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIText.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/CreateUISampleGameObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/CreateUISampleGameObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUIButtonConfigDemo.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUIButtonConfigDemo.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUIPanelConfigDemo.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUIPanelConfigDemo.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUISwitchToggleButtonConfig.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUISwitchToggleButtonConfig.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUITextConfigDemo.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUITextConfigDemo.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUIViewConfigDemo.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/Common/ScriptableObject/AUIViewConfigDemo.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIButtonConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIButtonConfig.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIFitterView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIFitterView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIFixedView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIFixedView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIPanelConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIPanelConfig.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIRepeatableButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIRepeatableButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchTab.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchTab.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchToggleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchToggleButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchToggleButtonConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchToggleButtonConfig.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUITextConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUITextConfig.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIViewConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIViewConfig.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIVisualElement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIVisualElement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/TW.UI.CustomComponent.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/TW.UI.CustomComponent.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/CustomType/Probability.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/CustomType/Probability.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/UniTaskState.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/UniTaskState.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/UniTaskStateMachine.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/UniTaskStateMachine.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AColorExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AColorExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AEditorExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AEditorExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AMonoBehaviourExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AMonoBehaviourExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AStringExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AStringExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2XXCuBRDrqy0r5xzbOCOextw6NU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\nguye\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\nguye\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\nguye\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\UnityEditor\2021.3.31f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath D:\GithubProject\TW-CustomPackage -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\GithubProject\TW-CustomPackage" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\UnityEditor\2021.3.31f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\GithubProject\TW-CustomPackage -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\GithubProject\TW-CustomPackage" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="" />
+      <created>1698766261188</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698766261188</updated>
+      <workItem from="1698766263040" duration="99000" />
+      <workItem from="1698766376203" duration="111000" />
+      <workItem from="1698766506878" duration="1198000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

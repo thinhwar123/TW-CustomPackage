@@ -74,7 +74,6 @@ namespace TW.Utility.CustomType
         public T GetRandomItem()
         {
             int r = Random.Range(0, this.Total);
-            Debug.Log(Total);
             return GetItem(r);
         }
         public void ClearTable()

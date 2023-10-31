@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -7,25 +5,20 @@ using UnityEngine.UI;
 
 namespace TW.UI.CustomComponent
 {
-    public class AUISwitchTab : AUIVisualElement
+    public class AUISwitchTab : AVisualElement
     {
         [field: SerializeField] public Button[] Buttons { get; private set; }
         [field: SerializeField] public RectTransform ImageSelect { get; private set; }
         private Tween MoveTween { get; set; }
 
-        protected override void Setup()
+        protected virtual void Awake()
         {
             Buttons = GetComponentsInChildren<Button>();
-        }
-
-        protected override void Config()
-        {
             Buttons.ForEach(b => b.onClick.AddListener(() => OnSelectButton(b)));
             // set size of image select to size of first button
             ImageSelect.sizeDelta =
                 new Vector2(Buttons[0].GetComponent<RectTransform>().sizeDelta.x, ImageSelect.sizeDelta.y);
         }
-
         protected virtual void OnSelectButton(Button button)
         {
             MoveTween?.Kill();

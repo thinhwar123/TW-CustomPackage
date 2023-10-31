@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 3672861101365839988}
   - component: {fileID: 5624762673350203324}
   - component: {fileID: 2319638880451243193}
+  - component: {fileID: 2391336191879581853}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -166,6 +167,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2391336191879581853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968255296105011587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abccac7e15fc29f44bccc6ba8769a967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ACustomStyleSheet>k__BackingField:
+    <Selector>k__BackingField:
+      <TypeSelector>k__BackingField: Image
+      <ClassSelector>k__BackingField: process-bar-bg
+      <NameSelector>k__BackingField: 
+      <StateSelector>k__BackingField: Default
+    <Properties>k__BackingField:
+      <Properties>k__BackingField: []
 --- !u!1 &4232822796384353389
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +198,7 @@ GameObject:
   - component: {fileID: 2535796630558858481}
   - component: {fileID: 1532441065048378992}
   - component: {fileID: 6448825657514146216}
+  - component: {fileID: 525142802915034937}
   m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
@@ -242,6 +264,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &525142802915034937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232822796384353389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abccac7e15fc29f44bccc6ba8769a967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ACustomStyleSheet>k__BackingField:
+    <Selector>k__BackingField:
+      <TypeSelector>k__BackingField: Image
+      <ClassSelector>k__BackingField: process-bar-fill
+      <NameSelector>k__BackingField: 
+      <StateSelector>k__BackingField: Default
+    <Properties>k__BackingField:
+      <Properties>k__BackingField: []
 --- !u!1 &6320210751504469546
 GameObject:
   m_ObjectHideFlags: 0

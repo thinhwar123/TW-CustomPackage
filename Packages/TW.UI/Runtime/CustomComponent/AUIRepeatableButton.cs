@@ -41,12 +41,6 @@ namespace TW.UI.CustomComponent
                     PressRepeat();
                 }
             });
-
-            if (AUIButtonConfig != null)
-            {
-                AUIButtonConfig.SetupSoundEffect(this);
-                AUIButtonConfig.SetupAnimEffect(this);
-            }
         }
 
         [SuppressMessage("ReSharper", "IteratorNeverReturns")]

@@ -72,6 +72,16 @@ namespace TW.Utility.Extension
         {
             return $"{((int)(object)enumType).ToString()}";
         }
-
+        /// <summary>
+        /// Converts the input string to CamelCase format by making the first letter lowercase and preserving the rest of the string.
+        /// </summary>
+        /// <param name="str">The input string to be converted to CamelCase.</param>
+        /// <returns>A string in CamelCase format.</returns>
+        public static string ToCamelCase(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+            return char.ToLowerInvariant(str[0]) + str.Substring(1);
+        }
     } 
 }

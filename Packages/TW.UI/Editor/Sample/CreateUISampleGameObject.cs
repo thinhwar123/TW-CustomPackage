@@ -10,11 +10,6 @@ namespace TW.Utility.Editor.Sample
     public class CreateUISampleGameObject
     {
 #if UNITY_EDITOR
-        [MenuItem("GameObject/UI Creator/A UI Panel", false, 0)]
-        public static void CreateAUIPanel()
-        {
-            CreateAUI("AUIPanel");
-        }
         [MenuItem("GameObject/UI Creator/A UI Text", false, 0)]
         public static void CreateAUIText()
         {
@@ -29,16 +24,6 @@ namespace TW.Utility.Editor.Sample
         public static void CreateAUIProcessBar()
         {
             CreateAUI("AUIProcessBar");
-        }
-        [MenuItem("GameObject/UI Creator/A UI Fitter View", false)]
-        public static void CreateAUIFitterView()
-        {
-            CreateAUI("AUIFitterView");
-        }
-        [MenuItem("GameObject/UI Creator/A UI Fixed View", false)]
-        public static void CreateAUIFixedView()
-        {
-            CreateAUI("AUIFixedView");
         }
         [MenuItem("GameObject/UI Creator/A UI Repeatable Button", false)]
         public static void CreateAUIRepeatableButton()

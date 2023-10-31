@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e8a99d22789844a9ef0263fa718a81, type: 3}
+  m_Name: APropertyGlobalConfig
+  m_EditorClassIdentifier: 
+  <PropertyConfigs>k__BackingField:
+  - <PropertyValueType>k__BackingField: 20
+    <PropertyName>k__BackingField: visibility
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField:
+    - visible
+    - hidden
+  - <PropertyValueType>k__BackingField: 1
+    <PropertyName>k__BackingField: width
+    <Unit>k__BackingField: 'auto | px '
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 1
+    <PropertyName>k__BackingField: height
+    <Unit>k__BackingField: 'auto | px '
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 3
+    <PropertyName>k__BackingField: background-color
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 2
+    <PropertyName>k__BackingField: background-image
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 1
+    <PropertyName>k__BackingField: opacity
+    <Unit>k__BackingField: auto | % | f
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 3
+    <PropertyName>k__BackingField: color
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 4
+    <PropertyName>k__BackingField: unity-font
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 5
+    <PropertyName>k__BackingField: unity-font-sprite
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 6
+    <PropertyName>k__BackingField: unity-font-style
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 1
+    <PropertyName>k__BackingField: unity-font-size
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 20
+    <PropertyName>k__BackingField: unity-text-style
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField:
+    - normal
+    - italic
+    - bold
+    - bold-and-italic
+  - <PropertyValueType>k__BackingField: 20
+    <PropertyName>k__BackingField: unity-text-align
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField:
+    - upper-left
+    - middle-left
+    - lower-left
+    - upper-center
+    - middle-center
+    - lower-center
+    - upper-right
+    - middle-right
+    - lower-right
+  - <PropertyValueType>k__BackingField: 0
+    <PropertyName>k__BackingField: transition
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 7
+    <PropertyName>k__BackingField: translate
+    <Unit>k__BackingField: auto | px | %
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 7
+    <PropertyName>k__BackingField: scale
+    <Unit>k__BackingField: auto | px | %
+    <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 1
+    <PropertyName>k__BackingField: rotate
+    <Unit>k__BackingField: auto | deg | rad
+    <SpecialOptions>k__BackingField: []
