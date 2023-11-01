@@ -90,7 +90,7 @@ MonoBehaviour:
     <SpecialOptions>k__BackingField: []
   - <PropertyValueType>k__BackingField: 7
     <PropertyName>k__BackingField: scale
-    <Unit>k__BackingField: auto | px | %
+    <Unit>k__BackingField: 
     <SpecialOptions>k__BackingField: []
   - <PropertyValueType>k__BackingField: 1
     <PropertyName>k__BackingField: rotate

@@ -98,6 +98,7 @@ namespace TW.UI.CustomStyleSheet
             
             using (new GUIColorScope(CColor.lightPurple))
             {
+                
                 ConfigValue.StateSelector = EditorGUI.EnumPopup(rect.AlignRight(rect.width * 0.24f),
                     StateSelectorFromString(ConfigValue.StateSelector)).ToString();
             }

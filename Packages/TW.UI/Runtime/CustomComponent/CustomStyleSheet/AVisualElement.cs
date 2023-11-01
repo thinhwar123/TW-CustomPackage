@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using TW.UI.CustomStyleSheet;
 using TW.Utility.CustomComponent;
@@ -26,24 +27,25 @@ namespace TW.UI.CustomStyleSheet
             Mask = 11,
             RawImage = 12,
         }
-
         public enum State
         {
             Default = 0,
-            Hover = 1,
-            Active = 2,
-            Focus = 3,
-            Checked = 4,
-            Disabled = 5,
+            Open = 1,
+            Close = 2,
+            Clicked = 3,
+            Selected = 4,
+            Active = 5,
+            Inactive = 6,
         }
 
         [field: SerializeField, HideLabel] public ACustomStyleSheet ACustomStyleSheet { get; private set; }
-
+        
+        private List<Tween> TweenList {get; set;} = new List<Tween>();
         public void SetActive(bool isActive)
         {
             gameObject.SetActive(isActive);
         }
-
+        
 #if UNITY_EDITOR
         [OnInspectorGUI]
         public void UpdateStyleSheet()

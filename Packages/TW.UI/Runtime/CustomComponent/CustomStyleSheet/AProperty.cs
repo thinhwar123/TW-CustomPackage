@@ -25,7 +25,7 @@ namespace TW.UI.CustomStyleSheet
         [field: SerializeField] public TMP_FontAsset FontValue {get; set;}
         [field: SerializeField] public TMP_SpriteAsset FontSpriteValue {get; set;}
         [field: SerializeField] public TMP_StyleSheet FontStyleValue {get; set;}
-        [field: SerializeField] public (float, float) Vector2Value {get; set;}
+        [field: SerializeField] public Vector2 Vector2Value {get; set;}
         [field: SerializeField] public AudioClip AudioValue {get; set;}
         [field: SerializeField] public string StringUnit {get; set;}
         
@@ -50,7 +50,7 @@ namespace TW.UI.CustomStyleSheet
                 case APropertyConfig.EPropertyValueType.FontStyle:
                     return FontStyleValue == null ? string.Empty : FontStyleValue.name;
                 case APropertyConfig.EPropertyValueType.Vector2:
-                    return $"({Vector2Value.Item1.ToString(CultureInfo.InvariantCulture)}, {Vector2Value.Item2.ToString(CultureInfo.InvariantCulture)})";
+                    return Vector2Value.ToString();
                 case APropertyConfig.EPropertyValueType.Audio:
                     return AudioValue == null ? string.Empty : AudioValue.name;
                 case APropertyConfig.EPropertyValueType.Special:
@@ -290,12 +290,11 @@ namespace TW.UI.CustomStyleSheet
             DrawPropertyUnit(value, fullRect, rectValueWidth, rectUnitWidth, space, ref rectValue);
             if (!HasPropertyUnit || UnitChoiceIndex < 0 || PropertyUnit[UnitChoiceIndex] != "auto") 
             {
-                Vector2 vector2Value = EditorGUI.Vector2Field(rectValue, "" ,new Vector2(value.Vector2Value.Item1, value.Vector2Value.Item2));
-                value.Vector2Value = (vector2Value.x, vector2Value.y);
+                value.Vector2Value = EditorGUI.Vector2Field(rectValue, "" ,value.Vector2Value);
             }
             else
             {
-                value.Vector2Value = (0, 0);
+                value.Vector2Value = Vector2.zero;
             }
         }
         private void DrawAudioValue(AProperty value, Rect fullRect, float rectValueWidth, float rectUnitWidth, float space)

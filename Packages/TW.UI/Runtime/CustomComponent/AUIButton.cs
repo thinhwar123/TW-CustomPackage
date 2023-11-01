@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+using DG.Tweening;
 using TW.UI.CustomStyleSheet;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +13,7 @@ namespace TW.UI.CustomComponent
         [field: SerializeField] public ACustomButton MainButton { get; private set; }
         [field: SerializeField] public AudioClip ClickSound {get; set;}
         public UnityEvent OnClickButton { get; private set; } = new UnityEvent();
+        public List<Tween> AnimTween { get; private set; } = new List<Tween>();
 
         protected virtual void Awake()
         {
@@ -23,6 +26,35 @@ namespace TW.UI.CustomComponent
             {
                 if (eventData.button != PointerEventData.InputButton.Left) return;
                 OnClickButton?.Invoke();
+            });
+            MainButton.OnPointerDownAction.AddListener((eventData) =>
+            {
+                if (eventData.button != PointerEventData.InputButton.Left) return;
+                AnimTween.ForEach(t => t?.Kill());
+                AnimTween.Clear();
+                AnimTween = ACustomStyleSheet.PlayClickedTransition(this);
+            });
+
+            MainButton.OnPointerUpAction.AddListener((eventData) =>
+            {
+                if (eventData.button != PointerEventData.InputButton.Left) return;
+                AnimTween.ForEach(t => t?.Kill());
+                AnimTween.Clear();
+                AnimTween = ACustomStyleSheet.PlayDefaultTransition(this);
+            });
+
+            MainButton.OnPointerExitAction.AddListener((eventData) =>
+            {
+                if (!MainButton.IsPointerDown) return;
+                AnimTween.ForEach(t => t?.Kill());
+                AnimTween.Clear();
+                AnimTween = ACustomStyleSheet.PlayDefaultTransition(this);
+            });
+            
+            MainButton.OnDestroyButtonAction.AddListener(() =>
+            {
+                AnimTween.ForEach(t => t?.Kill());
+                AnimTween.Clear();
             });
         }
         

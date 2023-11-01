@@ -39,29 +39,29 @@ namespace TW.UI.CustomStyleSheet
                 }
             }
         };
-        public AProperties GetProperties(ASelector selector, AVisualElement.State state = AVisualElement.State.Default)
+        public AProperties GetProperties(ASelector selector, AVisualElement.State state)
         {
             AProperties properties = new AProperties();
-            AStyleSheetConfig typeConfig = AStyleSheetConfigs.FirstOrDefault(config => 
+            AStyleSheetConfig[] typeConfig = AStyleSheetConfigs.Where(config => 
                 config.Selector.TypeSelector == selector.TypeSelector && 
                 config.Selector.NameSelector.IsNullOrWhitespace() && 
                 config.Selector.ClassSelector.IsNullOrWhitespace() && 
-                config.Selector.StateSelector == state.ToString());
-            properties.TryAddProperties(typeConfig?.Properties);
+                config.Selector.StateSelector == state.ToString()).ToArray();
+            properties.TryAddProperties(typeConfig.SelectMany(x => x.Properties.Properties));
             if (selector.ClassSelector.IsNullOrWhitespace()) return properties;
-            AStyleSheetConfig classConfig = AStyleSheetConfigs.FirstOrDefault(config => 
+            AStyleSheetConfig[] classConfigs = AStyleSheetConfigs.Where(config => 
                 config.Selector.TypeSelector == selector.TypeSelector && 
                 config.Selector.ClassSelector == selector.ClassSelector && 
                 config.Selector.NameSelector.IsNullOrWhitespace() && 
-                config.Selector.StateSelector == state.ToString());
-            properties.TryAddProperties(classConfig?.Properties);
+                config.Selector.StateSelector == state.ToString()).ToArray();
+            properties.TryAddProperties(classConfigs.SelectMany(x => x.Properties.Properties));
             if (selector.NameSelector.IsNullOrWhitespace()) return properties;
-            AStyleSheetConfig nameConfig = AStyleSheetConfigs.FirstOrDefault(config => 
+            AStyleSheetConfig[] nameConfigs = AStyleSheetConfigs.Where(config => 
                 config.Selector.TypeSelector == selector.TypeSelector && 
                 config.Selector.ClassSelector == selector.ClassSelector && 
                 config.Selector.NameSelector == selector.NameSelector && 
-                config.Selector.StateSelector == state.ToString());
-            properties.TryAddProperties(nameConfig?.Properties);
+                config.Selector.StateSelector == state.ToString()).ToArray();
+            properties.TryAddProperties(nameConfigs.SelectMany(x => x.Properties.Properties));
             return properties;
         }
         public string[] GetAllClassSelector()
@@ -83,7 +83,12 @@ namespace TW.UI.CustomStyleSheet
         {
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            
+            // sort AStyleSheetConfigs by selector then by properties then by property name then by state value
+            AStyleSheetConfigs = AStyleSheetConfigs.OrderBy(config => config.Selector.TypeSelector)
+                .ThenBy(config => config.Selector.ClassSelector)
+                .ThenBy(config => config.Selector.NameSelector)
+                .ThenBy(config => config.Selector.StateSelector)
+                .ToArray();
             SceneVisualElements = FindObjectsByType<AVisualElement>(FindObjectsInactive.Include, FindObjectsSortMode.None)
                 .Where(x => PrefabUtility.GetCorrespondingObjectFromOriginalSource(x) == null).ToArray();
             SceneVisualElements.ForEach(x => x.UpdateStyleSheet());
@@ -108,6 +113,7 @@ namespace TW.UI.CustomStyleSheet
                     e.UpdateStyleSheet();
                 });
             });
+            
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             
