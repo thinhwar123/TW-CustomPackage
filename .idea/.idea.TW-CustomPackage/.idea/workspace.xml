@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchTab.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchTab.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchToggleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchToggleButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/ASelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/ASelector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AVisualElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AVisualElement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,14 +22,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/ACustomButton.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIPanel.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIRepeatableButton.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchTab.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchToggleButton.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/ACustomStyleSheet.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AProperties.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AProperty.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/ACustomButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUIRepeatableButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchTab.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISwitchToggleButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/ACustomStyleSheet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AProperties.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AProperty.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -40,28 +46,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\nguye\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\nguye\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\nguye\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\nguye\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\nguye\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\nguye\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\UnityEditor\2021.3.31f1\Editor\Unity.exe" />
@@ -111,6 +117,7 @@
       <workItem from="1698766263040" duration="99000" />
       <workItem from="1698766376203" duration="111000" />
       <workItem from="1698766506878" duration="4165000" />
+      <workItem from="1698802452971" duration="962000" />
     </task>
     <servers />
   </component>

@@ -101,6 +101,7 @@ namespace TW.UI.CustomStyleSheet
 #if UNITY_EDITOR
     public sealed class APropertyEditorAttributeDrawer : OdinAttributeDrawer<APropertyEditorAttribute, AProperty>
     {
+        private AProperty ConfigValue { get; set; }
         private int TypeChoiceIndex { get; set;}
         private int UnitChoiceIndex { get; set;}
         private int SpecialChoiceIndex { get; set;}
@@ -113,7 +114,7 @@ namespace TW.UI.CustomStyleSheet
         protected override void Initialize()
         {
             base.Initialize();
-            AProperty value = this.ValueEntry.SmartValue;
+            ConfigValue = this.ValueEntry.SmartValue;
             PropertiesName = APropertyGlobalConfig.Instance.PropertyConfigs.Select(x => x.PropertyName).ToArray();
 
 
@@ -121,15 +122,14 @@ namespace TW.UI.CustomStyleSheet
         }
         protected override void DrawPropertyLayout(GUIContent label)
         {
-            AProperty value = new AProperty(this.ValueEntry.SmartValue);
             Rect rect = EditorGUILayout.GetControlRect();
 
-            DrawPropertyType(value, rect, 0.32f);
-            DrawPropertyValue(value, rect, 0.66f, 0.1f, 0.02f);
+            DrawPropertyType(ConfigValue, rect, 0.32f);
+            DrawPropertyValue(ConfigValue, rect, 0.66f, 0.1f, 0.02f);
 
-            if (this.ValueEntry.SmartValue.IsMatch(value)) return;
+            if (this.ValueEntry.SmartValue.IsMatch(ConfigValue)) return;
             this.ValueEntry.WeakValues.ForceMarkDirty();
-            this.ValueEntry.SmartValue = value;
+            this.ValueEntry.SmartValue = new AProperty(ConfigValue);
         }
         private void DrawPropertyType(AProperty value, Rect fullRect, float rectWidth)
         {

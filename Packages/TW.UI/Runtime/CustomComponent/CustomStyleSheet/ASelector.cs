@@ -51,6 +51,7 @@ namespace TW.UI.CustomStyleSheet
 #if UNITY_EDITOR
     public sealed class ASelectorEditorAttributeDrawer : OdinAttributeDrawer<ASelectorEditorAttribute, ASelector>
     {
+        private ASelector ConfigValue { get; set; }
         private AVisualElement.Type TypeSelectorFromString(string typeSelector)
         {
             return System.Enum.TryParse(typeSelector, out AVisualElement.Type type)
@@ -63,41 +64,47 @@ namespace TW.UI.CustomStyleSheet
                 ? state
                 : AVisualElement.State.Default;
         }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            ConfigValue = new ASelector(this.ValueEntry.SmartValue);
+        }
+
         protected override void DrawPropertyLayout(GUIContent label)
         {
-            ASelector value = new ASelector(this.ValueEntry.SmartValue);
             Rect rect = EditorGUILayout.GetControlRect();
             using (new GUIColorScope(CColor.lightPurple))
             {
-                value.TypeSelector = EditorGUI.EnumPopup(rect.AlignLeft(rect.width * 0.24f),
-                    TypeSelectorFromString(value.TypeSelector)).ToString();
+                ConfigValue.TypeSelector = EditorGUI.EnumPopup(rect.AlignLeft(rect.width * 0.24f),
+                    TypeSelectorFromString(ConfigValue.TypeSelector)).ToString();
             }
 
-            value.ClassSelector = EditorGUI.TextField(rect.AlignLeft(rect.width * 0.49f).SubXMax(rect.width * 0.05f).AlignRight(rect.width * 0.18f), value.ClassSelector).ToCamelCase();
+            ConfigValue.ClassSelector = EditorGUI.TextField(rect.AlignLeft(rect.width * 0.49f).SubXMax(rect.width * 0.05f).AlignRight(rect.width * 0.18f), ConfigValue.ClassSelector).ToCamelCase();
             using (new GUIColorScope(CColor.lightGreen))
             {
                 SelectPresetButton(rect.AlignLeft(rect.width * 0.49f).AlignRight(rect.width * 0.045f), 
                     AStyleSheetGlobalConfig.Instance.GetAllClassSelector(), 
-                    result => { value.ClassSelector = result; });
+                    result => { ConfigValue.ClassSelector = result; });
             }
 
-            value.NameSelector = EditorGUI.TextField(rect.AlignLeft(rect.width * 0.74f).SubXMax(rect.width * 0.05f).AlignRight(rect.width * 0.18f), value.NameSelector).ToCamelCase();
+            ConfigValue.NameSelector = EditorGUI.TextField(rect.AlignLeft(rect.width * 0.74f).SubXMax(rect.width * 0.05f).AlignRight(rect.width * 0.18f), ConfigValue.NameSelector).ToCamelCase();
             using (new GUIColorScope(CColor.lightYellow))
             {
                 SelectPresetButton(rect.AlignLeft(rect.width * 0.74f).AlignRight(rect.width * 0.045f),
                     AStyleSheetGlobalConfig.Instance.GetAllNameSelector(),
-                    result => { value.NameSelector = result; });
+                    result => { ConfigValue.NameSelector = result; });
             }
             
             using (new GUIColorScope(CColor.lightPurple))
             {
-                value.StateSelector = EditorGUI.EnumPopup(rect.AlignRight(rect.width * 0.24f),
-                    StateSelectorFromString(value.StateSelector)).ToString();
+                ConfigValue.StateSelector = EditorGUI.EnumPopup(rect.AlignRight(rect.width * 0.24f),
+                    StateSelectorFromString(ConfigValue.StateSelector)).ToString();
             }
 
-            if (this.ValueEntry.SmartValue.IsMatch(value)) return;
+            if (this.ValueEntry.SmartValue.IsMatch(ConfigValue)) return;
             this.ValueEntry.WeakValues.ForceMarkDirty();
-            this.ValueEntry.SmartValue = value;
+            this.ValueEntry.SmartValue = new ASelector(ConfigValue);
         }
         private void SelectPresetButton(Rect rect, string[] menu, UnityAction<string> onSelectedCallback)
         {
