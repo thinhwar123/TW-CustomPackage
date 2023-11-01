@@ -39,25 +39,28 @@ namespace TW.UI.CustomStyleSheet
                 }
             }
         };
-        public AProperties GetProperties(ASelector selector)
+        public AProperties GetProperties(ASelector selector, AVisualElement.State state = AVisualElement.State.Default)
         {
             AProperties properties = new AProperties();
             AStyleSheetConfig typeConfig = AStyleSheetConfigs.FirstOrDefault(config => 
                 config.Selector.TypeSelector == selector.TypeSelector && 
                 config.Selector.NameSelector.IsNullOrWhitespace() && 
-                config.Selector.ClassSelector.IsNullOrWhitespace());
+                config.Selector.ClassSelector.IsNullOrWhitespace() && 
+                config.Selector.StateSelector == state.ToString());
             properties.TryAddProperties(typeConfig?.Properties);
             if (selector.ClassSelector.IsNullOrWhitespace()) return properties;
             AStyleSheetConfig classConfig = AStyleSheetConfigs.FirstOrDefault(config => 
                 config.Selector.TypeSelector == selector.TypeSelector && 
                 config.Selector.ClassSelector == selector.ClassSelector && 
-                config.Selector.NameSelector.IsNullOrWhitespace());
+                config.Selector.NameSelector.IsNullOrWhitespace() && 
+                config.Selector.StateSelector == state.ToString());
             properties.TryAddProperties(classConfig?.Properties);
             if (selector.NameSelector.IsNullOrWhitespace()) return properties;
             AStyleSheetConfig nameConfig = AStyleSheetConfigs.FirstOrDefault(config => 
                 config.Selector.TypeSelector == selector.TypeSelector && 
                 config.Selector.ClassSelector == selector.ClassSelector && 
-                config.Selector.NameSelector == selector.NameSelector);
+                config.Selector.NameSelector == selector.NameSelector && 
+                config.Selector.StateSelector == state.ToString());
             properties.TryAddProperties(nameConfig?.Properties);
             return properties;
         }
