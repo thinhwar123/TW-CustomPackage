@@ -50,6 +50,7 @@ namespace TW.UI.CustomStyleSheet
         [OnInspectorGUI]
         public void UpdateStyleSheet()
         {
+            if (Application.isPlaying) return;
             if (PrefabUtility.GetCorrespondingObjectFromOriginalSource(gameObject) != null) return;
             ACustomStyleSheet.UpdateStyleSheet();
             ACustomStyleSheet.ApplyStyleSheet(this);
