@@ -200,11 +200,18 @@ namespace TW.UI.CustomStyleSheet
         }
         public TransitionConfig(string transitionValue)
         {
-            string[] transitionValues = transitionValue.Split(' ');
-            Property = transitionValues[0];
-            Duration = float.TryParse(transitionValues[1], out float duration) ? duration : 0f;
-            Ease = Enum.TryParse(transitionValues[2], out Ease ease) ? ease : Ease.Linear;
-            Delay = float.TryParse(transitionValues[3], out float delay) ? delay : 0f;
+            try
+            {
+                string[] transitionValues = transitionValue.Split(' ');
+                Property = transitionValues[0];
+                Duration = float.TryParse(transitionValues[1], out float duration) ? duration : 0f;
+                Ease = Enum.TryParse(transitionValues[2], out Ease ease) ? ease : Ease.Linear;
+                Delay = float.TryParse(transitionValues[3], out float delay) ? delay : 0f;
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogWarning(e);
+            }
         }
     }
 }
