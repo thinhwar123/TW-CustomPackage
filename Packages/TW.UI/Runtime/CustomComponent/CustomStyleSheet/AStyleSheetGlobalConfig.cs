@@ -85,7 +85,7 @@ namespace TW.UI.CustomStyleSheet
                 .Where(x => PrefabUtility.GetCorrespondingObjectFromOriginalSource(x) == null).ToArray();
             SceneVisualElements.ForEach(x => x.UpdateStyleSheet());
             
-            string[] findAssets = AssetDatabase.FindAssets($"t:Prefab");
+            string[] findAssets = AssetDatabase.FindAssets("t:Prefab a:Assets");
             if (findAssets.Length == 0) return;
             AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(findAssets[0]));
             PrefabVisualElements = findAssets.Select(s => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(s)))

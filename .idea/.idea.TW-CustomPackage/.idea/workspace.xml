@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/ACustomStyleSheet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/ACustomStyleSheet.cs" afterDir="false" />
-    </list>
+    <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +109,7 @@
       <workItem from="1698766263040" duration="99000" />
       <workItem from="1698766376203" duration="111000" />
       <workItem from="1698766506878" duration="4165000" />
-      <workItem from="1698802452971" duration="1673000" />
+      <workItem from="1698802452971" duration="2243000" />
     </task>
     <servers />
   </component>
