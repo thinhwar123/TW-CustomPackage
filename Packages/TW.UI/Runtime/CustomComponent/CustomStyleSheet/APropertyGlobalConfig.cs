@@ -22,6 +22,7 @@ namespace TW.UI.CustomStyleSheet
             FontSprite = 5,
             FontStyle = 6,
             Vector2 = 7,
+            Audio = 8,
             Special = 20,
         }
         [field: SerializeField, HideLabel, HorizontalGroup("Config")] public EPropertyValueType PropertyValueType {get; private set;}

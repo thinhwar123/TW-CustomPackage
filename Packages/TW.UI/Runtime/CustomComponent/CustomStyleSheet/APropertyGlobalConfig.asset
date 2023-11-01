@@ -96,3 +96,7 @@ MonoBehaviour:
     <PropertyName>k__BackingField: rotate
     <Unit>k__BackingField: auto | deg | rad
     <SpecialOptions>k__BackingField: []
+  - <PropertyValueType>k__BackingField: 8
+    <PropertyName>k__BackingField: audio
+    <Unit>k__BackingField: 
+    <SpecialOptions>k__BackingField: []

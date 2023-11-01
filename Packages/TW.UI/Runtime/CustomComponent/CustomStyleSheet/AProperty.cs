@@ -26,6 +26,7 @@ namespace TW.UI.CustomStyleSheet
         [field: SerializeField] public TMP_SpriteAsset FontSpriteValue {get; set;}
         [field: SerializeField] public TMP_StyleSheet FontStyleValue {get; set;}
         [field: SerializeField] public (float, float) Vector2Value {get; set;}
+        [field: SerializeField] public AudioClip AudioValue {get; set;}
         [field: SerializeField] public string StringUnit {get; set;}
         
         public string GetUSSPropertyValue()
@@ -50,6 +51,8 @@ namespace TW.UI.CustomStyleSheet
                     return FontStyleValue == null ? string.Empty : FontStyleValue.name;
                 case APropertyConfig.EPropertyValueType.Vector2:
                     return $"({Vector2Value.Item1.ToString(CultureInfo.InvariantCulture)}, {Vector2Value.Item2.ToString(CultureInfo.InvariantCulture)})";
+                case APropertyConfig.EPropertyValueType.Audio:
+                    return AudioValue == null ? string.Empty : AudioValue.name;
                 case APropertyConfig.EPropertyValueType.Special:
                     return string.Empty;
                 default:
@@ -76,6 +79,7 @@ namespace TW.UI.CustomStyleSheet
             FontSpriteValue = other.FontSpriteValue;
             FontStyleValue = other.FontStyleValue;
             Vector2Value = other.Vector2Value;
+            AudioValue = other.AudioValue;
             StringUnit = other.StringUnit;
         }
         public bool IsMatch(AProperty other)
@@ -89,6 +93,7 @@ namespace TW.UI.CustomStyleSheet
                    FontSpriteValue == other.FontSpriteValue &&
                    FontStyleValue == other.FontStyleValue &&
                    Vector2Value == other.Vector2Value &&
+                   AudioValue == other.AudioValue &&
                    StringUnit == other.StringUnit;
         }
     }
@@ -168,6 +173,9 @@ namespace TW.UI.CustomStyleSheet
                     break;
                 case APropertyConfig.EPropertyValueType.Vector2:
                     DrawVector2Value(value, fullRect, rectValueWidth, rectUnitWidth, space);
+                    break;
+                case APropertyConfig.EPropertyValueType.Audio:
+                    DrawAudioValue(value, fullRect, rectValueWidth, rectUnitWidth, space);
                     break;
                 case APropertyConfig.EPropertyValueType.Special:
                     DrawSpecialValue(value, fullRect, rectValueWidth, rectUnitWidth, space);
@@ -288,6 +296,20 @@ namespace TW.UI.CustomStyleSheet
             else
             {
                 value.Vector2Value = (0, 0);
+            }
+        }
+        private void DrawAudioValue(AProperty value, Rect fullRect, float rectValueWidth, float rectUnitWidth, float space)
+        {
+            Rect rectValue = fullRect.AlignRight(fullRect.width * rectValueWidth);
+            DrawPropertyUnit(value, fullRect, rectValueWidth, rectUnitWidth, space, ref rectValue);
+
+            if (!HasPropertyUnit || UnitChoiceIndex < 0 || PropertyUnit[UnitChoiceIndex] != "auto")
+            {
+                value.AudioValue = EditorGUI.ObjectField(rectValue, value.FontStyleValue, typeof(AudioClip), false) as AudioClip;
+            }
+            else
+            {
+                value.AudioValue = null;
             }
         }
         private void DrawSpecialValue(AProperty value, Rect fullRect, float rectValueWidth, float rectUnitWidth, float space)

@@ -106,6 +106,11 @@ namespace TW.UI.CustomStyleSheet
                 {
                     button.MainButton.GetComponent<Image>().sprite = backgroundImage.SpriteValue;
                 }
+
+                if (Properties.TryGetProperty("audio", out AProperty audio))
+                {
+                    button.ClickSound= audio.AudioValue;
+                }
             }
         }
     }

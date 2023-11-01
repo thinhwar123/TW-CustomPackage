@@ -5,6 +5,7 @@ using Sirenix.Utilities;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using TW.UI.CustomComponent;
+using TW.UI.CustomStyleSheet;
 using UnityEditor;
 #endif
 
@@ -24,6 +25,8 @@ public class UIColorPalettesEditorWindow : OdinMenuEditorWindow
         OdinMenuTree tree = new OdinMenuTree(true);
         tree.DefaultMenuStyle.IconSize = 28.00f;
         tree.Config.DrawSearchToolbar = true;
+        tree.Add("Style Sheet", AStyleSheetGlobalConfig.Instance);
+        
         tree.Add("Color Palettes", UIColorPalettesGlobalConfig.Instance);
         return tree;
     }

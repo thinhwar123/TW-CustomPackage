@@ -1,3 +1,16 @@
 {
-	"name": "TW.UI.Tool"
+    "name": "TW.UI.Tool",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5413f872380a7bc46a059b3ab1c01b33"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
