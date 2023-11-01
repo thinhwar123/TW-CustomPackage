@@ -305,7 +305,7 @@ namespace TW.UI.CustomStyleSheet
 
             if (!HasPropertyUnit || UnitChoiceIndex < 0 || PropertyUnit[UnitChoiceIndex] != "auto")
             {
-                value.AudioValue = EditorGUI.ObjectField(rectValue, value.FontStyleValue, typeof(AudioClip), false) as AudioClip;
+                value.AudioValue = EditorGUI.ObjectField(rectValue, value.AudioValue, typeof(AudioClip), false) as AudioClip;
             }
             else
             {
