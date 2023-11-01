@@ -87,7 +87,7 @@ namespace TW.UI.CustomStyleSheet
             {
                 if (image != null)
                 {
-                    TrySaveDefaultValue("background-color", new Color(image.color.r, image.color.g, image.color.b, image.color.a));
+                    TrySaveDefaultValue("background-color", image.color);
                     TransitionConfig transitionConfig = GetTransitionConfig("background-color");
                     tweenList.Add(DOTween.To(() => image.color, 
                             x => image.color = x, 
@@ -100,7 +100,7 @@ namespace TW.UI.CustomStyleSheet
                 if (auiButton != null)
                 {
                     image = auiButton.MainButton.GetComponent<Image>();
-                    TrySaveDefaultValue("background-color", new Color(image.color.r, image.color.g, image.color.b, image.color.a));
+                    TrySaveDefaultValue("background-color", image.color);
                     TransitionConfig transitionConfig = GetTransitionConfig("background-color");
                     tweenList.Add(DOTween.To(() => image.color, 
                             x => image.color = x, 
@@ -135,7 +135,7 @@ namespace TW.UI.CustomStyleSheet
             RectTransform rectTransform = visualElement.GetComponent<RectTransform>();
             CanvasGroup canvasGroup = visualElement.GetComponent<CanvasGroup>();
             Image image = visualElement.GetComponent<Image>();
-            
+            AUIButton auiButton = visualElement.GetComponent<AUIButton>();
             if (properties.TryGetProperty("width", out AProperty width))
             {
                 TransitionConfig transitionConfig = GetTransitionConfig("width");
@@ -171,13 +171,28 @@ namespace TW.UI.CustomStyleSheet
 
             if (properties.TryGetProperty("background-color", out AProperty backgroundColor))
             {
-                TransitionConfig transitionConfig = GetTransitionConfig("background-color");
-                tweenList.Add(DOTween.To(() => image.color, 
-                    x => image.color = x, 
-                    (Color)DefaultValues[backgroundColor.PropertyName], transitionConfig.Duration)
-                    .SetEase(transitionConfig.Ease)
-                    .SetDelay(transitionConfig.Delay)
-                );
+                if (image != null)
+                {
+                    TransitionConfig transitionConfig = GetTransitionConfig("background-color");
+                    tweenList.Add(DOTween.To(() => image.color, 
+                            x => image.color = x, 
+                            (Color)DefaultValues[backgroundColor.PropertyName], transitionConfig.Duration)
+                        .SetEase(transitionConfig.Ease)
+                        .SetDelay(transitionConfig.Delay)
+                    );
+                }
+
+                if (auiButton != null)
+                {
+                    image = auiButton.MainButton.GetComponent<Image>();
+                    TransitionConfig transitionConfig = GetTransitionConfig("background-color");
+                    tweenList.Add(DOTween.To(() => image.color, 
+                            x => image.color = x, 
+                            (Color)DefaultValues[backgroundColor.PropertyName], transitionConfig.Duration)
+                        .SetEase(transitionConfig.Ease)
+                        .SetDelay(transitionConfig.Delay)
+                    );
+                }
             }
             
             if (properties.TryGetProperty("opacity", out AProperty opacity))
