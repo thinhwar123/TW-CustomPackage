@@ -20,6 +20,11 @@ namespace TW.Utility.Editor.Sample
         {
             CreateAUI("AUIButton");
         }
+        [MenuItem("GameObject/UI Creator/A UI Select Button", false)]
+        public static void CreateAUISelectButton()
+        {
+            CreateAUI("AUISelectButton");
+        }
         [MenuItem("GameObject/UI Creator/A UI ProcessBar", false)]
         public static void CreateAUIProcessBar()
         {

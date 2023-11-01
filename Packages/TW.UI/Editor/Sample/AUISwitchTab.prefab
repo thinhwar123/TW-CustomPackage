@@ -384,7 +384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 750}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 850, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &6429513838300121912
@@ -405,8 +405,22 @@ MonoBehaviour:
       <ClassSelector>k__BackingField: 
       <NameSelector>k__BackingField: 
       <StateSelector>k__BackingField: Default
-    <Properties>k__BackingField:
+    <DefaultProperties>k__BackingField:
       <Properties>k__BackingField: []
+    <OpenProperties>k__BackingField:
+      <Properties>k__BackingField: []
+    <CloseProperties>k__BackingField:
+      <Properties>k__BackingField: []
+    <ClickedProperties>k__BackingField:
+      <Properties>k__BackingField: []
+    <SelectProperties>k__BackingField:
+      <Properties>k__BackingField: []
+    <ActiveProperties>k__BackingField:
+      <Properties>k__BackingField: []
+    <InactiveProperties>k__BackingField:
+      <Properties>k__BackingField: []
+    <VisualElementTransition>k__BackingField:
+      <TransitionConfigs>k__BackingField: []
   <Buttons>k__BackingField:
   - {fileID: 8196115120200934665}
   - {fileID: 1850126834454450494}

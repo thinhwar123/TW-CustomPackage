@@ -18,7 +18,7 @@ namespace TW.UI.CustomStyleSheet
         [field: SerializeField, ReadOnly, ShowIf("@Selector.StateSelector == \"Open\"")] public AProperties OpenProperties { get; private set; }
         [field: SerializeField, ReadOnly, ShowIf("@Selector.StateSelector == \"Close\"")] public AProperties CloseProperties { get; private set; }
         [field: SerializeField, ReadOnly, ShowIf("@Selector.StateSelector == \"Clicked\"")] public AProperties ClickedProperties { get; private set; }
-        [field: SerializeField, ReadOnly, ShowIf("@Selector.StateSelector == \"Select\"")] public AProperties SelectProperties { get; private set; }
+        [field: SerializeField, ReadOnly, ShowIf("@Selector.StateSelector == \"Selected\"")] public AProperties SelectProperties { get; private set; }
         [field: SerializeField, ReadOnly, ShowIf("@Selector.StateSelector == \"Active\"")] public AProperties ActiveProperties { get; private set; }
         [field: SerializeField, ReadOnly, ShowIf("@Selector.StateSelector == \"Inactive\"")] public AProperties InactiveProperties { get; private set; }
         [field: SerializeField] public AVisualElementTransition VisualElementTransition {get; set;}
