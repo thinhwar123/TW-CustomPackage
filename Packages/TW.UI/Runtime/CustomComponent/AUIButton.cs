@@ -18,6 +18,7 @@ namespace TW.UI.CustomComponent
         protected virtual void Awake()
         {
             Init();
+            InitAnim();
         }
 
         protected virtual void Init()
@@ -27,6 +28,10 @@ namespace TW.UI.CustomComponent
                 if (eventData.button != PointerEventData.InputButton.Left) return;
                 OnClickButton?.Invoke();
             });
+        }
+
+        protected virtual void InitAnim()
+        {
             MainButton.OnPointerDownAction.AddListener((eventData) =>
             {
                 if (eventData.button != PointerEventData.InputButton.Left) return;
@@ -50,14 +55,13 @@ namespace TW.UI.CustomComponent
                 AnimTween.Clear();
                 AnimTween = ACustomStyleSheet.PlayDefaultTransition(this);
             });
-            
+
             MainButton.OnDestroyButtonAction.AddListener(() =>
             {
                 AnimTween.ForEach(t => t?.Kill());
                 AnimTween.Clear();
             });
         }
-        
     }
 }
 
