@@ -12,7 +12,7 @@ namespace TW.UI.CustomComponent
         [field: SerializeField] public ACustomButton MainButton { get; private set; }
         [field: SerializeField] public AudioClip ClickSound {get; set;}
         public UnityEvent OnClickButton { get; private set; } = new UnityEvent();
-        public List<Tween> AnimTween { get; private set; } = new List<Tween>();
+        public List<Tween> AnimTween { get; protected set; } = new List<Tween>();
 
         protected virtual void Awake()
         {

@@ -7,30 +7,11 @@ using UnityEngine.EventSystems;
 
 namespace TW.UI.CustomComponent
 {
-    public class AUISelectButton : AVisualElement
+    public class AUISelectButton : AUIButton
     {
         [field: SerializeField] public bool IsSelected {get; private set;}
-        [field: SerializeField] public ACustomButton MainButton { get; private set; }
-        [field: SerializeField] public AudioClip ClickSound {get; set;}
-        public UnityEvent OnClickButton { get; private set; } = new UnityEvent();
-        public List<Tween> AnimTween { get; private set; } = new List<Tween>();
 
-        protected virtual void Awake()
-        {
-            Init();
-            InitAnim();
-        }
-
-        protected virtual void Init()
-        {
-            MainButton.OnPointerClickAction.AddListener((eventData) =>
-            {
-                if (eventData.button != PointerEventData.InputButton.Left) return;
-                OnClickButton?.Invoke();
-            });
-        }
-
-        protected virtual void InitAnim()
+        protected override void InitAnim()
         {
             MainButton.OnPointerClickAction.AddListener((eventData) =>
             {
