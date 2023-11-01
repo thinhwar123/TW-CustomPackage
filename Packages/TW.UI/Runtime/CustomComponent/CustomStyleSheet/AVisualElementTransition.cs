@@ -87,7 +87,7 @@ namespace TW.UI.CustomStyleSheet
             {
                 if (image != null)
                 {
-                    TrySaveDefaultValue("background-color", image.color);
+                    TrySaveDefaultValue("background-color", new Color(image.color.r, image.color.g, image.color.b, image.color.a));
                     TransitionConfig transitionConfig = GetTransitionConfig("background-color");
                     tweenList.Add(DOTween.To(() => image.color, 
                             x => image.color = x, 
@@ -100,7 +100,7 @@ namespace TW.UI.CustomStyleSheet
                 if (auiButton != null)
                 {
                     image = auiButton.MainButton.GetComponent<Image>();
-                    TrySaveDefaultValue("background-color", image.color);
+                    TrySaveDefaultValue("background-color", new Color(image.color.r, image.color.g, image.color.b, image.color.a));
                     TransitionConfig transitionConfig = GetTransitionConfig("background-color");
                     tweenList.Add(DOTween.To(() => image.color, 
                             x => image.color = x, 
