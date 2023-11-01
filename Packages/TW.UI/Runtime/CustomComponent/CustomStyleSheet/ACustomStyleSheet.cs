@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using TMPro;
+using TW.UI.CustomComponent;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,6 +93,18 @@ namespace TW.UI.CustomStyleSheet
                 if (Properties.TryGetProperty("color", out AProperty unityFontColor))
                 {
                     textMeshProUGUI.color = unityFontColor.ColorValue;
+                }
+            }   
+            if (visualElement.TryGetComponent(out AUIButton button))
+            {
+                if (Properties.TryGetProperty("background-color", out AProperty backgroundColor))
+                {
+                    button.MainButton.GetComponent<Image>().color = backgroundColor.ColorValue;
+                }
+
+                if (Properties.TryGetProperty("background-image", out AProperty backgroundImage))
+                {
+                    button.MainButton.GetComponent<Image>().sprite = backgroundImage.SpriteValue;
                 }
             }
         }
