@@ -22,7 +22,6 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("OnPointerDown");
             base.OnPointerDown(eventData);
             if (!IsInteractable()) return; 
             OnPointerDownAction?.Invoke(eventData);
@@ -31,7 +30,6 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerUp(PointerEventData eventData)
         {
-            Debug.Log("OnPointerUp");
             base.OnPointerUp(eventData);
             if (!IsInteractable()) return; 
             OnPointerUpAction?.Invoke(eventData);
@@ -40,7 +38,6 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log("OnPointerEnter");
             base.OnPointerEnter(eventData);
             if (!IsInteractable()) return; 
             OnPointerEnterAction?.Invoke(eventData);
@@ -49,7 +46,6 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerExit(PointerEventData eventData)
         {
-            Debug.Log("OnPointerExit");
             base.OnPointerExit(eventData);
             if (!IsInteractable()) return; 
             OnPointerExitAction?.Invoke(eventData);
@@ -59,7 +55,6 @@ namespace TW.UI.CustomComponent
 
         public override void OnSelect(BaseEventData eventData)
         {
-            Debug.Log("OnSelect");
             base.OnSelect(eventData);
             if (!IsInteractable()) return; 
             OnSelectAction?.Invoke(eventData);
@@ -67,7 +62,6 @@ namespace TW.UI.CustomComponent
 
         public override void OnDeselect(BaseEventData eventData)
         {
-            Debug.Log("OnDeselect");
             base.OnDeselect(eventData);
             if (!IsInteractable()) return; 
             OnDeselectAction?.Invoke(eventData);
@@ -75,7 +69,6 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("OnPointerClick");
             if (!IsInteractable()) return; 
             OnPointerClickAction?.Invoke(eventData);
         }
