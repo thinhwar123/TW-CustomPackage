@@ -186,8 +186,7 @@ namespace TW.UI.CustomStyleSheet
                     .SetDelay(transitionConfig.Delay)
                 );
             }
-            
-            TransitionProperties = null;
+
             return tweenList;
         }
     }
