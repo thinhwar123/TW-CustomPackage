@@ -22,6 +22,7 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerDown(PointerEventData eventData)
         {
+            if (!IsInteractable()) return; 
             base.OnPointerDown(eventData);
             OnPointerDownAction?.Invoke(eventData);
             IsPointerDown = true;
@@ -29,6 +30,7 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerUp(PointerEventData eventData)
         {
+            if (!IsInteractable()) return; 
             base.OnPointerUp(eventData);
             OnPointerUpAction?.Invoke(eventData);
             IsPointerDown = false;
@@ -36,6 +38,7 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerEnter(PointerEventData eventData)
         {
+            if (!IsInteractable()) return; 
             base.OnPointerEnter(eventData);
             OnPointerEnterAction?.Invoke(eventData);
             IsPointerEnter = true;
@@ -43,6 +46,7 @@ namespace TW.UI.CustomComponent
 
         public override void OnPointerExit(PointerEventData eventData)
         {
+            if (!IsInteractable()) return; 
             base.OnPointerExit(eventData);
             OnPointerExitAction?.Invoke(eventData);
             IsPointerEnter = false;
@@ -51,18 +55,21 @@ namespace TW.UI.CustomComponent
 
         public override void OnSelect(BaseEventData eventData)
         {
+            if (!IsInteractable()) return; 
             base.OnSelect(eventData);
             OnSelectAction?.Invoke(eventData);
         }
 
         public override void OnDeselect(BaseEventData eventData)
         {
+            if (!IsInteractable()) return; 
             base.OnDeselect(eventData);
             OnDeselectAction?.Invoke(eventData);
         }
 
         public override void OnPointerClick(PointerEventData eventData)
         {
+            if (!IsInteractable()) return; 
             OnPointerClickAction?.Invoke(eventData);
         }
 
