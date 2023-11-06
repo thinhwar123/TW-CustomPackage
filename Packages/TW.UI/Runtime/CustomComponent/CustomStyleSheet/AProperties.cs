@@ -12,7 +12,7 @@ namespace TW.UI.CustomStyleSheet
     public class AProperties
     {
         [field: ValueDropdown(nameof(CustomAddPropertiesButton), IsUniqueList = true, DrawDropdownForListElements = false, DropdownTitle = "Modify Properties")]
-        [field: OnValueChanged(nameof(CustomChangeProperties))]
+        // [field: OnValueChanged(nameof(CustomChangeProperties))]
         [field: SerializeField, APropertyEditor] public List<AProperty> Properties {get; private set;}
         public int Count => Properties.Count();
         public AProperties()
@@ -78,11 +78,11 @@ namespace TW.UI.CustomStyleSheet
                 .AppendWith(Properties)
                 .Select(x => new ValueDropdownItem(x.PropertyName.ToString(), x));
         }
-        private void CustomChangeProperties()
-        {
-            List<string> propertyConfigsList = APropertyGlobalConfig.Instance.PropertyConfigs.Select(y => y.PropertyName).ToList();
-            Properties = Properties.OrderBy(x => propertyConfigsList.IndexOf(x.PropertyName)).ToList();
-        }
+        // private void CustomChangeProperties()
+        // {
+        //     List<string> propertyConfigsList = APropertyGlobalConfig.Instance.PropertyConfigs.Select(y => y.PropertyName).ToList();
+        //     Properties = Properties.OrderBy(x => propertyConfigsList.IndexOf(x.PropertyName)).ToList();
+        // }
     }
 #if UNITY_EDITOR
     internal class APropertiesValueDrawer : Sirenix.OdinInspector.Editor.OdinValueDrawer<AProperties>
