@@ -71,6 +71,7 @@ namespace TW.UI.CustomComponent
         {
             if (!IsInteractable()) return; 
             OnPointerClickAction?.Invoke(eventData);
+            onClick?.Invoke();
         }
 
         protected override void OnDestroy()
