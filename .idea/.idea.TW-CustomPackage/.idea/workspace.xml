@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/ABakingSheet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/ABakingSheet.cs" afterDir="false" />
-    </list>
+    <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,7 +128,7 @@
       <workItem from="1698802452971" duration="17960000" />
       <workItem from="1699002474524" duration="6276000" />
       <workItem from="1699615593641" duration="604000" />
-      <workItem from="1699839392528" duration="310000" />
+      <workItem from="1699839392528" duration="530000" />
     </task>
     <servers />
   </component>
