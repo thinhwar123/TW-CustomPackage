@@ -42,9 +42,9 @@ namespace TW.Utility.Extension
         public AWaiter(Tween tween) : this()
         {
             OwnTween = tween;
-            TweenCallback onPlay = tween.onPlay;
-            TweenCallback onUpdate = tween.onUpdate;
-            TweenCallback onComplete = tween.onComplete;
+            TweenCallback onPlay = (TweenCallback) tween.onPlay.Clone();
+            TweenCallback onUpdate = (TweenCallback) tween.onUpdate.Clone();
+            TweenCallback onComplete = (TweenCallback) tween.onComplete.Clone();
             
             OnTweenPlayCallback += () => onPlay?.Invoke();
             OnTweenCompleteCallback += () => onComplete?.Invoke();
