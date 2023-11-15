@@ -24,25 +24,39 @@ namespace TW.Utility.Extension
         public float Delay { get; private set; }
         public bool IsComplete { get; private set; }
         public Tween OwnTween { get; set; }
-        private Action OnTweenStartCallback { get; set; }
+        private Action OnTweenPlayCallback { get; set; }
         private Action OnTweenCompleteCallback { get; set; }
         public AWaiter()
         {
             IsComplete = true;
-            OnTweenStartCallback += () => IsComplete = false;
+            Process = 1;
+            Delay = 0;
+            OnTweenPlayCallback += () => IsComplete = false;
             OnTweenCompleteCallback += () => IsComplete = true;
         }
-        public AWaiter(Action onStartAction, Action onCompleteAction) : this()
+        public AWaiter(Action onPlayAction, Action onCompleteAction) : this()
         {
-            OnTweenStartCallback += onStartAction;
+            OnTweenPlayCallback += onPlayAction;
             OnTweenCompleteCallback += onCompleteAction;
         }
-        public AWaiter(Tween tween) : this(() => tween.onPlay?.Invoke(), () => tween.onComplete?.Invoke())
+        public AWaiter(Tween tween) : this()
         {
             OwnTween = tween;
-            OwnTween.OnUpdate(() => this.Process = OwnTween.Elapsed() / OwnTween.Duration())
-                .OnStart(() => OnTweenStartCallback?.Invoke())
-                .OnComplete(() => OnTweenCompleteCallback?.Invoke());
+            TweenCallback onPlay = tween.onPlay;
+            TweenCallback onUpdate = tween.onUpdate;
+            TweenCallback onComplete = tween.onComplete;
+            
+            OnTweenPlayCallback += () => onPlay?.Invoke();
+            OnTweenCompleteCallback += () => onComplete?.Invoke();
+            OwnTween
+                .OnPlay(() => OnTweenPlayCallback?.Invoke())
+                .OnComplete(() => OnTweenCompleteCallback?.Invoke())
+                .OnUpdate(() =>
+                {
+                    onUpdate?.Invoke();
+                    this.Process = OwnTween.Elapsed() / OwnTween.Duration();
+                });
+            
         }
         public static implicit operator AWaiter(Tween tween)
         {
@@ -54,7 +68,7 @@ namespace TW.Utility.Extension
             if (OwnTween == null)
             {
                 OwnTween = DOTween.To(() => Process, value => Process = value, 1, Delay)
-                    .OnStart(() => OnTweenStartCallback?.Invoke())
+                    .OnStart(() => OnTweenPlayCallback?.Invoke())
                     .OnComplete(() => OnTweenCompleteCallback?.Invoke());
             }
             else
@@ -81,7 +95,7 @@ namespace TW.Utility.Extension
         }
         public AWaiter OnStart(Action onStartAction)
         {
-            OnTweenStartCallback += onStartAction;
+            OnTweenPlayCallback += onStartAction;
             return this;
         }
         public AWaiter OnComplete(Action onCompleteAction)
