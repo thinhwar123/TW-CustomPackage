@@ -29,9 +29,9 @@ namespace TW.Utility.Extension
             StringBuilder sb = new StringBuilder();
             if (timeSpan.TotalSeconds < 1) return sb.ToString();
             if (timeSpan.Days > 0) sb.Append($"{timeSpan.Days}:");
-            if (timeSpan.Hours > 0) sb.Append(string.IsNullOrWhiteSpace(sb.ToString()) ? $"{timeSpan.Hours}:" : $"{timeSpan.Hours:00}:");
-            if (timeSpan.Minutes > 0) sb.Append(string.IsNullOrWhiteSpace(sb.ToString()) ? $"{timeSpan.Minutes}:" : $"{timeSpan.Minutes:00}:");
-            if (timeSpan.Seconds > 0) sb.Append(string.IsNullOrWhiteSpace(sb.ToString()) ? $"{timeSpan.Seconds}" : $"{timeSpan.Seconds:00}");
+            if (timeSpan.Hours > 0 || !string.IsNullOrWhiteSpace(sb.ToString())) sb.Append(string.IsNullOrWhiteSpace(sb.ToString()) ? $"{timeSpan.Hours}:" : $"{timeSpan.Hours:00}:");
+            if (timeSpan.Minutes > 0 || !string.IsNullOrWhiteSpace(sb.ToString())) sb.Append(string.IsNullOrWhiteSpace(sb.ToString()) ? $"{timeSpan.Minutes}:" : $"{timeSpan.Minutes:00}:");
+            if (timeSpan.Seconds > 0 || !string.IsNullOrWhiteSpace(sb.ToString())) sb.Append(string.IsNullOrWhiteSpace(sb.ToString()) ? $"{timeSpan.Seconds}" : $"{timeSpan.Seconds:00}");
             return sb.ToString();
         }
     }
