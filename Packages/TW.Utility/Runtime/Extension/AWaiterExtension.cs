@@ -8,7 +8,7 @@ namespace TW.Utility.Extension
         public static AWaiter DependOn(this AWaiter currentAWaiter, AWaiter dependAWaiter)
         {
             currentAWaiter.Pause();
-            dependAWaiter.OnComplete(currentAWaiter.Restart);
+            dependAWaiter.OnComplete(() => currentAWaiter.Restart());
             return currentAWaiter;
         }
         public static AWaiter DependOn(this Tween currentSWaiter, AWaiter dependAWaiter)
