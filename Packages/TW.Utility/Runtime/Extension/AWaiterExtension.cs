@@ -21,16 +21,17 @@ namespace TW.Utility.Extension
     public class AWaiter
     {
         public float Process { get; private set; }
-        public float Delay { get; private set; }
+        public float Duration { get; private set; }
         public bool IsComplete { get; private set; }
         public Tween OwnTween { get; set; }
+        private Tween HideTween { get; set; }
         private Action OnTweenPlayCallback { get; set; }
         private Action OnTweenCompleteCallback { get; set; }
         public AWaiter()
         {
             IsComplete = true;
             Process = 1;
-            Delay = 0;
+            Duration = 0;
             OnTweenPlayCallback += () => IsComplete = false;
             OnTweenCompleteCallback += () => IsComplete = true;
         }
@@ -41,22 +42,9 @@ namespace TW.Utility.Extension
         }
         public AWaiter(Tween tween) : this()
         {
-            OwnTween = tween;
-            TweenCallback onPlay = (TweenCallback) tween.onPlay.Clone();
-            TweenCallback onUpdate = (TweenCallback) tween.onUpdate.Clone();
-            TweenCallback onComplete = (TweenCallback) tween.onComplete.Clone();
-            
-            OnTweenPlayCallback += () => onPlay?.Invoke();
-            OnTweenCompleteCallback += () => onComplete?.Invoke();
-            OwnTween
-                .OnPlay(() => OnTweenPlayCallback?.Invoke())
-                .OnComplete(() => OnTweenCompleteCallback?.Invoke())
-                .OnUpdate(() =>
-                {
-                    onUpdate?.Invoke();
-                    this.Process = OwnTween.Elapsed() / OwnTween.Duration();
-                });
-            
+            HideTween = tween;
+            SetDuration(HideTween.Duration());
+            Play();
         }
         public static implicit operator AWaiter(Tween tween)
         {
@@ -65,32 +53,32 @@ namespace TW.Utility.Extension
         public AWaiter Play()
         {
             Process = 0;
-            if (OwnTween == null)
-            {
-                OwnTween = DOTween.To(() => Process, value => Process = value, 1, Delay)
-                    .OnStart(() => OnTweenPlayCallback?.Invoke())
-                    .OnComplete(() => OnTweenCompleteCallback?.Invoke());
-            }
-            else
-            {
-                OwnTween.Restart();
-            }
-
+            OwnTween = DOTween.To(() => Process, value => Process = value, 1, Duration)
+                .OnStart(() => OnTweenPlayCallback?.Invoke())
+                .OnComplete(() => OnTweenCompleteCallback?.Invoke());
             return this;
         }
         public AWaiter Pause()
         {
             OwnTween?.Pause();
+            HideTween?.Pause();
             return this;
         }
         public AWaiter Restart()
         {
             OwnTween?.Restart();
+            HideTween?.Restart();
             return this;
         }
-        public AWaiter SetDelay(float delay)
+        public AWaiter Kill()
         {
-            Delay = delay;
+            OwnTween?.Kill();
+            HideTween?.Kill();
+            return this;
+        }
+        public AWaiter SetDuration(float duration)
+        {
+            Duration = duration;
             return this;
         }
         public AWaiter OnStart(Action onStartAction)
@@ -103,14 +91,11 @@ namespace TW.Utility.Extension
             OnTweenCompleteCallback += onCompleteAction;
             return this;
         }
-        public AWaiter Kill()
-        {
-            OwnTween?.Kill();
-            return this;
-        }
+
         public AWaiter InstanceComplete()
         {
             Kill();
+            Process = 1;
             IsComplete = true;
             OnTweenCompleteCallback?.Invoke();
 
