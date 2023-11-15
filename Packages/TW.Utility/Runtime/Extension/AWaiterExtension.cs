@@ -48,7 +48,7 @@ namespace TW.Utility.Extension
         {
             return new AWaiter(tween);
         }
-        public void Play()
+        public AWaiter Play()
         {
             Process = 0;
             if (OwnTween == null)
@@ -61,36 +61,46 @@ namespace TW.Utility.Extension
             {
                 OwnTween.Restart();
             }
+
+            return this;
         }
-        public void Pause()
+        public AWaiter Pause()
         {
             OwnTween?.Pause();
+            return this;
         }
-        public void Restart()
+        public AWaiter Restart()
         {
             OwnTween?.Restart();
+            return this;
         }
-        public void SetDelay(float delay)
+        public AWaiter SetDelay(float delay)
         {
             Delay = delay;
+            return this;
         }
-        public void OnStart(Action onStartAction)
+        public AWaiter OnStart(Action onStartAction)
         {
             OnTweenStartCallback += onStartAction;
+            return this;
         }
-        public void OnComplete(Action onCompleteAction)
+        public AWaiter OnComplete(Action onCompleteAction)
         {
             OnTweenCompleteCallback += onCompleteAction;
+            return this;
         }
-        public void Kill()
+        public AWaiter Kill()
         {
             OwnTween?.Kill();
+            return this;
         }
-        public void InstanceComplete()
+        public AWaiter InstanceComplete()
         {
             Kill();
             IsComplete = true;
             OnTweenCompleteCallback?.Invoke();
+
+            return this;
         }
     }
 }
