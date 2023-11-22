@@ -67,17 +67,24 @@ namespace TW.Utility.Extension
             List<Dictionary<string, object>> dataList =
                 JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(json);
 
+            // Get all unique keys from all dictionaries
+            HashSet<string> allKeys = new HashSet<string>();
+            foreach (var data in dataList)
+            {
+                allKeys.UnionWith(data.Keys);
+            }
+
             // Write header
-            csv.AppendLine(string.Join(",", dataList[0].Keys));
+            csv.AppendLine(string.Join(",", allKeys));
 
             // Write data
             foreach (var data in dataList)
             {
                 List<string> values = new List<string>();
-                foreach (string key in data.Keys)
+                foreach (string key in allKeys)
                 {
                     // Handle special characters and escaping
-                    string value = EscapeCsvField(Convert.ToString(data[key]));
+                    string value = data.ContainsKey(key) ? EscapeCsvField(Convert.ToString(data[key])) : "";
                     values.Add(value);
                 }
 
