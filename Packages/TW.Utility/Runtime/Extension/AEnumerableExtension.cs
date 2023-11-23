@@ -24,6 +24,26 @@ namespace TW.Utility.Extension
             return list;
         }
         /// <summary>
+        /// Randomly shuffles the input enumerable (can run in sub thread).
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The input enumerable to shuffle.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> ShuffleInSubThread<T>(this IEnumerable<T> enumerable)
+        {
+            List<T> list = new(enumerable);
+            int n = list.Count;
+            System.Random random = new System.Random();
+            
+            while (n > 1)
+            {
+                n--;
+                int k = random.Next(0, n + 1);
+                (list[k], list[n]) = (list[n], list[k]);
+            }
+            return list;
+        }
+        /// <summary>
         /// Returns a new enumerable of count random elements from the input enumerable.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -87,6 +107,7 @@ namespace TW.Utility.Extension
             if (list.Contains(item)) list.Remove(item);
             return list;
         }
+        
 
     } 
 }
