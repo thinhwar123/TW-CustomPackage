@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Unity.Plastic.Newtonsoft.Json;
+// using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -65,7 +65,7 @@ namespace TW.Utility.Extension
 
             // Deserialize JSON array
             List<Dictionary<string, object>> dataList =
-                JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(json);
+                AJsonReader.DeserializeObject<List<Dictionary<string, object>>>(json);
 
             // Get all unique keys from all dictionaries
             HashSet<string> allKeys = new HashSet<string>();
