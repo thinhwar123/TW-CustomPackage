@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-// using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -65,7 +65,7 @@ namespace TW.Utility.Extension
 
             // Deserialize JSON array
             List<Dictionary<string, object>> dataList =
-                AJsonReader.DeserializeObject<List<Dictionary<string, object>>>(json);
+                JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(json);
 
             // Get all unique keys from all dictionaries
             HashSet<string> allKeys = new HashSet<string>();
@@ -84,7 +84,7 @@ namespace TW.Utility.Extension
                 foreach (string key in allKeys)
                 {
                     // Handle special characters and escaping
-                    string value = data.ContainsKey(key) ? EscapeCsvField(Convert.ToString(data[key])) : "";
+                    string value = data.TryGetValue(key, out object value1) ? EscapeCsvField(Convert.ToString(value1)) : "";
                     values.Add(value);
                 }
 

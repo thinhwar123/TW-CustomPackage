@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-public class AJsonReader : MonoBehaviour
+public static class AJsonReader
 {
     public static T DeserializeObject<T>(string json)
     {

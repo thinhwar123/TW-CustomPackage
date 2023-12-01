@@ -8,5 +8,9 @@
     "name": "thinhwar123",
     "email": "thinhwar123@gmail.com",
     "url": "https://github.com/thinhwar123"
+  },
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.cysharp.unitask": "2.5.0"
   }
 }
