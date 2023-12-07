@@ -26,13 +26,23 @@ namespace TW.Utility.Extension
                 return obj.GetHashCode();
             }
         }
-        
+        public class FrameCustomYieldInstruction : CustomYieldInstruction
+        {
+            private readonly int frameCount;
+            private int currentFrame;
+
+            public FrameCustomYieldInstruction(int frameCount)
+            {
+                this.frameCount = frameCount;
+            }
+
+            public override bool keepWaiting => currentFrame++ < frameCount;
+        }
         private static Dictionary<float, WaitForSeconds> WaitForSecondsCache { get; set; } = new Dictionary<float, WaitForSeconds>(new FloatComparer());
-        private static WaitForEndOfFrame WaitForEndOfFrame { get; } = new WaitForEndOfFrame();
-        private static WaitForFixedUpdate WaitForFixedUpdate { get; } = new WaitForFixedUpdate();
+        private static Dictionary<int, FrameCustomYieldInstruction> FrameCustomYieldInstructionCache { get; set; } = new Dictionary<int, FrameCustomYieldInstruction>();
         
         
-        public static WaitForSeconds Seconds(this float seconds)
+        public static WaitForSeconds SecondsLater(this float seconds)
         {
             if (!WaitForSecondsCache.TryGetValue(seconds, out WaitForSeconds waitForSeconds))
             {
@@ -40,6 +50,15 @@ namespace TW.Utility.Extension
                 WaitForSecondsCache.Add(seconds, waitForSeconds);
             }
             return waitForSeconds;
+        }
+        public static FrameCustomYieldInstruction FramesLater(this int frames)
+        {
+            if (!FrameCustomYieldInstructionCache.TryGetValue(frames, out FrameCustomYieldInstruction frameCustomYieldInstruction))
+            {
+                frameCustomYieldInstruction = new FrameCustomYieldInstruction(frames);
+                FrameCustomYieldInstructionCache.Add(frames, frameCustomYieldInstruction);
+            }
+            return frameCustomYieldInstruction;
         }
     }
 
