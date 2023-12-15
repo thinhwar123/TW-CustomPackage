@@ -47,19 +47,41 @@ namespace TW.Utility.Tool
             Button[] buttons = gameObject.GetComponentsInChildren<Button>(true);
             foreach (Button button in buttons)
             {
-                button.targetGraphic.raycastTarget = true;
+                if (button.targetGraphic.TryGetComponent(out Image image))
+                {
+                    EditorUtility.SetDirty(image);
+                    image.raycastTarget = true;
+                }
             }
             
             Toggle[] toggles = gameObject.GetComponentsInChildren<Toggle>(true);
             foreach (Toggle toggle in toggles)
             {
-                toggle.targetGraphic.raycastTarget = true;
+                if (toggle.targetGraphic.TryGetComponent(out Image image))
+                {
+                    EditorUtility.SetDirty(image);
+                    image.raycastTarget = true;
+                }
             }
             
             Scrollbar[] scrollbars = gameObject.GetComponentsInChildren<Scrollbar>(true);
             foreach (Scrollbar scrollbar in scrollbars)
             {
-                scrollbar.targetGraphic.raycastTarget = true;
+                if (scrollbar.targetGraphic.TryGetComponent(out Image image))
+                {
+                    EditorUtility.SetDirty(image);
+                    image.raycastTarget = true;
+                }
+            }
+            
+            ScrollRect[] scrollRects = gameObject.GetComponentsInChildren<ScrollRect>(true);
+            foreach (ScrollRect scrollRect in scrollRects)
+            {
+                if (scrollRect.content.TryGetComponent(out Image image))
+                {
+                    EditorUtility.SetDirty(image);
+                    image.raycastTarget = true;
+                }
             }
         }
     }
