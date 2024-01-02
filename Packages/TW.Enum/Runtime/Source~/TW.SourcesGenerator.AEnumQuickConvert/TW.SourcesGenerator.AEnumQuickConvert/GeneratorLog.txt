@@ -1,0 +1,96 @@
+using System;
+
+namespace TW.SourcesGenerator.AEnumQuickConvert.Example
+{
+    namespace MainNamespace
+    {
+        namespace TestNamespace
+        {
+            public static class MyEnumExtensions
+            {
+                public static string ToFastString(this MyEnum value)
+                {
+                    return value switch
+                    {
+                        MyEnum.A => "Add",
+                        MyEnum.B => "B",
+                        MyEnum.C => throw new InvalidOperationException($"Conversion for {value} is ignored."),
+                        _ => throw new ArgumentOutOfRangeException(),
+                    };
+                }
+            }
+        }
+    }
+}
+using System;
+
+namespace TW.SourcesGenerator.AEnumQuickConvert.Example
+{
+    namespace MainNamespace
+    {
+        namespace TestNamespace
+        {
+            public static class MyEnumExtensions
+            {
+                public static string ToFastString(this MyEnum value)
+                {
+                    return value switch
+                    {
+                        MyEnum.A => "Add",
+                        MyEnum.B => "B",
+                        MyEnum.C => throw new InvalidOperationException($"Conversion for {value} is ignored."),
+                        _ => throw new ArgumentOutOfRangeException(),
+                    };
+                }
+            }
+        }
+    }
+}
+using System;
+
+namespace TW.SourcesGenerator.AEnumQuickConvert.Example
+{
+    namespace MainNamespace
+    {
+        namespace TestNamespace
+        {
+            public static class MyEnumExtensions
+            {
+                public static string ToFastString(this MyEnum value)
+                {
+                    return value switch
+                    {
+                        MyEnum.A => "Add",
+                        MyEnum.B => "B",
+                        MyEnum.C => throw new InvalidOperationException($"Conversion for {value} is ignored."),
+                        _ => throw new ArgumentOutOfRangeException(),
+                    };
+                }
+            }
+        }
+    }
+}
+using System;
+
+namespace TW.SourcesGenerator.AEnumQuickConvert.Example
+{
+    namespace MainNamespace
+    {
+        namespace TestNamespace
+        {
+            public static class MyEnumExtensions
+            {
+                public static string ToFastString(this MyEnum value)
+                {
+                    return value switch
+                    {
+                        MyEnum.A => "Add",
+                        MyEnum.B => "B",
+                        MyEnum.C => throw new InvalidOperationException($"Conversion for {value} is ignored."),
+                        _ => throw new ArgumentOutOfRangeException(),
+                    };
+                }
+            }
+        }
+    }
+}

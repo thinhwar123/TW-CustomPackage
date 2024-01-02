@@ -1,0 +1,12 @@
+{
+  "name": "com.tw.aenumquickconvert",
+  "version": "1.0.0",
+  "displayName": "TW AEnumQuickConvert",
+  "description": "My Unity Custom Package",
+  "unity": "2019.1",
+  "author": {
+    "name": "thinhwar123",
+    "email": "thinhwar123@gmail.com",
+    "url": "https://github.com/thinhwar123"
+  }
+}

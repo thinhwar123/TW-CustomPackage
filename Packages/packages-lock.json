@@ -7,6 +7,12 @@
       "dependencies": {},
       "hash": "cfe509a55602ba5be6df7fa0468b10298b8a053d"
     },
+    "com.tw.aenumquickconvert": {
+      "version": "file:TW.Enum",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.tw.ui": {
       "version": "file:TW.UI",
       "depth": 0,
