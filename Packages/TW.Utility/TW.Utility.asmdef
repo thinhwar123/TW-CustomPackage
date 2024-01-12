@@ -1,0 +1,21 @@
+{
+    "name": "TW.Utility",
+    "rootNamespace": "",
+    "references": [
+        "TW.Utility.CustomComponent",
+        "TW.Utility.CustomType",
+        "TW.Utility.DesignPattern",
+        "TW.Utility.Extension",
+        "TW.Utility.GlobalConfig",
+        "TW.Utility.Tool"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

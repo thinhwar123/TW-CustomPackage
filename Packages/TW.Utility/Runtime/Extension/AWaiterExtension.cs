@@ -22,7 +22,7 @@ namespace TW.Utility.Extension
     {
         public float Process { get; private set; }
         public float Duration { get; private set; }
-        public bool IsComplete { get; private set; }
+        public bool IsComplete { get; set; }
         public Tween OwnTween { get; set; }
         private Tween HideTween { get; set; }
         private Action OnTweenPlayCallback { get; set; }
