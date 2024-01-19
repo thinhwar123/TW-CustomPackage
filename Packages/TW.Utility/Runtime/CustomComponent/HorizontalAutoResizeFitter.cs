@@ -83,19 +83,20 @@ namespace TW.Utility.CustomComponent
             float offsetY = padding.top;
             if (m_ReverseArrangement)
             {
-                for (int i = rectChildren.Count - 1; i >= 0; i--)
+                List<RectTransform> reverseRectChildren = Enumerable.Reverse(rectChildren).ToList();
+                for (int i = 0; i < reverseRectChildren.Count; i++)
                 {
-                    rectChildren[i].anchorMax = new Vector2(0, 1);
-                    rectChildren[i].anchorMin = new Vector2(0, 1);
+                    reverseRectChildren[i].anchorMax = new Vector2(0, 1);
+                    reverseRectChildren[i].anchorMin = new Vector2(0, 1);
 
-                    Vector3 position = rectChildren[i].anchoredPosition;
+                    Vector3 position = reverseRectChildren[i].anchoredPosition;
 
-                    position.x = offsetX + rectChildren[i].rect.width * rectChildren[i].pivot.x;
-                    position.y = -offsetY - rectChildren[i].rect.height * (1 - rectChildren[i].pivot.y);
+                    position.x = offsetX + reverseRectChildren[i].rect.width * reverseRectChildren[i].pivot.x;
+                    position.y = -offsetY - reverseRectChildren[i].rect.height * (1 - reverseRectChildren[i].pivot.y);
                     childrenPositionList.Add(position);
-                    offsetX += rectChildren[i].rect.width + Spacing;
+                    offsetX += reverseRectChildren[i].rect.width + Spacing;
 
-                    rectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransform.rect.height - padding.bottom - padding.top);
+                    reverseRectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransform.rect.height - padding.bottom - padding.top);
                 }
             }
             else

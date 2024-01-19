@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/CustomComponent/HorizontalAutoResizeFitter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/CustomComponent/HorizontalAutoResizeFitter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/CustomComponent/VerticalAutoResizeFitter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/CustomComponent/VerticalAutoResizeFitter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AEnumerableExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AEnumerableExtension.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +157,7 @@
       <workItem from="1704858692747" duration="1476000" />
       <workItem from="1705028013402" duration="3007000" />
       <workItem from="1705312202619" duration="1733000" />
-      <workItem from="1705656451717" duration="1827000" />
+      <workItem from="1705656451717" duration="2302000" />
     </task>
     <servers />
   </component>
