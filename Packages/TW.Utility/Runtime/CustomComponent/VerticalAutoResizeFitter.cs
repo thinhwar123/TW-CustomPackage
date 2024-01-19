@@ -65,6 +65,10 @@ namespace TW.Utility.CustomComponent
             {
                 m_LayoutElement = GetComponent<LayoutElement>();
             }
+            if (rectChildren.Count == 0)
+            {
+                return;
+            }
             for (int i = 0; i < rectChildren.Count; i++)
             {
 
