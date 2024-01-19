@@ -98,6 +98,11 @@ namespace TW.Utility.CustomComponent
 
                     reverseRectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransform.rect.height - padding.bottom - padding.top);
                 }
+                
+                for (int i = 0; i < reverseRectChildren.Count; i++)
+                {
+                    reverseRectChildren[i].anchoredPosition = childrenPositionList[i];
+                }
             }
             else
             {
@@ -115,13 +120,14 @@ namespace TW.Utility.CustomComponent
 
                     rectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectTransform.rect.height - padding.bottom - padding.top);
                 }
+                for (int i = 0; i < rectChildren.Count; i++)
+                {
+                    rectChildren[i].anchoredPosition = childrenPositionList[i];
+                }
             }
 
 
-            for (int i = 0; i < rectChildren.Count; i++)
-            {
-                rectChildren[i].anchoredPosition = childrenPositionList[i];
-            }
+
         }
 
     } 

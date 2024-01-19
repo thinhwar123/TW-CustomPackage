@@ -76,6 +76,9 @@ namespace TW.Utility.CustomComponent
 
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectHeight);
             m_LayoutElement.preferredHeight = rectHeight;
+            
+            float rectWith = rectChildren.Max(value => value.rect.width) + padding.left + padding.right;
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectWith);
 
             childrenPositionList.Clear();
             float offsetX = padding.left;
@@ -97,6 +100,10 @@ namespace TW.Utility.CustomComponent
 
                     reverseRectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransform.rect.width - padding.left - padding.right);
                 }
+                for (int i = 0; i < reverseRectChildren.Count; i++)
+                {
+                    reverseRectChildren[i].anchoredPosition = childrenPositionList[i];
+                }
             }
             else
             {
@@ -114,14 +121,11 @@ namespace TW.Utility.CustomComponent
 
                     rectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransform.rect.width - padding.left - padding.right);
                 }
+                for (int i = 0; i < rectChildren.Count; i++)
+                {
+                    rectChildren[i].anchoredPosition = childrenPositionList[i];
+                }
             }
-
-
-            for (int i = 0; i < rectChildren.Count; i++)
-            {
-                rectChildren[i].anchoredPosition = childrenPositionList[i];
-            }
-
         }
 
     } 
