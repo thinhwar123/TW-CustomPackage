@@ -108,6 +108,17 @@ namespace TW.Utility.Extension
             return list;
         }
         
+        /// <summary>
+        /// Extension method for adding an item to a list if it is not already present.
+        /// </summary>
+        /// <param name="source">The source IEnumerable.</param>
+        /// <param name="items">The input IEnumerable is attempted to be added.</param>
+        /// <typeparam name="T">The type of elements in the IEnumerable.</typeparam>
+        /// <returns></returns>
+        public static IEnumerable<T> AddMultiple<T>(this IEnumerable<T> source, IEnumerable<T> items)
+        {
+            return source.Concat(items);
+        }
 
     } 
 }

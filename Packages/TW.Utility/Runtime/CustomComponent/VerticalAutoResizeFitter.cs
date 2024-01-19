@@ -9,8 +9,8 @@ namespace TW.Utility.CustomComponent
     public class VerticalAutoResizeFitter : ContentAutoResizeFitter
     {
         [SerializeField] private LayoutElement m_LayoutElement;
-        [SerializeField] private float m_ResizeSpeed;
-        private readonly List<Vector3> m_ChildrenPositionList = new List<Vector3>();
+        [SerializeField] private bool m_ReverseArrangement;
+        private readonly List<Vector3> childrenPositionList = new List<Vector3>();
 
 
         protected VerticalAutoResizeFitter()
@@ -77,27 +77,48 @@ namespace TW.Utility.CustomComponent
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectHeight);
             m_LayoutElement.preferredHeight = rectHeight;
 
-            m_ChildrenPositionList.Clear();
+            childrenPositionList.Clear();
             float offsetX = padding.left;
             float offsetY = padding.top;
-            for (int i = 0; i < rectChildren.Count; i++)
+            if (m_ReverseArrangement)
             {
-                rectChildren[i].anchorMax = new Vector2(0, 1);
-                rectChildren[i].anchorMin = new Vector2(0, 1);
+                for (int i = rectChildren.Count - 1; i >= 0; i--)
+                {
+                    rectChildren[i].anchorMax = new Vector2(0, 1);
+                    rectChildren[i].anchorMin = new Vector2(0, 1);
 
-                Vector3 position = rectChildren[i].anchoredPosition;
+                    Vector3 position = rectChildren[i].anchoredPosition;
 
-                position.x = offsetX + rectChildren[i].rect.width * rectChildren[i].pivot.x;
-                position.y = -offsetY - rectChildren[i].rect.height * (1 - rectChildren[i].pivot.y);
-                m_ChildrenPositionList.Add(position);
-                offsetY += rectChildren[i].rect.height + Spacing;
+                    position.x = offsetX + rectChildren[i].rect.width * rectChildren[i].pivot.x;
+                    position.y = -offsetY - rectChildren[i].rect.height * (1 - rectChildren[i].pivot.y);
+                    childrenPositionList.Add(position);
+                    offsetY += rectChildren[i].rect.height + Spacing;
 
-                rectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransform.rect.width - padding.left - padding.right);
+                    rectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransform.rect.width - padding.left - padding.right);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < rectChildren.Count; i++)
+                {
+                    rectChildren[i].anchorMax = new Vector2(0, 1);
+                    rectChildren[i].anchorMin = new Vector2(0, 1);
+
+                    Vector3 position = rectChildren[i].anchoredPosition;
+
+                    position.x = offsetX + rectChildren[i].rect.width * rectChildren[i].pivot.x;
+                    position.y = -offsetY - rectChildren[i].rect.height * (1 - rectChildren[i].pivot.y);
+                    childrenPositionList.Add(position);
+                    offsetY += rectChildren[i].rect.height + Spacing;
+
+                    rectChildren[i].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectTransform.rect.width - padding.left - padding.right);
+                }
             }
 
+
             for (int i = 0; i < rectChildren.Count; i++)
             {
-                rectChildren[i].anchoredPosition = m_ChildrenPositionList[i];
+                rectChildren[i].anchoredPosition = childrenPositionList[i];
             }
 
         }
