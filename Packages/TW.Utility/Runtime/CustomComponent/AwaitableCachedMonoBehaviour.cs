@@ -4,21 +4,21 @@ namespace TW.Utility.CustomComponent
 {
     public abstract class AwaitableCachedMonoBehaviour : ACachedMonoBehaviour
     {
-        private CancellationTokenSource m_MyCancellationTokenSource;
+        protected CancellationTokenSource OnDestroyCancellationTokenSource;
 
         public CancellationToken OnDestroyCancellationToken
         {
             get
             {
-                m_MyCancellationTokenSource ??= new CancellationTokenSource();
-                return m_MyCancellationTokenSource.Token;
+                OnDestroyCancellationTokenSource ??= new CancellationTokenSource();
+                return OnDestroyCancellationTokenSource.Token;
             }
         }
 
         protected virtual void OnDestroy()
         {
-            m_MyCancellationTokenSource?.Cancel();
-            m_MyCancellationTokenSource?.Dispose();
+            OnDestroyCancellationTokenSource?.Cancel();
+            OnDestroyCancellationTokenSource?.Dispose();
         }
     }
 
