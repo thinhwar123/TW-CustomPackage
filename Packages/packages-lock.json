@@ -13,6 +13,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.tw.gui": {
+      "version": "file:TW.GUI",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.tw.ui": {
       "version": "file:TW.UI",
       "depth": 0,

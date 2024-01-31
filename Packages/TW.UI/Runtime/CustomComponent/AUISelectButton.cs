@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using DG.Tweening;
-using TW.UI.CustomStyleSheet;
+﻿using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 namespace TW.UI.CustomComponent
 {

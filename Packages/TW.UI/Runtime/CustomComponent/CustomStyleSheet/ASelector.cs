@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using TW.Utility.Extension;
 using UnityEngine;
@@ -6,7 +5,6 @@ using UnityEngine.Events;
 #if UNITY_EDITOR
 using UnityEditor;
 using Sirenix.OdinInspector.Editor;
-using Sirenix.Utilities.Editor;
 #endif
 
 namespace TW.UI.CustomStyleSheet

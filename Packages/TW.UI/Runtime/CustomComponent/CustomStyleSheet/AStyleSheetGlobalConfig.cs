@@ -7,7 +7,6 @@ using TW.Utility.Extension;
 
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine.UIElements;
 #endif
 namespace TW.UI.CustomStyleSheet
 {
@@ -95,7 +94,7 @@ namespace TW.UI.CustomStyleSheet
             
             string[] findAssets = AssetDatabase.FindAssets("t:Prefab a:Assets");
             if (findAssets.Length == 0) return;
-            AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(findAssets[0]));
+            // AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(findAssets[0]));
             PrefabVisualElements = findAssets.Select(s => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(s)))
                 .SelectMany(s => s.GetComponentsInChildren<AVisualElement>(true))
                 .Where(x => PrefabUtility.GetCorrespondingObjectFromOriginalSource(x) == x)
