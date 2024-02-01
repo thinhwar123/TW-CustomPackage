@@ -6,47 +6,38 @@
   <component name="ChangeListManager">
     <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/AColorPalettes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/AColorPalettes/AColorPalettesGlobalConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/AColorPalettes/AColorPalettesGlobalConfig.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetProperty.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetProperty/APresetProperties.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetProperty/APresetProperties.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetProperty/APresetProperty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetProperty/APresetProperty.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/AButtonPreset.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/AButtonPreset.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/AImagePreset.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/AImagePreset.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/APreset.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/APreset.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/ARectPreset.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/ARectPreset.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/ATextPreset.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetType/ATextPreset.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/AVisualElement.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/AVisualElement/AVisualElement.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/AVisualElement/AVisualElement.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/AVisualElement/AVisualElementPresetGlobalConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/AVisualElement/AVisualElementPresetGlobalConfig.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/TW.GUI.asmdef" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/TW.GUI.asmdef.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/package.json.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor/UICreator.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor/UICreator/AVisualElementCreator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor/UICreator/AVisualElementCreator.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor/UICreator/Prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor/UICreator/Prefab/_ATextVisualElement_.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor/UICreator/Prefab/_ATextVisualElement_.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor/UICreator/Prefab/_AVisualElement_.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Editor/UICreator/Prefab/_AVisualElement_.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/UICreator.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/CreateUISampleGameObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/CreateUISampleGameObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISelectButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/AUISelectButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AProperties.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/ASelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/ASelector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AStyleSheetGlobalConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AStyleSheetGlobalConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AVisualElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UI/Runtime/CustomComponent/CustomStyleSheet/AVisualElement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Editor/Template/CreateNewScriptFromCustomTemplate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Editor/Template/CreateNewScriptFromCustomTemplate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AColorExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AColorExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/ACoroutineExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/ACoroutineExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AMonoBehaviourExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/Extension/AMonoBehaviourExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.GUI/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.GUI/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIButton.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIButton.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIProcessBar.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIProcessBar.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIRepeatableButton.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIRepeatableButton.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISelectButton.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISelectButton.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISwitchTab.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISwitchTab.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISwitchToggleButton.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUISwitchToggleButton.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIText.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/AUIText.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/ButtonSoundDemo.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/ButtonSoundDemo.wav.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/CreateUISampleGameObject.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/CreateUISampleGameObject.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/TW.UI.Editor.Sample.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UI/Editor/Sample/TW.UI.Editor.Sample.asmdef.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +202,8 @@
       <workItem from="1705656451717" duration="4875000" />
       <workItem from="1706512603639" duration="10089000" />
       <workItem from="1706579460786" duration="28695000" />
-      <workItem from="1706683800445" duration="12301000" />
+      <workItem from="1706683800445" duration="13753000" />
+      <workItem from="1706761989031" duration="1027000" />
     </task>
     <servers />
   </component>
