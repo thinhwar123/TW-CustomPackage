@@ -118,7 +118,7 @@
 // [6] R. Baillie and S. S. Wagstaff Jr, "Lucas Pseudoprimes", Mathematics of Computation,
 //     Vol. 35, No. 152, Oct 1980, pp. 1391-1417.
 //
-// [7] H. C. Williams, "Édouard Lucas and Primality Testing", Canadian Mathematical
+// [7] H. C. Williams, "ï¿½douard Lucas and Primality Testing", Canadian Mathematical
 //     Society Series of Monographs and Advance Texts, vol. 22, John Wiley & Sons, New York,
 //     NY, 1998.
 //
@@ -1215,12 +1215,12 @@ namespace TW.Utility.CustomType
             if (s1 == "-1")
             {
                 //UnityEngine.Debug.Log(s);
-                return new BigNumber(double.Parse(s), 0);
+                return new BigNumber(double.Parse(s, CultureInfo.InvariantCulture), 0);
             }
 
             int m = num;
             string s3 = s[..^s1.Length];
-            double v = double.Parse(s3);
+            double v = double.Parse(s3, CultureInfo.InvariantCulture);
             return new BigNumber(v, m);
 
         }
