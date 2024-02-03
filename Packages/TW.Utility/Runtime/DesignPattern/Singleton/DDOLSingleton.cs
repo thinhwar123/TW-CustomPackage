@@ -1,3 +1,4 @@
+using System;
 using TW.Utility.CustomComponent;
 using UnityEngine;
 
@@ -30,6 +31,14 @@ namespace TW.Utility.DesignPattern
 
                 }
                 return instance;
+            }
+        }
+
+        protected virtual void Awake()
+        {
+            if (Instance != this)
+            {
+                Destroy(gameObject);
             }
         }
     }
