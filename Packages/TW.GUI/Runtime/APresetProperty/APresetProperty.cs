@@ -235,6 +235,6 @@ namespace TW.GUI
                     break;
             }
         }
-    }
 #endif
+    }
 }
