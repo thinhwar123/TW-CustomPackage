@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/ACustomComponent.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/ACustomComponent/AButtonVisualElement.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/ACustomComponent/AButtonVisualElement.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/ACustomComponent/ACustomButton.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/ACustomComponent/ACustomButton.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetProperty/APresetProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.GUI/Runtime/APresetProperty/APresetProperties.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +176,7 @@
       <workItem from="1706683800445" duration="13753000" />
       <workItem from="1706761989031" duration="1027000" />
       <workItem from="1707015940181" duration="3352000" />
+      <workItem from="1708672077252" duration="739000" />
     </task>
     <servers />
   </component>

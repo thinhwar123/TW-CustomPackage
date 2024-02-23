@@ -7,6 +7,7 @@ namespace TW.GUI
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class ATextPreset : APreset
     {
+#if UNITY_EDITOR
         [field: SerializeField] public TextMeshProUGUI TextMeshProUGUI { get; set; }
         public override void OnReset()
         {
@@ -35,5 +36,6 @@ namespace TW.GUI
             }
             PresetProperties.Init(AVisualElement.EType.Text);
         }
+#endif
     }
 }

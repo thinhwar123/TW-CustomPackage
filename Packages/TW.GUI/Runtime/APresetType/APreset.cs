@@ -5,6 +5,7 @@ namespace TW.GUI
 {
     public class APreset : MonoBehaviour
     {
+#if UNITY_EDITOR
         [field: SerializeField] public APresetProperties PresetProperties { get; set; } = new APresetProperties();
 
         public virtual void Reset()
@@ -28,5 +29,6 @@ namespace TW.GUI
                 presetProperty.Apply(this, aVisualElement);
             });
         }
+#endif
     }
 }

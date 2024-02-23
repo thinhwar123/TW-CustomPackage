@@ -6,6 +6,7 @@ namespace TW.GUI
 {
     public class AImagePreset : APreset
     {
+#if UNITY_EDITOR
         [field: SerializeField] public Image Image { get; private set; }
         
         public override void OnReset()
@@ -28,5 +29,6 @@ namespace TW.GUI
             }
             PresetProperties.Init(AVisualElement.EType.Image);
         }
+#endif
     }
 }

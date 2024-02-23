@@ -14,6 +14,7 @@ namespace TW.GUI
     [Serializable]
     public class APresetProperties
     {
+#if UNITY_EDITOR
         [field: SerializeField]
         [field: OnValueChanged(nameof(OnPresetPropertiesTypeChanged))]
         [field: ValueDropdown(nameof(CustomAddPresetProperties), IsUniqueList = true,
@@ -79,6 +80,7 @@ namespace TW.GUI
                     .All(ignore => ignore.PresetPropertyType != p.PresetPropertyType)).ToList(),
             };
         }
+#endif
     }
 
 #if UNITY_EDITOR

@@ -37,6 +37,7 @@ namespace TW.GUI
             ImageType = 42,
             
         }
+#if UNITY_EDITOR
         [field: SerializeField, ReadOnly, HideLabel] public Type PresetPropertyType { get; set; }
         public APresetProperty(Type presetPropertyType)
         {
@@ -143,9 +144,7 @@ namespace TW.GUI
         {
             if (!aVisualElement.TryGetComponent(out TextMeshProUGUI textMeshProUGUI)) return;
             if (preset is not ATextPreset textPreset) return;
-#if UNITY_EDITOR
             EditorUtility.SetDirty(textMeshProUGUI);
-#endif
             switch (PresetPropertyType)
             {
                 case Type.TextValue:
@@ -189,9 +188,7 @@ namespace TW.GUI
         {
             if (!aVisualElement.TryGetComponent(out Image image)) return;
             if (preset is not AImagePreset imagePreset) return;
-#if UNITY_EDITOR
             EditorUtility.SetDirty(image);
-#endif
             switch (PresetPropertyType)
             {
                 case Type.ImageSprite:
@@ -213,9 +210,7 @@ namespace TW.GUI
         {
             if (!aVisualElement.TryGetComponent(out RectTransform rectTransform)) return;
             if (preset is not ARectPreset rectPreset) return;
-#if UNITY_EDITOR
             EditorUtility.SetDirty(rectTransform);
-#endif
             switch (PresetPropertyType)
             {
                 case Type.RectPosition:
@@ -241,4 +236,5 @@ namespace TW.GUI
             }
         }
     }
+#endif
 }

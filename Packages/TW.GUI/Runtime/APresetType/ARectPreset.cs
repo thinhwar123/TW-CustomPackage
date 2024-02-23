@@ -5,6 +5,7 @@ namespace TW.GUI
 {
     public class ARectPreset : APreset
     {
+#if UNITY_EDITOR
         [field: SerializeField] public RectTransform RectTransform {get; private set;}
         
         public override void OnReset()
@@ -32,5 +33,6 @@ namespace TW.GUI
             }
             PresetProperties.Init(AVisualElement.EType.Rect);
         }
+#endif
     }
 }
