@@ -14,7 +14,6 @@ namespace TW.GUI
 {
     public class AVisualElement : MonoBehaviour
     {
-#if UNITY_EDITOR
         public enum EType
         {
             Text,
@@ -22,6 +21,9 @@ namespace TW.GUI
             Button,
             Rect,
         }
+        
+#if UNITY_EDITOR
+
         [field: SerializeField, HorizontalGroup("Action", 100), ToggleLeft, OnValueChanged(nameof(OnAutoApplyChanged))] 
         public bool AutoApply {get; private set;} = true;
         

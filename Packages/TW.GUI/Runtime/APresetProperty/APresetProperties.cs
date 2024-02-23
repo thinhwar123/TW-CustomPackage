@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using UnityEngine;
+#if UNITY_EDITOR
+using Sirenix.OdinInspector.Editor;
+#endif
 
 namespace TW.GUI
 {
@@ -79,6 +81,7 @@ namespace TW.GUI
         }
     }
 
+#if UNITY_EDITOR
     internal class PresetPropertiesDrawer : OdinValueDrawer<APresetProperties>
     {
         protected override void DrawPropertyLayout(GUIContent label)
@@ -86,4 +89,5 @@ namespace TW.GUI
             Property.Children[0].Draw(label);
         }
     }
+#endif
 }
