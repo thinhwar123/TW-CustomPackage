@@ -96,11 +96,6 @@ namespace TW.Utility.Extension
         public ARealtimeAwaiter OnStart(Action action)
         {
             StartAction = action;
-            if (Duration < 0)
-            {
-                StartAction?.Invoke();
-            }
-
             return this;
         }
 
