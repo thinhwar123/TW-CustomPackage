@@ -35,25 +35,27 @@ namespace TW.Utility.Extension
         }
 
         [field: SerializeField] public List<ARealtimeAwaiter> RealtimeAwaiterList { get; private set; } = new();
-        private List<ARealtimeAwaiter> RemoveRealtimeAwaiterList { get; set; } = new();
+        private List<ARealtimeAwaiter> TempRealtimeAwaiterList { get; set; } = new();
         public static ARealtimeAwaiter DelayedCall(float time, Action action)
         {
-            return new ARealtimeAwaiter(time, action, Instance.RealtimeAwaiterList, Instance.RemoveRealtimeAwaiterList);
+            return new ARealtimeAwaiter(time, action, Instance.RealtimeAwaiterList);
         }
 
         private void Update()
         {
             DateTime timeNow = DateTime.Now;
-            foreach (ARealtimeAwaiter realtimeAwaiter in RealtimeAwaiterList)
+            TempRealtimeAwaiterList.Clear();
+            foreach (ARealtimeAwaiter aRealtimeAwaiter in RealtimeAwaiterList)
+            {
+                TempRealtimeAwaiterList.Add(aRealtimeAwaiter);
+            }
+            
+            foreach (ARealtimeAwaiter realtimeAwaiter in TempRealtimeAwaiterList)
             {
                 realtimeAwaiter.Update(timeNow);
             }
 
-            foreach (ARealtimeAwaiter removeARealtime in RemoveRealtimeAwaiterList)
-            {
-                RealtimeAwaiterList.Remove(removeARealtime);
-            }
-            RemoveRealtimeAwaiterList.Clear();
+
         }
     }
 
@@ -61,7 +63,6 @@ namespace TW.Utility.Extension
     public class ARealtimeAwaiter
     {
         public List<ARealtimeAwaiter> RealtimeAwaiterList { get; private set; }
-        public List<ARealtimeAwaiter> RemoveRealtimeAwaiterList { get; private set; }
         [field: SerializeField] public float Duration { get; private set; }
         public DateTime StartTime { get; private set; }
         public DateTime EndTime { get; private set; }
@@ -73,11 +74,10 @@ namespace TW.Utility.Extension
         private bool IsStarted { get; set; }
         private bool IsCompleted { get; set; }
 
-        public ARealtimeAwaiter(float time, Action mainAction, List<ARealtimeAwaiter> realtimeAwaiterList, List<ARealtimeAwaiter> removeRealtimeAwaiterList)
+        public ARealtimeAwaiter(float time, Action mainAction, List<ARealtimeAwaiter> realtimeAwaiterList)
         {
             Duration = time;
             RealtimeAwaiterList = realtimeAwaiterList;
-            RemoveRealtimeAwaiterList = removeRealtimeAwaiterList;
             MainAction = mainAction;
             StartTime = DateTime.Now;
             EndTime = StartTime.AddSeconds(Duration);
@@ -116,7 +116,7 @@ namespace TW.Utility.Extension
 
         public ARealtimeAwaiter Kill()
         {
-            RemoveRealtimeAwaiterList.Add(this);
+            RealtimeAwaiterList.Remove(this);
             return this;
         }
 
@@ -135,7 +135,7 @@ namespace TW.Utility.Extension
                 MainAction?.Invoke();
                 CompleteAction?.Invoke();
                 IsCompleted = true;
-                RemoveRealtimeAwaiterList.Add(this);
+                RealtimeAwaiterList.Remove(this);
             }
             else
             {
