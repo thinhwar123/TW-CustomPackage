@@ -34,7 +34,7 @@ namespace TW.Utility.Extension
             }
         }
 
-        [field: SerializeField] public List<ARealtimeAwaiter> RealtimeAwaiterList { get; private set; } = new();
+        private List<ARealtimeAwaiter> RealtimeAwaiterList { get; private set; } = new();
         private List<ARealtimeAwaiter> TempRealtimeAwaiterList { get; set; } = new();
         public static ARealtimeAwaiter DelayedCall(float time, Action action)
         {
@@ -63,7 +63,7 @@ namespace TW.Utility.Extension
     public class ARealtimeAwaiter
     {
         public List<ARealtimeAwaiter> RealtimeAwaiterList { get; private set; }
-        [field: SerializeField] public float Duration { get; private set; }
+        public float Duration { get; private set; }
         public DateTime StartTime { get; private set; }
         public DateTime EndTime { get; private set; }
         public Action MainAction { get; private set; }

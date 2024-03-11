@@ -25,7 +25,7 @@ namespace TW.Utility.Extension
         /// <summary>
         /// Returns a boolean indicating whether the specified MonoBehaviour object is a part of the current prefab stage and not a persistent object in the scene.
         /// </summary>
-        /// <param name="mono">The MonoBehaviour object to check if it’s a part of the current prefab stage.</param>
+        /// <param name="mono">The MonoBehaviour object to check if itâ€™s a part of the current prefab stage.</param>
         /// <returns></returns>
         public static bool IsInPrefabStage(this MonoBehaviour mono)
         {

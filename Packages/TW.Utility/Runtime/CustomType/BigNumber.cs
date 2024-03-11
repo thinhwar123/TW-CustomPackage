@@ -131,6 +131,7 @@
 //************************************************************************************
 using System;
 using System.Globalization;
+using UnityEngine;
 
 namespace TW.Utility.CustomType
 {
@@ -785,7 +786,6 @@ namespace TW.Utility.CustomType
         {
             double vv = v;
             int mm = m;
-            double num = v;
 
             while (vv < 1 && mm > 0)
             {
@@ -797,11 +797,33 @@ namespace TW.Utility.CustomType
                 vv /= 1000;
                 mm++;
             }
-            string s = Math.Round(vv, 3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length).ToString(CultureInfo.InvariantCulture);
+            
+            int digit = Math.Clamp(3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length, 0, 3);
+            string s = Math.Round(vv, digit).ToString(CultureInfo.InvariantCulture);
 
             return s + sRank[mm];
         }
+        
+        public string ToStringUIFloor()
+        {
+            double vv = v;
+            int mm = m;
 
+            while (vv < 1 && mm > 0)
+            {
+                vv *= 1000;
+                mm--;
+            }
+            while (vv >= 1000)
+            {
+                vv /= 1000;
+                mm++;
+            }
+            // string s = Math.Round(vv, 3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length).ToString(CultureInfo.InvariantCulture);
+            // string s = vv.ToString("0.000" ,CultureInfo.InvariantCulture);
+            string s = (Math.Floor(vv* 1000) / 1000).ToString(CultureInfo.InvariantCulture);
+            return s + sRank[mm];
+        }
 
         //***********************************************************************
         // Returns a string representing the BigNumber in sign-and-magnitude
