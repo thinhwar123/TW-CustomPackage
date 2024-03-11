@@ -32,6 +32,19 @@ namespace TW.Utility.Tool
             FindTheBestRowAndColumn();
             MergerSelectedTexture();
         }
+        [MenuItem("Assets/Merge Texture2D 1 Line", true)]
+        private static bool CanMergeTexture2D1Line()
+        {
+            return Selection.activeObject is Texture2D;
+        }
+        [MenuItem("Assets/Merge Texture2D 1 Line")]
+        private static void DoMergeTexture2D1Line()
+        {
+            SetupTexture2D();
+            FindTheBestSize();
+            Find1LineColumn();
+            MergerSelectedTexture();
+        }
 
         private static void SetupTexture2D()
         {
@@ -94,7 +107,12 @@ namespace TW.Utility.Tool
                 File.WriteAllBytes(path, tex.EncodeToPNG());
             }
         }
-
+        
+        private static void Find1LineColumn()
+        {
+            Row = 1;
+            Column = Texture2Ds.Length;
+        }
     }
 #endif
 
