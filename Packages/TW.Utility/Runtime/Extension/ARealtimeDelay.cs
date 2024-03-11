@@ -34,7 +34,7 @@ namespace TW.Utility.Extension
             }
         }
 
-        private List<ARealtimeAwaiter> RealtimeAwaiterList { get; private set; } = new();
+        private List<ARealtimeAwaiter> RealtimeAwaiterList { get; set; } = new();
         private List<ARealtimeAwaiter> TempRealtimeAwaiterList { get; set; } = new();
         public static ARealtimeAwaiter DelayedCall(float time, Action action)
         {
