@@ -19,9 +19,9 @@ https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
 ```
 https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.Utility
 ```
-### UI
+### UGUI
 ```
-https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.UI
+https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.UGUI
 ```
 ### GUI
 ```
