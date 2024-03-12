@@ -12,7 +12,7 @@ namespace TW.UGUI.Core.Views
     public abstract class View : UIBehaviour, IView, ITransform
     {
         [field: SerializeField] private bool UsePrefabNameAsIdentifier { get; set; } = true;
-        [field: EnableIf("@UsePrefabNameAsIdentifier")]
+        [field: EnableIf("@!UsePrefabNameAsIdentifier")]
         [field: SerializeField] public string Identifier { get; set; }
         
         public virtual string Name
