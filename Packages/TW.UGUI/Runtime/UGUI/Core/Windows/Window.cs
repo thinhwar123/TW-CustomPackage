@@ -6,7 +6,6 @@ using UnityEngine;
 namespace TW.UGUI.Core.Windows
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(CanvasGroup))]
     public abstract class Window : View, IViewGroup, IWindow
     {
         private readonly List<IView> views = new();
