@@ -58,8 +58,7 @@ namespace TW.Utility.Extension
 
         }
     }
-
-    [Serializable]
+    
     public class ARealtimeAwaiter
     {
         public List<ARealtimeAwaiter> RealtimeAwaiterList { get; private set; }
