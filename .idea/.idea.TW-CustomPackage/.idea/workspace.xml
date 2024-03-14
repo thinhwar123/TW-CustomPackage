@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/AnonymousSheetContainerCallbackReceiver.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/AnonymousSheetContainerCallbackReceiver.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/ISheetContainerCallbackReceiver.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/ISheetContainerCallbackReceiver.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/Sheet.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/Sheet.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/SheetContainer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/SheetContainer.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/SheetContainerExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/SheetContainerExtensions.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/SheetOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Core/Sheets/SheetOptions.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

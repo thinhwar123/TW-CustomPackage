@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace TW.UGUI.Animation
 {
@@ -13,12 +14,15 @@ namespace TW.UGUI.Animation
         public float Time { get; private set; }
 
         public bool IsFinished => Time >= Animation.Duration;
-
-        public void Initialize(IAnimation animation)
+        
+        public CancellationTokenSource CancellationTokenSource { get; private set; }
+        
+        public void Initialize(IAnimation animation, CancellationTokenSource cancellationTokenSource)
         {
             Animation = animation;
             IsPlaying = default;
             SetTime(0.0f);
+            CancellationTokenSource = cancellationTokenSource;
         }
 
         public void Update(float deltaTime)
