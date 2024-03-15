@@ -18,7 +18,8 @@ namespace TW.UGUI.Shared
         private Vector3 _beforePosition;
         private CanvasGroup _canvasGroup;
 
-        public override float Duration => _delay + _duration;
+        public override float Delay => _delay;
+        public override float Duration => _duration;
 
         public override void Setup()
         {

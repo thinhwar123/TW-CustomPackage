@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Animation/AnimationPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Animation/AnimationPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Animation/IAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Animation/IAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/SimpleTransitionAnimationBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/SimpleTransitionAnimationBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/SimpleTransitionAnimationObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/SimpleTransitionAnimationObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/TimelineTransitionAnimationBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/TimelineTransitionAnimationBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/TransitionAnimationBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/TransitionAnimationBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/TransitionAnimationObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/Shared/TransitionAnimationObject.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,6 +179,7 @@
       <workItem from="1709279887915" duration="2435000" />
       <workItem from="1709780948674" duration="9453000" />
       <workItem from="1709893810458" duration="1709000" />
+      <workItem from="1710490078691" duration="644000" />
     </task>
     <servers />
   </component>

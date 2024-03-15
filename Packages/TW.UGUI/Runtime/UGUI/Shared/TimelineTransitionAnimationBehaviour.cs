@@ -6,9 +6,11 @@ namespace TW.UGUI.Shared
 {
     public class TimelineTransitionAnimationBehaviour : TransitionAnimationBehaviour
     {
+        [SerializeField] public float _delay;
         [SerializeField] private PlayableDirector _director;
         [SerializeField] private TimelineAsset _timelineAsset;
 
+        public override float Delay => _delay;
         public override float Duration => (float)_timelineAsset.duration;
 
         public override void Setup()

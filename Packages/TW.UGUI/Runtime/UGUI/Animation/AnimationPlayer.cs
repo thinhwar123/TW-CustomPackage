@@ -5,18 +5,20 @@ namespace TW.UGUI.Animation
 {
     internal class AnimationPlayer : IUpdatable
     {
-        public AnimationPlayer() { }
-
         public IAnimation Animation { get; private set; }
 
         public bool IsPlaying { get; private set; }
 
         public float Time { get; private set; }
 
-        public bool IsFinished => Time >= Animation.Duration;
+        public bool IsFinished => Time >= Animation.Duration + Animation.Delay;
         
         public CancellationTokenSource CancellationTokenSource { get; private set; }
-        
+
+        public AnimationPlayer()
+        {
+            
+        }
         public void Initialize(IAnimation animation, CancellationTokenSource cancellationTokenSource)
         {
             Animation = animation;
@@ -52,10 +54,10 @@ namespace TW.UGUI.Animation
 
         public void SetTime(float time)
         {
-            time = Math.Max(0, Math.Min(Animation.Duration, time));
+            time = Math.Max(0, Math.Min(Animation.Duration + Animation.Delay, time));
             Animation.SetTime(time);
 
-            if (IsPlaying && time >= Animation.Duration)
+            if (IsPlaying && time >= Animation.Duration + Animation.Delay)
             {
                 Stop();
             }

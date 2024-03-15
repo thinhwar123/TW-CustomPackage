@@ -33,7 +33,7 @@ namespace TW.UGUI.Utility
             {
                 await UniTask.NextFrame(player.CancellationTokenSource.Token);
                 player.Update(Time.unscaledDeltaTime);
-                progress?.Report(player.Time / self.Duration);
+                progress?.Report(player.Time / (self.Duration + self.Delay));
             }
 
             Pool<AnimationPlayer>.Shared.Return(player);

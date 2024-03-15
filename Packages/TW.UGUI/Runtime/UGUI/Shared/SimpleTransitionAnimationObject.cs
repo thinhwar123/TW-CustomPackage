@@ -20,6 +20,7 @@ namespace TW.UGUI.Shared
         private CanvasGroup _canvasGroup;
 
         public override float Duration => _duration;
+        public override float Delay => _delay;
 
         public static SimpleTransitionAnimationObject CreateInstance(float? duration = null, EaseType? easeType = null,
             SheetAlignment? beforeAlignment = null, Vector3? beforeScale = null, float? beforeAlpha = null,

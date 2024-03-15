@@ -9,6 +9,7 @@ namespace TW.UGUI.Shared
     {
         public RectTransform RectTransform { get; private set; }
         public RectTransform PartnerRectTransform { get; private set; }
+        public abstract float Delay { get; }
         public abstract float Duration { get; }
 
         void ITransitionAnimation.SetPartner(RectTransform partnerRectTransform)
