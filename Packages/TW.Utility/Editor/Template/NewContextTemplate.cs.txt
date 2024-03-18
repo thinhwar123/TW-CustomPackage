@@ -5,7 +5,7 @@ using TW.MVP.View;
 using UnityEngine;
 
 [System.Serializable]
-public class #SCRIPTNAME# : IComponentData
+public class #SCRIPTNAME# 
 {
     [System.Serializable]
     public class UIModel : IAModel
