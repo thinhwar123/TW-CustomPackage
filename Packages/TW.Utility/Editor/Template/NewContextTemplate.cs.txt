@@ -1,0 +1,57 @@
+using Cysharp.Threading.Tasks;
+using TW.MVP.Model;
+using TW.MVP.Presenter;
+using TW.MVP.View;
+using UnityEngine;
+
+[System.Serializable]
+public class #SCRIPTNAME# : IComponentData
+{
+    [System.Serializable]
+    public class UIModel : IAModel
+    {
+        public UniTask Initialize()
+        {
+            return UniTask.CompletedTask;
+        }
+
+        public void Dispose()
+        {
+
+        }
+    }
+
+    [System.Serializable]
+    public class UIView : IAView
+    {
+        public UniTask Initialize()
+        {
+            return UniTask.CompletedTask;
+        }
+
+        public void Dispose()
+        {
+
+        }
+    }
+
+    [System.Serializable]
+    public class UIPresenter : IAPresenter
+    {
+        [field: SerializeField] public UIView View { get; set; } = new();
+        [field: SerializeField] public UIModel Model { get; set; } = new();
+        
+
+        public async UniTask Initialize()
+        {
+            await View.Initialize();
+            await Model.Initialize();            
+        }
+
+        public void Dispose()
+        {
+            View?.Dispose();
+            Model?.Dispose();
+        }           
+    }
+}

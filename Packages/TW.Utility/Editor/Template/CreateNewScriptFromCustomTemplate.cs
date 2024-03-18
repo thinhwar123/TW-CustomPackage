@@ -27,44 +27,17 @@ namespace TW.Utility.Editor.Template
         {
             CreateScriptFromTemplate("NewMyAssetModificationProcessor.cs", "MyAssetModificationProcessor.cs");
         }
-        [MenuItem(itemName: "Assets/CustomTemplate/Useful Built-in/Create New State", isValidateFunction: false, priority: 1)]
-        public static void CreateScriptFromTemplate()
-        {
-            CreateScriptFromTemplate("NewStateTemplate.cs", "NewState.cs");
-        }
-
 
         #endregion
-
-        #region ECS Scripts
-        [MenuItem(itemName: "Assets/CustomTemplate/ECS/Create New ComponentData", isValidateFunction: false, priority: 1)]
-        public static void CreateScriptComponentDataFromTemplate()
+        
+        #region MVP Scripts
+        
+        [MenuItem(itemName: "Assets/CustomTemplate/MVP/Create New Context", isValidateFunction: false, priority: 1)]
+        public static void CreateScriptContextFromTemplate()
         {
-            CreateScriptFromTemplate("NewComponentDataTemplate.cs", "NewComponentData.cs");
+            CreateScriptFromTemplate("NewContextTemplate.cs", "NewContext.cs");
         }
-        [MenuItem(itemName: "Assets/CustomTemplate/ECS/Create New Authoring", isValidateFunction: false, priority: 1)]
-        public static void CreateScriptAuthoringFromTemplate()
-        {
-            CreateScriptFromTemplate("NewAuthoringTemplate.cs", "NewAuthoring.cs");
-        }
-        [MenuItem(itemName: "Assets/CustomTemplate/ECS/Create New System", isValidateFunction: false, priority: 1)]
-        public static void CreateScriptSystemFromTemplate()
-        {
-            CreateScriptFromTemplate("NewSystemTemplate.cs", "NewSystem.cs");
-        }
-
-        [MenuItem(itemName: "Assets/CustomTemplate/ECS/Create New Aspect", isValidateFunction: false, priority: 1)]
-        public static void CreateScriptAspectFromTemplate()
-        {
-            CreateScriptFromTemplate("NewAspectTemplate.cs", "NewAspect.cs");
-        }
-
-        /// TO BE CONTINUE ... DEVELOP
-        //[MenuItem(itemName: "Assets/StateMachine ECS/Create New State System", isValidateFunction: false, priority: 1)]
-        //public static void CreateScriptStateSystemFromTemplate()
-        //{
-        //    CreateScriptFromTemplate("NewStateSystemTemplate.cs", "NewStateSystem.cs");
-        //} 
+        
         #endregion
 
         public static void CreateScriptFromTemplate(string templateName, string defaultFileName)
