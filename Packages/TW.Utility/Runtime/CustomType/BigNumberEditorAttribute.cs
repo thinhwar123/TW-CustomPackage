@@ -10,7 +10,7 @@ using Sirenix.OdinInspector.Editor;
 namespace TW.Utility.CustomType
 {
 
-    [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+    [System.AttributeUsage(System.AttributeTargets.All, AllowMultiple = false, Inherited = true)]
     public sealed class BigNumberEditorAttribute : System.Attribute
     {
 
