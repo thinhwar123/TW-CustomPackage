@@ -112,6 +112,11 @@ namespace TW.Utility.CustomType
 
         public UnityAction OnValueChangeCallback;
 
+        public FloatProbabilityValue()
+        {
+            
+        }
+        
         public FloatProbabilityValue(T obj, float chance, UnityAction onValueChangeCallback)
         {
             this.m_Object = obj;
