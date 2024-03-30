@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using TW.MVP.Model;
 using TW.MVP.Presenter;
 using TW.MVP.View;
 using UnityEngine;
