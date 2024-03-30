@@ -3,55 +3,38 @@ using TW.MVP.Model;
 using TW.MVP.Presenter;
 using TW.MVP.View;
 using UnityEngine;
+using R3;
 
 [System.Serializable]
 public class #SCRIPTNAME# 
 {
-    [System.Serializable]
-    public class UIModel : IAModel
+    public static class Events
     {
-        public UniTask Initialize()
-        {
-            return UniTask.CompletedTask;
-        }
-
-        public void Dispose()
-        {
-
-        }
+        public static Subject<Unit> SampleEvent { get; set; } = new();
     }
 
-    [System.Serializable]
+    [HideLabel]
+    [Serializable]
     public class UIView : IAView
     {
+        [field: Title(nameof(UIView))]
+        [field: SerializeField] public GameObject Root {get; private set;}        
         public UniTask Initialize()
         {
             return UniTask.CompletedTask;
         }
-
-        public void Dispose()
-        {
-
-        }
     }
 
-    [System.Serializable]
+    [HideLabel]
+    [Serializable]
     public class UIPresenter : IAPresenter
     {
-        [field: SerializeField] public UIView View { get; set; } = new();
-        [field: SerializeField] public UIModel Model { get; set; } = new();
-        
+        [field: SerializeField] public UIView View { get; set; } = new();        
 
         public async UniTask Initialize()
         {
             await View.Initialize();
             await Model.Initialize();            
-        }
-
-        public void Dispose()
-        {
-            View?.Dispose();
-            Model?.Dispose();
-        }           
+        }      
     }
 }
