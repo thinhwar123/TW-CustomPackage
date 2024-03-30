@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -9,7 +8,7 @@ using UnityEditor;
 
 namespace TW.Utility.CustomType
 {
-
+    [FloatRangeEditor]
     [System.Serializable]
     public struct FloatRange
     {
@@ -18,12 +17,12 @@ namespace TW.Utility.CustomType
 
         public float GetRandomValue()
         {
-            if (Math.Abs(m_Min - m_Max) < 0.00001f) return m_Min;
+            if (Mathf.Abs(m_Min - m_Max) < 0.00001f) return m_Min;
             return Mathf.RoundToInt(UnityEngine.Random.Range(m_Min, m_Max) * 10) / 10.0f;
         }
     }
 
-    [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+    [System.AttributeUsage(System.AttributeTargets.All, AllowMultiple = false, Inherited = true)]
     public sealed class FloatRangeEditorAttribute : System.Attribute
     {
 

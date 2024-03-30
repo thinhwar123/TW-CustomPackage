@@ -135,6 +135,7 @@ using UnityEngine;
 
 namespace TW.Utility.CustomType
 {
+    [BigNumberEditor]
     [Serializable]
     public struct BigNumber : IFormattable
     {
