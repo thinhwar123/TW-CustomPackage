@@ -1,6 +1,6 @@
+using System;
 using Cysharp.Threading.Tasks;
-using TW.MVP.Presenter;
-using TW.MVP.View;
+using TW.MVP;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
@@ -12,13 +12,27 @@ public class #SCRIPTNAME#
     {
         public static Subject<Unit> SampleEvent { get; set; } = new();
     }
+    
+    [HideLabel]
+    [Serializable]
+    public class UIModel : IAModel
+    {
+        [field: Title(nameof(UIModel))]
+        [field: SerializeField] public ReactiveValue<int> SampleValue { get; private set; }
 
+        public UniTask Initialize()
+        {   
+            return UniTask.CompletedTask;
+        }
+    }
+    
     [HideLabel]
     [Serializable]
     public class UIView : IAView
     {
         [field: Title(nameof(UIView))]
         [field: SerializeField] public GameObject Root {get; private set;}        
+        
         public UniTask Initialize()
         {
             return UniTask.CompletedTask;
@@ -33,7 +47,8 @@ public class #SCRIPTNAME#
 
         public async UniTask Initialize()
         {
-            await View.Initialize();        
+            await Model.Initialize();
+            await View.Initialize();  
         }      
     }
 }
