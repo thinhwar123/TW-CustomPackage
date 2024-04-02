@@ -43,6 +43,7 @@ public class #SCRIPTNAME#
     [Serializable]
     public class UIPresenter : IAPresenter
     {
+        [field: SerializeField] public UIModel Model {get; private set;} = new();
         [field: SerializeField] public UIView View { get; set; } = new();        
 
         public async UniTask Initialize()
