@@ -20,7 +20,7 @@ public class #SCRIPTNAME#
         [field: Title(nameof(UIModel))]
         [field: SerializeField] public ReactiveValue<int> SampleValue { get; private set; }
 
-        public UniTask Initialize()
+        public UniTask Initialize(Memory<object> args)
         {   
             return UniTask.CompletedTask;
         }
@@ -33,7 +33,7 @@ public class #SCRIPTNAME#
         [field: Title(nameof(UIView))]
         [field: SerializeField] public CanvasGroup MainView {get; private set;}  
         
-        public UniTask Initialize()
+        public UniTask Initialize(Memory<object> args)
         {
             return UniTask.CompletedTask;
         }
@@ -46,10 +46,10 @@ public class #SCRIPTNAME#
         [field: SerializeField] public UIModel Model {get; private set;} = new();
         [field: SerializeField] public UIView View { get; set; } = new();        
 
-        public async UniTask Initialize()
+        public async UniTask Initialize(Memory<object> args)
         {
-            await Model.Initialize();
-            await View.Initialize();  
+            await Model.Initialize(args);
+            await View.Initialize(args);
         }      
     }
 }
