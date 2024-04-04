@@ -36,6 +36,11 @@ namespace TW.UGUI.Animation
 
             SetTime(Time + deltaTime);
         }
+        
+        public void Setup()
+        {
+            Animation.Setup();
+        }
 
         public void Play()
         {

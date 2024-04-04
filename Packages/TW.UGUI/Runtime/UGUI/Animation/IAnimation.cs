@@ -4,7 +4,7 @@
     {
         float Delay { get; }
         float Duration { get; }
-
+        void Setup();
         void SetTime(float time);
     }
 }
