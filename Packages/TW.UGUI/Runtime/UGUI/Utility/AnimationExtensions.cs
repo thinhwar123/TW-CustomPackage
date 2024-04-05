@@ -27,7 +27,6 @@ namespace TW.UGUI.Utility
             player.Initialize(self, new CancellationTokenSource());
 
             progress?.Report(0.0f);
-            player.Setup();
             player.Play();
 
             while (player.IsFinished == false)

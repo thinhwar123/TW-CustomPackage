@@ -23,6 +23,7 @@ namespace TW.UGUI.Animation
         {
             Animation = animation;
             IsPlaying = default;
+            Animation.Setup();
             SetTime(0.0f);
             CancellationTokenSource = cancellationTokenSource;
         }
@@ -35,11 +36,6 @@ namespace TW.UGUI.Animation
             }
 
             SetTime(Time + deltaTime);
-        }
-        
-        public void Setup()
-        {
-            Animation.Setup();
         }
 
         public void Play()
