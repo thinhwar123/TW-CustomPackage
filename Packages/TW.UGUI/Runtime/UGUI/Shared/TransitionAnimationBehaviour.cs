@@ -20,8 +20,6 @@ namespace TW.UGUI.Shared
         void ITransitionAnimation.Setup(RectTransform rectTransform)
         {
             RectTransform = rectTransform;
-            Setup();
-            SetTime(0.0f);
         }
         
         public abstract void Setup();
