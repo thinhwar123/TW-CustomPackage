@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace TW.UGUI.Shared
 {
@@ -6,21 +8,24 @@ namespace TW.UGUI.Shared
     {
         public RectTransform RectTransform { get; private set; }
         public RectTransform PartnerRectTransform { get; private set; }
-        public abstract float Delay { get; }
-        public abstract float Duration { get; }
-
+        
+        public abstract float TotalDuration { get; }
+        
         void ITransitionAnimation.SetPartner(RectTransform partnerRectTransform)
         {
             PartnerRectTransform = partnerRectTransform;
         }
-
         void ITransitionAnimation.Setup(RectTransform rectTransform)
         {
             RectTransform = rectTransform;
         }
 
-        public abstract void SetTime(float time);
-
         public abstract void Setup();
+
+        public abstract UniTask PlayAsync(IProgress<float> progress = null);
+
+        public abstract void Play(IProgress<float> progress = null);
+
+        public abstract void Stop();
     }
 }

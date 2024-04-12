@@ -54,55 +54,51 @@ namespace TW.UGUI.Shared
 
         public ITransitionAnimation ScreenPushEnterAnimation => _screenPushEnterAnimation
             ? Instantiate(_screenPushEnterAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(beforeAlignment: SheetAlignment.Right,
-                afterAlignment: SheetAlignment.Center);
+            : SimpleTransitionAnimationObject.CreateInstance(true);
 
         public ITransitionAnimation ScreenPushExitAnimation => _screenPushExitAnimation
             ? Instantiate(_screenPushExitAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(beforeAlignment: SheetAlignment.Center,
-                afterAlignment: SheetAlignment.Left);
+            : SimpleTransitionAnimationObject.CreateInstance(false);
 
         public ITransitionAnimation ScreenPopEnterAnimation => _screenPopEnterAnimation
             ? Instantiate(_screenPopEnterAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(beforeAlignment: SheetAlignment.Left,
-                afterAlignment: SheetAlignment.Center);
+            : SimpleTransitionAnimationObject.CreateInstance(true);
 
         public ITransitionAnimation ScreenPopExitAnimation => _screenPopExitAnimation
             ? Instantiate(_screenPopExitAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(beforeAlignment: SheetAlignment.Center,
-                afterAlignment: SheetAlignment.Right);
+            : SimpleTransitionAnimationObject.CreateInstance(false);
 
         public ITransitionAnimation ModalEnterAnimation => _modalEnterAnimation
             ? Instantiate(_modalEnterAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(beforeScale: Vector3.one * 0.3f, beforeAlpha: 0.0f);
+            : SimpleTransitionAnimationObject.CreateInstance(true);
 
         public ITransitionAnimation ModalExitAnimation => _modalExitAnimation
             ? Instantiate(_modalExitAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(afterScale: Vector3.one * 0.3f, afterAlpha: 0.0f);
+            : SimpleTransitionAnimationObject.CreateInstance(false);
 
         public ITransitionAnimation ModalBackdropEnterAnimation => _modalBackdropEnterAnimation
             ? Instantiate(_modalBackdropEnterAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(beforeAlpha: 0.0f, easeType: EaseType.Linear);
+            : SimpleTransitionAnimationObject.CreateInstance(true);
 
         public ITransitionAnimation ModalBackdropExitAnimation => _modalBackdropExitAnimation
             ? Instantiate(_modalBackdropExitAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(afterAlpha: 0.0f, easeType: EaseType.Linear);
+            : SimpleTransitionAnimationObject.CreateInstance(false);
 
         public ITransitionAnimation ActivityEnterAnimation => _activityEnterAnimation
             ? Instantiate(_activityEnterAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(beforeScale: Vector3.one * 0.3f, beforeAlpha: 0.0f);
+            : SimpleTransitionAnimationObject.CreateInstance(true);
 
         public ITransitionAnimation ActivityExitAnimation => _activityExitAnimation
             ? Instantiate(_activityExitAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(afterScale: Vector3.one * 0.3f, afterAlpha: 0.0f);
+            : SimpleTransitionAnimationObject.CreateInstance(false);
 
         public ITransitionAnimation SheetEnterAnimation => _sheetEnterAnimation
             ? Instantiate(_sheetEnterAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(beforeAlpha: 0.0f, easeType: EaseType.Linear);
+            : SimpleTransitionAnimationObject.CreateInstance(true);
 
         public ITransitionAnimation SheetExitAnimation => _sheetExitAnimation
             ? Instantiate(_sheetExitAnimation)
-            : SimpleTransitionAnimationObject.CreateInstance(afterAlpha: 0.0f, easeType: EaseType.Linear);
+            : SimpleTransitionAnimationObject.CreateInstance(false);
 
         public string ModalBackdropResourcePath
         {
