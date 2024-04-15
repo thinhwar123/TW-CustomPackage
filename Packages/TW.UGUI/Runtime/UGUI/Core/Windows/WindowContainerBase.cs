@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 namespace TW.UGUI.Core.Windows
 {
-    [RequireComponent(typeof(RectMask2D))]
     public abstract class WindowContainerBase : ViewContainerBase, IWindowContainer
     {
         public string LayerName { get; private set; }
