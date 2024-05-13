@@ -3,37 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TW.Utility.DesignPattern;
 
 namespace TW.Utility.Extension
 {
-    public class ARealtimeDelay : MonoBehaviour
+    public class ARealtimeDelay : DDOLSingleton<ARealtimeDelay>
     {
-        private static ARealtimeDelay m_Instance;
-
-        private static ARealtimeDelay Instance
-        {
-            get
-            {
-                if (m_Instance == null)
-                {
-                    // Find singleton
-                    m_Instance = FindObjectOfType<ARealtimeDelay>();
-
-                    // Create new instance if one doesn't already exist.
-                    if (m_Instance == null)
-                    {
-                        // Need to create a new GameObject to attach the singleton to.
-                        var singletonObject = new GameObject();
-                        m_Instance = singletonObject.AddComponent<ARealtimeDelay>();
-                        singletonObject.name = typeof(ARealtimeDelay).ToString() + " (Singleton)";
-                    }
-
-                }
-
-                return m_Instance;
-            }
-        }
-
         private List<ARealtimeAwaiter> RealtimeAwaiterList { get; set; } = new();
         private List<ARealtimeAwaiter> TempRealtimeAwaiterList { get; set; } = new();
         public static ARealtimeAwaiter DelayedCall(float time, Action action)
