@@ -24,7 +24,6 @@ namespace TW.Utility.DesignPattern
                 GameObject singletonObject = new GameObject();
                 instance = singletonObject.AddComponent<T>();
                 singletonObject.name = typeof(T).ToString() + " (Singleton)";
-                singletonObject.AddComponent<DontDestroyOnLoadMonoBehavior>();
                 return instance;
             }
         }

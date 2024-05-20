@@ -18,6 +18,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/504eea86076e45a7912ecf3c3b859b8a11c800/76/e0fd3035/DragAndDropUtilities.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b1fe495152fd4f0180f79e56e3bccacc173e00/02/a707db6f/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b1fe495152fd4f0180f79e56e3bccacc173e00/87/16ce8e1e/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b1fe495152fd4f0180f79e56e3bccacc173e00/93/2e0d17e4/SystemInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b88e091c245b42f8bb519034397c4aa71de00/ff/a0eb8829/MemoryPackGenerator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ec9b24b183264e4eb842abe9429b634a17400/75/02bb82e5/OnInspectorGUIAttribute.cs" root0="SKIP_HIGHLIGHTING" />
@@ -100,7 +101,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\UnityEditor\2022.3.11f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\UnityEditor\2022.3.28f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\GithubProject\TW-CustomPackage -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\GithubProject\TW-CustomPackage" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -108,7 +109,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\UnityEditor\2022.3.11f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\UnityEditor\2022.3.28f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\GithubProject\TW-CustomPackage -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\GithubProject\TW-CustomPackage" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -175,6 +176,8 @@
       <workItem from="1709893810458" duration="1709000" />
       <workItem from="1710490078691" duration="644000" />
       <workItem from="1711352568258" duration="1659000" />
+      <workItem from="1713413878249" duration="984000" />
+      <workItem from="1713513627819" duration="767000" />
     </task>
     <servers />
   </component>
