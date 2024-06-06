@@ -2,6 +2,10 @@
 Some simple code used to help me play in Unity
 
 ## Dependencies
+- [NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity)
+```
+https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity
+```
 - [UniTask](https://github.com/Cysharp/UniTask)
 ```
 https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
