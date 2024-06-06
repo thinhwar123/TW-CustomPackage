@@ -8,7 +8,11 @@ https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity
 ```
 ```
 ObservableCollections
+```
+```
 R3
+```
+```
 MemoryPack
 ```
 - [UniTask](https://github.com/Cysharp/UniTask)
