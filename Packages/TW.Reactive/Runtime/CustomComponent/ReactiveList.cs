@@ -103,7 +103,6 @@ namespace TW.Reactive.CustomComponent
         private void CustomAddFunction()
         {
 #if UNITY_EDITOR
-            Value.Add(default(T));
             ObservableList.Add(default(T));
 #endif
         }
@@ -111,14 +110,12 @@ namespace TW.Reactive.CustomComponent
         private void CustomRemoveElementFunction(T element)
         {
 #if UNITY_EDITOR
-            Value.Remove(element);
             ObservableList.Remove(element);
 #endif
         }
         private void CustomRemoveIndexFunction(int index)
         {
 #if UNITY_EDITOR
-            Value.RemoveAt(index);
             ObservableList.RemoveAt(index);
 #endif
         }
