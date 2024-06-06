@@ -7,7 +7,7 @@ Some simple code used to help me play in Unity
 https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity
 ```
 ```
-ObservableCollections
+ObservableCollections.R3
 ```
 ```
 R3
