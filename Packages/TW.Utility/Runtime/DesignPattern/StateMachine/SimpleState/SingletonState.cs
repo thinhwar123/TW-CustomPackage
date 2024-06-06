@@ -10,27 +10,27 @@ namespace TW.Utility.DesignPattern
     {
         public interface IHandler
         {
-            public UniTask OnStateEnter(CancellationToken token);
-            public UniTask OnStateExecute(CancellationToken token);
-            public UniTask OnStateExit(CancellationToken token);
+            public UniTask OnStateEnter(T1 state, CancellationToken token);
+            public UniTask OnStateExecute(T1 state,CancellationToken token);
+            public UniTask OnStateExit(T1 state, CancellationToken token);
         }
 
-        private static T1 instance;
-        public static T1 Instance => instance ??= new T1();
+        private static T1 m_Instance;
+        public static T1 Instance => m_Instance ??= new T1();
 
         public override async UniTask OnEnter(T0 owner, CancellationToken ct)
         {
-            await ((IHandler)owner).OnStateEnter(ct);
+            await ((IHandler)owner).OnStateEnter(Instance, ct);
         }
 
         public override async UniTask OnExecute(T0 owner, CancellationToken ct)
         {
-            await ((IHandler)owner).OnStateExecute(ct);
+            await ((IHandler)owner).OnStateExecute(Instance, ct);
         }
 
         public override async UniTask OnExit(T0 owner, CancellationToken ct)
         {
-            await ((IHandler)owner).OnStateExit(ct);
+            await ((IHandler)owner).OnStateExit(Instance, ct);
         }
     }
 }
