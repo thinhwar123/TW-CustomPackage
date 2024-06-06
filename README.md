@@ -20,7 +20,13 @@ MemoryPack
 https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
 ```
 - [MemoryPack](https://github.com/Cysharp/MemoryPack)
+```
+https://github.com/Cysharp/MemoryPack.git?path=src/MemoryPack.Unity/Assets/MemoryPack.Unity
+```
 - [R3](https://github.com/Cysharp/R3)
+```
+https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity
+```
 - [Sirenix Odin - Inspector and Serializer](https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041)
 - [Anti-Cheat Toolkit](https://assetstore.unity.com/packages/tools/utilities/anti-cheat-toolkit-2023-202695)
 
