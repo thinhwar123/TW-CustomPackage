@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TW.Utility.DesignPattern
 {
-    public class SingletonState<T0, T1> : State<T0> where T1 : new()
+    public class SingletonState<T0, T1> : UniTaskState<T0> where T1 : new() where T0 : class
     {
         public interface IHandler
         {
