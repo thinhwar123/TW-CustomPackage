@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAModel.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAPresenter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAPresenter.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/ISetupAble.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/ISetupAble.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Reactive/Runtime/CustomComponent/ReactiveList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Reactive/Runtime/CustomComponent/ReactiveList.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/CustomType/BigNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/CustomType/BigNumber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Reactive/TW.Reactive.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Reactive/TW.Reactive.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Editor/Template/NewContextTemplate.cs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Editor/Template/NewContextTemplate.cs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/SimpleState/SingletonState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/UniTaskState/SingletonState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/SimpleState/SingletonState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/UniTaskState/SingletonState.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,6 +194,7 @@
       <workItem from="1713513627819" duration="767000" />
       <workItem from="1716170191257" duration="1386000" />
       <workItem from="1717643559860" duration="4892000" />
+      <workItem from="1717985401612" duration="2052000" />
     </task>
     <servers />
   </component>
