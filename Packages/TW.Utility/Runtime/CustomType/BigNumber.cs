@@ -129,6 +129,7 @@
 //     Electronics Letters, 32(6), 1996, pp 537-538.
 //
 //************************************************************************************
+
 using System;
 using System.Globalization;
 using UnityEngine;
@@ -139,39 +140,40 @@ namespace TW.Utility.CustomType
     [Serializable]
     public struct BigNumber : IFormattable
     {
-        public static string[] sRank = {
-        "",
-        "K",
-        "M",
-        "B",
-        "T",
-        "aa",
-        "bb",
-        "cc",
-        "dd",
-        "ee",
-        "ff",
-        "gg",
-        "hh",
-        "ii",
-        "jj",
-        "kk",
-        "ll",
-        "mm",
-        "nn",
-        "oo",
-        "pp",
-        "qq",
-        "rr",
-        "ss",
-        "tt",
-        "uu",
-        "vv",
-        "ww",
-        "xx",
-        "yy",
-        "zz",
-    };
+        public static string[] sRank =
+        {
+            "",
+            "K",
+            "M",
+            "B",
+            "T",
+            "aa",
+            "bb",
+            "cc",
+            "dd",
+            "ee",
+            "ff",
+            "gg",
+            "hh",
+            "ii",
+            "jj",
+            "kk",
+            "ll",
+            "mm",
+            "nn",
+            "oo",
+            "pp",
+            "qq",
+            "rr",
+            "ss",
+            "tt",
+            "uu",
+            "vv",
+            "ww",
+            "xx",
+            "yy",
+            "zz",
+        };
 
         public double v;
         public int m;
@@ -232,7 +234,6 @@ namespace TW.Utility.CustomType
         }
 
 
-
         //***********************************************************************
         // Constructor (Default value provided by BigNumber)
         //***********************************************************************
@@ -281,12 +282,14 @@ namespace TW.Utility.CustomType
             v = bi.v;
             m = bi.m;
         }
+
         public BigNumber(string value)
         {
             BigNumber bi = ParseFromCharacterFormat(value);
             v = bi.v;
             m = bi.m;
         }
+
         public static implicit operator BigNumber(long value)
         {
             return new BigNumber(value);
@@ -361,6 +364,7 @@ namespace TW.Utility.CustomType
             {
                 v2 /= 1000;
             }
+
             return v1 > v2;
         }
 
@@ -596,17 +600,20 @@ namespace TW.Utility.CustomType
 
             return ret.Divide(bi2);
         }
+
         public static BigNumber operator +(BigNumber bi1, BigNumber bi2)
         {
             BigNumber ret = new BigNumber(bi1);
             return ret.Add(bi2);
         }
+
         public static BigNumber operator -(BigNumber bi1, BigNumber bi2)
         {
             BigNumber ret = new BigNumber(bi1);
 
             return ret.Subtract(bi2);
         }
+
         public static BigNumber operator *(BigNumber bi1, BigNumber bi2)
         {
             BigNumber ret = new BigNumber(bi1);
@@ -763,11 +770,13 @@ namespace TW.Utility.CustomType
                 vv *= 1000;
                 mm--;
             }
+
             while (vv >= 1000)
             {
                 vv /= 1000;
                 mm++;
             }
+
             return vv.ToString(CultureInfo.InvariantCulture) + sRank[mm];
         }
 
@@ -783,6 +792,7 @@ namespace TW.Utility.CustomType
                 _ => ToString()
             };
         }
+
         public string ToStringUI()
         {
             double vv = v;
@@ -793,18 +803,19 @@ namespace TW.Utility.CustomType
                 vv *= 1000;
                 mm--;
             }
+
             while (vv >= 1000)
             {
                 vv /= 1000;
                 mm++;
             }
-            
+
             int digit = Math.Clamp(3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length, 0, 3);
             string s = Math.Round(vv, digit).ToString(CultureInfo.InvariantCulture);
 
             return s + sRank[mm];
         }
-        
+
         public string ToStringUIFloor()
         {
             double vv = v;
@@ -815,14 +826,16 @@ namespace TW.Utility.CustomType
                 vv *= 1000;
                 mm--;
             }
+
             while (vv >= 1000)
             {
                 vv /= 1000;
                 mm++;
             }
+
             // string s = Math.Round(vv, 3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length).ToString(CultureInfo.InvariantCulture);
             // string s = vv.ToString("0.000" ,CultureInfo.InvariantCulture);
-            string s = (Math.Floor(vv* 1000) / 1000).ToString(CultureInfo.InvariantCulture);
+            string s = (Math.Floor(vv * 1000) / 1000).ToString(CultureInfo.InvariantCulture);
             return s + sRank[mm];
         }
 
@@ -907,7 +920,6 @@ namespace TW.Utility.CustomType
         //}
 
 
-
         //***********************************************************************
         // Modulo Exponentiation
         //***********************************************************************
@@ -973,7 +985,6 @@ namespace TW.Utility.CustomType
         //}
 
 
-
         //***********************************************************************
         // Fast calculation of modular reduction using Barrett's reduction.
         // Requires x < b^(2k), where b is the base.  In this case, base is
@@ -995,8 +1006,10 @@ namespace TW.Utility.CustomType
                 result.v = Math.Sqrt((double)result.v * 1000);
                 result.m = (result.m - 1) / 2;
             }
+
             return result;
         }
+
         public BigNumber SqrtPermanent()
         {
             v = Math.Sqrt(v);
@@ -1011,13 +1024,16 @@ namespace TW.Utility.CustomType
                 ret.v *= 1000;
                 ret.m--;
             }
+
             while (ret.v >= 1000)
             {
                 ret.v /= 1000;
                 ret.m++;
             }
+
             return ret;
         }
+
         public string ToString2()
         {
             double vv = v;
@@ -1034,6 +1050,7 @@ namespace TW.Utility.CustomType
                     break;
                 }
             }
+
             if (mm == 0)
             {
                 if (num >= maxConvert)
@@ -1041,20 +1058,24 @@ namespace TW.Utility.CustomType
                     isOver10Million = true;
                 }
             }
+
             if (!isOver10Million)
             {
                 return ((int)num).ToString();
             }
+
             while (vv < 1 && mm > 0)
             {
                 vv *= 1000;
                 mm--;
             }
+
             while (vv >= 1000)
             {
                 vv /= 1000;
                 mm++;
             }
+
             string s = Math.Round(vv, 3).ToString();
             if (s.IndexOf('.') != -1)
             {
@@ -1062,11 +1083,13 @@ namespace TW.Utility.CustomType
                 {
                     s = s.Remove(s.Length - 1);
                 }
+
                 if (s.Length > 1 && s[^1] == '.')
                 {
                     s = s.Remove(s.Length - 1);
                 }
             }
+
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
@@ -1077,6 +1100,7 @@ namespace TW.Utility.CustomType
                 return s[..(s.Length > 3 ? 3 : s.Length)] + sRank[mm];
             }
         }
+
         public string ToString3()
         {
             double vv = v;
@@ -1093,6 +1117,7 @@ namespace TW.Utility.CustomType
                     break;
                 }
             }
+
             if (mm == 0)
             {
                 if (num >= maxConvert)
@@ -1100,20 +1125,24 @@ namespace TW.Utility.CustomType
                     isOver10Million = true;
                 }
             }
+
             if (!isOver10Million)
             {
                 return ((int)num).ToString();
             }
+
             while (vv < 1 && mm > 0)
             {
                 vv *= 1000;
                 mm--;
             }
+
             while (vv >= 1000)
             {
                 vv /= 1000;
                 mm++;
             }
+
             string s = Math.Round(vv, 3).ToString();
             if (s.IndexOf('.') != -1)
             {
@@ -1121,11 +1150,13 @@ namespace TW.Utility.CustomType
                 {
                     s = s.Remove(s.Length - 1);
                 }
+
                 if (s.Length > 1 && s[^1] == '.')
                 {
                     s = s.Remove(s.Length - 1);
                 }
             }
+
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
@@ -1136,6 +1167,7 @@ namespace TW.Utility.CustomType
                 return s.Substring(0, s.Length > 3 ? 3 : s.Length) + sRank[mm];
             }
         }
+
         public string ToCharacterFormat()
         {
             double vv = v;
@@ -1151,6 +1183,7 @@ namespace TW.Utility.CustomType
                 vv /= 1000;
                 mm++;
             }
+
             string s = Math.Round(vv, 2).ToString();
             if (s.IndexOf('.') != -1)
             {
@@ -1158,11 +1191,13 @@ namespace TW.Utility.CustomType
                 {
                     s = s.Remove(s.Length - 1);
                 }
+
                 if (s.Length > 1 && s[^1] == '.')
                 {
                     s = s.Remove(s.Length - 1);
                 }
             }
+
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
@@ -1173,6 +1208,7 @@ namespace TW.Utility.CustomType
                 return s.Substring(0, s.Length > 3 ? 3 : s.Length) + " " + sRank[mm];
             }
         }
+
         public int ToInt()
         {
             //UnityEngine.Debug.Log("ToInt " + this.ToString());
@@ -1181,8 +1217,10 @@ namespace TW.Utility.CustomType
             {
                 vv *= 1000;
             }
+
             return (int)vv;
         }
+
         public long ToLong()
         {
             //UnityEngine.Debug.Log("ToInt " + this.ToString());
@@ -1191,20 +1229,24 @@ namespace TW.Utility.CustomType
             {
                 vv *= 1000;
             }
+
             return (long)vv;
         }
+
         public BigNumber ToIntBigNumber()
         {
-            int length = Mathf.Clamp( m * 3, 0, 15);
+            int length = Mathf.Clamp(m * 3, 0, 15);
             double vv = Math.Round(v, length);
-            return new BigNumber(vv, m);  
+            return new BigNumber(vv, m);
         }
+
         public BigNumber MultiplyWithFloat(float f)
         {
             BigNumber bi = new BigNumber(this);
             bi.v *= f;
             return bi;
         }
+
         public BigNumber MultiplyWithFloatPermanent(float f)
         {
             v *= f;
@@ -1217,6 +1259,7 @@ namespace TW.Utility.CustomType
             bi.v *= i;
             return bi;
         }
+
         public BigNumber MultiplyIntPermanent(int i, bool isReleaseVal = true)
         {
             v *= i;
@@ -1241,6 +1284,7 @@ namespace TW.Utility.CustomType
                     break;
                 }
             }
+
             if (s1 == "-1")
             {
                 //UnityEngine.Debug.Log(s);
@@ -1251,7 +1295,6 @@ namespace TW.Utility.CustomType
             string s3 = s[..^s1.Length];
             double v = double.Parse(s3, CultureInfo.InvariantCulture);
             return new BigNumber(v, m);
-
         }
 
         public static BigNumber ZERO => new BigNumber(0);
@@ -1262,12 +1305,15 @@ namespace TW.Utility.CustomType
             {
                 return max;
             }
+
             if (value < min)
             {
                 return min;
             }
+
             return value;
         }
+
         //public static BigNumber ZERO_CONST = BigNumber.GetBigNumber("0", 10);
         public BigNumber PowPermanent(int exp)
         {
@@ -1275,6 +1321,7 @@ namespace TW.Utility.CustomType
             CopyData(result);
             return this;
         }
+
         public BigNumber Pow(int exp)
         {
             switch (exp)
@@ -1300,16 +1347,20 @@ namespace TW.Utility.CustomType
                     ret.v /= 1000;
                     ret.m++;
                 }
+
                 exp--;
             }
+
             return ret.Normalize();
         }
+
         internal BigNumber DividePermanent(BigNumber amount, bool isRelease = false)
         {
             BigNumber result = this.Divide(amount, isRelease);
             CopyData(result);
             return this;
         }
+
         internal BigNumber Divide(BigNumber amount, bool isReleaseVal = false)
         {
             int max = Math.Max(m, amount.m);
@@ -1321,29 +1372,35 @@ namespace TW.Utility.CustomType
             {
                 v1 /= 1000;
             }
+
             for (int i = 0; i < max - m2; i++)
             {
                 v2 /= 1000;
             }
+
             BigNumber ret = (new BigNumber(v1 / v2, 0)).Normalize();
             return ret;
         }
+
         internal BigNumber MultiplyPermanent(BigNumber amount, bool isReleaseVal = false)
         {
             BigNumber result = this.Multiply(amount, isReleaseVal);
             CopyData(result);
             return this;
         }
+
         internal BigNumber Multiply(BigNumber amount, bool isReleaseVal = false)
         {
             return (new BigNumber(v * amount.v, amount.m + m)).Normalize();
         }
+
         internal BigNumber SubtractPermanent(BigNumber amount, bool isRelease = false)
         {
             BigNumber result = this.Subtract(amount, isRelease);
             CopyData(result);
             return this;
         }
+
         internal BigNumber Subtract(BigNumber amount, bool isRelease = false)
         {
             int max = Math.Max(m, amount.m);
@@ -1355,19 +1412,23 @@ namespace TW.Utility.CustomType
             {
                 v1 /= 1000;
             }
+
             for (int i = 0; i < max - m2; i++)
             {
                 v2 /= 1000;
             }
+
             BigNumber ret = (new BigNumber(v1 - v2, max)).Normalize();
             return ret;
         }
+
         internal BigNumber AddPermanent(BigNumber amount, bool isReleaseVal = false)
         {
             BigNumber result = this.Add(amount, isReleaseVal);
             CopyData(result);
             return this;
         }
+
         public BigNumber Add(BigNumber amount, bool isReleaseVal = false) //throws ArithmeticException
         {
             int max = Math.Max(m, amount.m);
@@ -1379,10 +1440,12 @@ namespace TW.Utility.CustomType
             {
                 v1 /= 1000f;
             }
+
             for (int i = 0; i < max - m2; i++)
             {
                 v2 /= 1000f;
             }
+
             BigNumber ret = (new BigNumber(v1 + v2, max)).Normalize();
             return ret;
         }
@@ -1393,6 +1456,7 @@ namespace TW.Utility.CustomType
             m = val.m;
             return this;
         }
+
         public float ToFloat()
         {
             double d = v;
@@ -1400,8 +1464,10 @@ namespace TW.Utility.CustomType
             {
                 d *= 1000;
             }
+
             return (float)d;
         }
+
         public double ToDouble()
         {
             double d = v;
@@ -1409,6 +1475,7 @@ namespace TW.Utility.CustomType
             {
                 d *= 1000;
             }
+
             return d;
         }
 
@@ -1419,5 +1486,4 @@ namespace TW.Utility.CustomType
             return new BigNumber(vv, mm);
         }
     }
-
 }
