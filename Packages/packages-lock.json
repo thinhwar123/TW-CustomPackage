@@ -7,35 +7,12 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.cysharp.memorypack": {
-      "version": "https://github.com/Cysharp/MemoryPack.git?path=src/MemoryPack.Unity/Assets/MemoryPack.Unity",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "4b1e3f889fbc8bae6e700bc148f6dbba0a4b7170"
-    },
-    "com.cysharp.r3": {
-      "version": "https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.modules.imgui": "1.0.0"
-      },
-      "hash": "d0ee86f6bb8b7e2809f1dd317c62d5d610356c92"
-    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "cfe509a55602ba5be6df7fa0468b10298b8a053d"
-    },
-    "com.github-glitchenzo.nugetforunity": {
-      "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "c7a7bbf74e102495c2afeb03e4b25ffb802611b7"
     },
     "com.harumak.unityuiplayables": {
       "version": "https://github.com/Haruma-K/UnityUIPlayables.git?path=/Assets/UnityUIPlayables",
@@ -55,12 +32,6 @@
     },
     "com.tw.gui": {
       "version": "file:TW.GUI",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "com.tw.reactive": {
-      "version": "file:TW.Reactive",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
