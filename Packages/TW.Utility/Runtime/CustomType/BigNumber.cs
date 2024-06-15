@@ -1193,6 +1193,12 @@ namespace TW.Utility.CustomType
             }
             return (long)vv;
         }
+        public BigNumber ToIntBigNumber()
+        {
+            int length = Mathf.Clamp( m * 3, 0, 15);
+            double vv = Math.Round(v, length);
+            return new BigNumber(vv, m);  
+        }
         public BigNumber MultiplyWithFloat(float f)
         {
             BigNumber bi = new BigNumber(this);
