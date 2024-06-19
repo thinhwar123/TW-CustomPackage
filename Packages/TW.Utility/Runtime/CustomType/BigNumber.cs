@@ -795,24 +795,6 @@ namespace TW.Utility.CustomType
 
         public string ToStringUI()
         {
-            // Handle special values of v
-            if (double.IsNaN(v) || double.IsInfinity(v))
-            {
-                throw new ArgumentException("Invalid value: v cannot be NaN or Infinity.");
-            }
-
-            // Handle negative values of v
-            if (v < 0)
-            {
-                throw new ArgumentException("Invalid value: v cannot be negative.");
-            }
-
-            // Handle zero value of v
-            if (v == 0)
-            {
-                return "0";
-            }
-
             double vv = v;
             int mm = m;
 
@@ -828,14 +810,7 @@ namespace TW.Utility.CustomType
                 mm++;
             }
 
-            // Ensure mm does not exceed the length of sRank
-            if (mm >= sRank.Length)
-            {
-                throw new IndexOutOfRangeException("The magnitude is too large to be represented.");
-            }
-
-            // Correctly determine the number of digits in vv
-            int digit = Math.Clamp(3 - (int)Math.Floor(Math.Log10(vv + 1)), 0, 3);
+            int digit = Math.Clamp(3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length, 0, 3);
             string s = Math.Round(vv, digit).ToString(CultureInfo.InvariantCulture);
 
             return s + sRank[mm];
@@ -1256,6 +1231,13 @@ namespace TW.Utility.CustomType
             }
 
             return (long)vv;
+        }
+
+        public BigNumber ToIntBigNumber()
+        {
+            int length = Mathf.Clamp(m * 3, 0, 15);
+            double vv = Math.Round(v, length);
+            return new BigNumber(vv, m);
         }
 
         public BigNumber MultiplyWithFloat(float f)
