@@ -4,6 +4,7 @@ using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
+using TW.Reactive.CustomComponent;
 
 [Serializable]
 public class #SCRIPTNAME# 
