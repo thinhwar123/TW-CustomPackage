@@ -4,9 +4,12 @@ using System.Linq;
 using MemoryPack;
 using ObservableCollections;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
 using UnityEngine;
 using R3;
+
+#if UNITY_EDITOR
+using Sirenix.OdinInspector.Editor;
+#endif
 
 namespace TW.Reactive.CustomComponent
 {
