@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace TW.UGUI.Core.Sheets
 {
-    [RequireComponent(typeof(RectMask2D), typeof(CanvasGroup))]
+    [RequireComponent(typeof(CanvasGroup))]
     public class SheetContainer : ControlContainerBase
     {
         private readonly List<ISheetContainerCallbackReceiver> _callbackReceivers = new();
