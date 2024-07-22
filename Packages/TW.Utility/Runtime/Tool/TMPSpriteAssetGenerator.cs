@@ -16,47 +16,53 @@ using UnityEditor.U2D.Sprites;
 [CreateAssetMenu(fileName = "TMPSpriteAssetGenerator", menuName = "TW/Utility/TMPSpriteAssetGenerator")]
 public class TMPSpriteAssetGenerator : ScriptableObject
 {
-    [field: SerializeField] public TMP_SpriteAsset TMPSpriteAsset {get; private set;}
+    [field: SerializeField] public TMP_SpriteAsset TMPSpriteAsset { get; private set; }
     [field: SerializeField] public Vector3Int Offset { get; private set; }
     [field: SerializeField] public float Scale { get; private set; } = 1.0f;
-    [field: SerializeField, ReadOnly] public Texture2D MergeTexture2D {get; private set;}
-    [field: SerializeField, ReadOnly] public List<Sprite> SpriteInCurrentPath {get; private set;} = new List<Sprite>();
-    [field: SerializeField, ReadOnly] public List<Texture2D> Texture2DList { get; private set; } = new List<Texture2D>();
-    [field: SerializeField, ReadOnly] public string ObjectName {get; private set;}
-    [field: SerializeField, ReadOnly] public string ObjectPath {get; private set;}
-    [field: SerializeField, ReadOnly] public string FolderPath {get; private set;}
-    [field: SerializeField, ReadOnly] public string TexturePath {get; private set;}
-    [field: SerializeField, ReadOnly] public string TMPSpriteAssetPath {get; private set;}
-    [field: SerializeField, ReadOnly] public Vector2Int Size {get; private set;}
-    [field: SerializeField, ReadOnly] public int Row {get; private set;}
-    [field: SerializeField, ReadOnly] public int Column {get; private set;}
+    [field: SerializeField, ReadOnly] public Texture2D MergeTexture2D { get; private set; }
+
+    [field: SerializeField, ReadOnly]
+    public List<Sprite> SpriteInCurrentPath { get; private set; } = new List<Sprite>();
+
+    [field: SerializeField, ReadOnly]
+    public List<Texture2D> Texture2DList { get; private set; } = new List<Texture2D>();
+
+    [field: SerializeField, ReadOnly] public string ObjectName { get; private set; }
+    [field: SerializeField, ReadOnly] public string ObjectPath { get; private set; }
+    [field: SerializeField, ReadOnly] public string FolderPath { get; private set; }
+    [field: SerializeField, ReadOnly] public string TexturePath { get; private set; }
+    [field: SerializeField, ReadOnly] public string TMPSpriteAssetPath { get; private set; }
+    [field: SerializeField, ReadOnly] public Vector2Int Size { get; private set; }
+    [field: SerializeField, ReadOnly] public int Row { get; private set; }
+    [field: SerializeField, ReadOnly] public int Column { get; private set; }
 #if UNITY_EDITOR
     [Button]
     public void GenerateSpriteAsset()
     {
         EditorUtility.SetDirty(this);
 
-        
+
         SetupTexture2D();
         FindTheBestSize();
         FindTheBestRowAndColumn();
         MergerSelectedTexture();
         SliceTexture();
         UpdateTMPSpriteAsset();
-        
-        
+
+
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
+
     private void SetupTexture2D()
     {
         ObjectName = name;
         ObjectPath = AssetDatabase.GetAssetPath(this);
         FolderPath = ObjectPath[..ObjectPath.LastIndexOf('/')];
-        
+
         SpriteInCurrentPath.Clear();
         Texture2DList.Clear();
-        
+
         string[] guids = AssetDatabase.FindAssets("t:Texture2D", new string[] { FolderPath });
         foreach (string guid in guids)
         {
@@ -66,19 +72,21 @@ public class TMPSpriteAssetGenerator : ScriptableObject
             if (importer.spriteImportMode != SpriteImportMode.Single) continue;
             importer.isReadable = true;
             importer.SaveAndReimport();
-            
+
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
             SpriteInCurrentPath.Add(sprite);
             Texture2D texture2D = AssetDatabase.LoadAssetAtPath<Texture2D>(spritePath);
             Texture2DList.Add(texture2D);
         }
     }
+
     private void FindTheBestSize()
     {
         int width = Texture2DList.Max(t => t.width);
         int height = Texture2DList.Max(t => t.height);
         Size = new Vector2Int(width, height);
     }
+
     private void FindTheBestRowAndColumn()
     {
         int total = Texture2DList.Count;
@@ -91,6 +99,7 @@ public class TMPSpriteAssetGenerator : ScriptableObject
             else Column++;
         }
     }
+
     private void MergerSelectedTexture()
     {
         int width = Size.x * Column;
@@ -112,14 +121,15 @@ public class TMPSpriteAssetGenerator : ScriptableObject
 
         output.SetPixels(colors);
         output.Apply();
-         
+
         TexturePath = $"{FolderPath}/{ObjectName}.png";
         File.WriteAllBytes(TexturePath, output.EncodeToPNG());
         AssetDatabase.ImportAsset(TexturePath, ImportAssetOptions.ForceUpdate);
         AssetDatabase.SaveAssets();
-        
+
         MergeTexture2D = AssetDatabase.LoadAssetAtPath<Texture2D>(TexturePath);
     }
+
     private void SliceTexture()
     {
         TextureImporter importer = AssetImporter.GetAtPath(TexturePath) as TextureImporter;
@@ -147,8 +157,8 @@ public class TMPSpriteAssetGenerator : ScriptableObject
         dataProvider.Apply();
         AssetImporter assetImporter = dataProvider.targetObject as AssetImporter;
         if (assetImporter != null) assetImporter.SaveAndReimport();
-    }   
-    
+    }
+
     private void UpdateTMPSpriteAsset()
     {
         if (TMPSpriteAsset == null)
@@ -156,14 +166,21 @@ public class TMPSpriteAssetGenerator : ScriptableObject
             TMPSpriteAsset = ScriptableObject.CreateInstance<TMP_SpriteAsset>();
             TMPSpriteAsset.name = ObjectName;
             TMPSpriteAssetPath = $"{FolderPath}/{ObjectName}_TMPSpriteAsset.asset";
-            
+
             AssetDatabase.CreateAsset(TMPSpriteAsset, TMPSpriteAssetPath);
             AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+
+            TMPSpriteAsset.material = GetDefaultSpriteMaterial(TMPSpriteAsset);
+            TMPSpriteAsset.spriteInfoList = new List<TMP_Sprite>();
+            TMPro_EventManager.ON_SPRITE_ASSET_PROPERTY_CHANGED(true, TMPSpriteAsset);
         }
+
         TMPSpriteAsset.spriteSheet = MergeTexture2D;
         TMPSpriteAsset.spriteGlyphTable.Clear();
         TMPSpriteAsset.spriteCharacterTable.Clear();
-        
+
         Object[] allAssets = AssetDatabase.LoadAllAssetsAtPath(TexturePath);
         Sprite[] allSprites = allAssets.OfType<Sprite>().ToArray();
         for (int i = 0; i < allSprites.Length; i++)
@@ -184,7 +201,7 @@ public class TMPSpriteAssetGenerator : ScriptableObject
                 scale = 1.0f
             });
         }
-        
+
         foreach (TMP_SpriteGlyph tmpSpriteGlyph in TMPSpriteAsset.spriteGlyphTable)
         {
             tmpSpriteGlyph.metrics = new GlyphMetrics()
@@ -197,12 +214,26 @@ public class TMPSpriteAssetGenerator : ScriptableObject
             };
             tmpSpriteGlyph.scale = Scale;
         }
+
         TMPSpriteAsset.SortGlyphTable();
         TMPSpriteAsset.UpdateLookupTables();
         TMPro_EventManager.ON_SPRITE_ASSET_PROPERTY_CHANGED(true, TMPSpriteAsset);
+    }
+
+    private Material GetDefaultSpriteMaterial(TMP_SpriteAsset spriteAsset)
+    {
+        ShaderUtilities.GetShaderPropertyIDs();
+
+        // Add a new material
+        Shader shader = Shader.Find("TextMeshPro/Sprite");
+        Material tempMaterial = new Material(shader);
+        tempMaterial.SetTexture(ShaderUtilities.ID_MainTex, MergeTexture2D);
+        tempMaterial.hideFlags = HideFlags.HideInHierarchy;
         
+        AssetDatabase.AddObjectToAsset(tempMaterial, spriteAsset);
+        AssetDatabase.ImportAsset(UnityEditor.AssetDatabase.GetAssetPath(spriteAsset));
 
-
+        return tempMaterial;
     }
 #endif
 }
