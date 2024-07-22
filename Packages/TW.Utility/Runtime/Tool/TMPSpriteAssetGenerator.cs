@@ -163,7 +163,7 @@ public class TMPSpriteAssetGenerator : ScriptableObject
     {
         if (TMPSpriteAsset == null)
         {
-            TMPSpriteAsset = ScriptableObject.CreateInstance<TMP_SpriteAsset>();
+            TMPSpriteAsset = CreateInstance<TMP_SpriteAsset>();
             TMPSpriteAsset.name = ObjectName;
             TMPSpriteAssetPath = $"{FolderPath}/{ObjectName}_TMPSpriteAsset.asset";
 
@@ -182,7 +182,7 @@ public class TMPSpriteAssetGenerator : ScriptableObject
         TMPSpriteAsset.spriteCharacterTable.Clear();
 
         Object[] allAssets = AssetDatabase.LoadAllAssetsAtPath(TexturePath);
-        Sprite[] allSprites = allAssets.OfType<Sprite>().ToArray();
+        Sprite[] allSprites = allAssets.OfType<Sprite>().OrderBy(t => t.name).ToArray();
         for (int i = 0; i < allSprites.Length; i++)
         {
             Sprite sprite = allSprites[i];
