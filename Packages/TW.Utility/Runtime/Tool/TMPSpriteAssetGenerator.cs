@@ -26,6 +26,7 @@ public class TMPSpriteAssetGenerator : ScriptableObject
     [field: SerializeField, ReadOnly] public string ObjectPath {get; private set;}
     [field: SerializeField, ReadOnly] public string FolderPath {get; private set;}
     [field: SerializeField, ReadOnly] public string TexturePath {get; private set;}
+    [field: SerializeField, ReadOnly] public string TMPSpriteAssetPath {get; private set;}
     [field: SerializeField, ReadOnly] public Vector2Int Size {get; private set;}
     [field: SerializeField, ReadOnly] public int Row {get; private set;}
     [field: SerializeField, ReadOnly] public int Column {get; private set;}
@@ -146,22 +147,29 @@ public class TMPSpriteAssetGenerator : ScriptableObject
         dataProvider.Apply();
         AssetImporter assetImporter = dataProvider.targetObject as AssetImporter;
         if (assetImporter != null) assetImporter.SaveAndReimport();
-    }
+    }   
     
     private void UpdateTMPSpriteAsset()
     {
-        TMP_SpriteAsset tmpSpriteAsset = ScriptableObject.CreateInstance<TMP_SpriteAsset>();
-        tmpSpriteAsset.name = ObjectName;
-        tmpSpriteAsset.spriteSheet = MergeTexture2D;
-        tmpSpriteAsset.spriteGlyphTable.Clear();
-        tmpSpriteAsset.spriteCharacterTable.Clear();
+        if (TMPSpriteAsset == null)
+        {
+            TMPSpriteAsset = ScriptableObject.CreateInstance<TMP_SpriteAsset>();
+            TMPSpriteAsset.name = ObjectName;
+            TMPSpriteAssetPath = $"{FolderPath}/{ObjectName}_TMPSpriteAsset.asset";
+            
+            AssetDatabase.CreateAsset(TMPSpriteAsset, TMPSpriteAssetPath);
+            AssetDatabase.SaveAssets();
+        }
+        TMPSpriteAsset.spriteSheet = MergeTexture2D;
+        TMPSpriteAsset.spriteGlyphTable.Clear();
+        TMPSpriteAsset.spriteCharacterTable.Clear();
         
         Object[] allAssets = AssetDatabase.LoadAllAssetsAtPath(TexturePath);
         Sprite[] allSprites = allAssets.OfType<Sprite>().ToArray();
         for (int i = 0; i < allSprites.Length; i++)
         {
             Sprite sprite = allSprites[i];
-            tmpSpriteAsset.spriteGlyphTable.Add(new TMP_SpriteGlyph()
+            TMPSpriteAsset.spriteGlyphTable.Add(new TMP_SpriteGlyph()
             {
                 index = (uint)i,
                 metrics = new GlyphMetrics(sprite.rect.width, sprite.rect.height, -sprite.pivot.x,
@@ -170,14 +178,14 @@ public class TMPSpriteAssetGenerator : ScriptableObject
                 scale = 1.0f,
                 sprite = sprite,
             });
-            tmpSpriteAsset.spriteCharacterTable.Add(new TMP_SpriteCharacter(0xFFFE, tmpSpriteAsset.spriteGlyphTable[i])
+            TMPSpriteAsset.spriteCharacterTable.Add(new TMP_SpriteCharacter(0xFFFE, TMPSpriteAsset.spriteGlyphTable[i])
             {
                 name = sprite.name,
                 scale = 1.0f
             });
         }
         
-        foreach (TMP_SpriteGlyph tmpSpriteGlyph in tmpSpriteAsset.spriteGlyphTable)
+        foreach (TMP_SpriteGlyph tmpSpriteGlyph in TMPSpriteAsset.spriteGlyphTable)
         {
             tmpSpriteGlyph.metrics = new GlyphMetrics()
             {
@@ -189,13 +197,12 @@ public class TMPSpriteAssetGenerator : ScriptableObject
             };
             tmpSpriteGlyph.scale = Scale;
         }
-        tmpSpriteAsset.SortGlyphTable();
-        tmpSpriteAsset.UpdateLookupTables();
-        TMPro_EventManager.ON_SPRITE_ASSET_PROPERTY_CHANGED(true, tmpSpriteAsset);
+        TMPSpriteAsset.SortGlyphTable();
+        TMPSpriteAsset.UpdateLookupTables();
+        TMPro_EventManager.ON_SPRITE_ASSET_PROPERTY_CHANGED(true, TMPSpriteAsset);
         
-        string tmpSpriteAssetPath = $"{FolderPath}/{ObjectName}_TMPSpriteAsset.asset";
-        AssetDatabase.CreateAsset(tmpSpriteAsset, tmpSpriteAssetPath);
-        AssetDatabase.SaveAssets();
+
+
     }
 #endif
 }
