@@ -177,12 +177,13 @@ public class TMPSpriteAssetGenerator : ScriptableObject
             TMPro_EventManager.ON_SPRITE_ASSET_PROPERTY_CHANGED(true, TMPSpriteAsset);
         }
 
+        EditorUtility.SetDirty(TMPSpriteAsset);
         TMPSpriteAsset.spriteSheet = MergeTexture2D;
         TMPSpriteAsset.spriteGlyphTable.Clear();
         TMPSpriteAsset.spriteCharacterTable.Clear();
 
         Object[] allAssets = AssetDatabase.LoadAllAssetsAtPath(TexturePath);
-        Sprite[] allSprites = allAssets.OfType<Sprite>().OrderBy(t => t.name).ToArray();
+        Sprite[] allSprites = allAssets.OfType<Sprite>().OrderBy(t => SpriteInCurrentPath.FindIndex(s => s.name == t.name)).ToArray();
         for (int i = 0; i < allSprites.Length; i++)
         {
             Sprite sprite = allSprites[i];
@@ -218,6 +219,8 @@ public class TMPSpriteAssetGenerator : ScriptableObject
         TMPSpriteAsset.SortGlyphTable();
         TMPSpriteAsset.UpdateLookupTables();
         TMPro_EventManager.ON_SPRITE_ASSET_PROPERTY_CHANGED(true, TMPSpriteAsset);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
 
     private Material GetDefaultSpriteMaterial(TMP_SpriteAsset spriteAsset)
