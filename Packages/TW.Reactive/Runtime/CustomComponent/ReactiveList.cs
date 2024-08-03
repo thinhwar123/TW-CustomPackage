@@ -18,7 +18,7 @@ namespace TW.Reactive.CustomComponent
     public partial class ReactiveList<T>
     {
 #if UNITY_EDITOR
-        public class ReactiveStructValueDrawer : OdinValueDrawer<ReactiveList<T>> 
+        public class ReactiveStructValueDrawer : OdinValueDrawer<ReactiveList<T>>
         {
             protected override void DrawPropertyLayout(GUIContent label)
             {
@@ -26,22 +26,25 @@ namespace TW.Reactive.CustomComponent
             }
         }
 #endif
-        [field: ListDrawerSettings(CustomAddFunction = nameof(CustomAddFunction), 
+        [field: ListDrawerSettings(CustomAddFunction = nameof(CustomAddFunction),
             CustomRemoveElementFunction = nameof(CustomRemoveElementFunction),
-            CustomRemoveIndexFunction = nameof(CustomRemoveIndexFunction))] 
-        [field: OnValueChanged(nameof(OnValueChange))] 
-        [field: SerializeField] 
+            CustomRemoveIndexFunction = nameof(CustomRemoveIndexFunction))]
+        [field: OnValueChanged(nameof(OnValueChange))]
+        [field: SerializeField]
         [MemoryPackInclude]
         private List<T> Value { get; set; }
+
+        [MemoryPackIgnore] private ObservableList<T> m_ObservableList;
+
         [MemoryPackIgnore]
-        public ObservableList<T> ObservableList {get; private set;}
+        public ObservableList<T> ObservableList => InitializeOrReSync();
 
 
         public ReactiveList()
         {
             Value = new List<T>();
-            ObservableList = new ObservableList<T>(Value);
-            
+            m_ObservableList = new ObservableList<T>(Value);
+
             ObservableList.ObserveAdd().Subscribe(OnObservableListAdd);
             ObservableList.ObserveRemove().Subscribe(OnObservableListRemove);
             ObservableList.ObserveMove().Subscribe(OnObservableListMove);
@@ -49,40 +52,61 @@ namespace TW.Reactive.CustomComponent
             ObservableList.ObserveReset().Subscribe(OnObservableListReset);
             ObservableList.ObserveCountChanged().Subscribe(OnObservableListCountChanged);
         }
+
         [MemoryPackConstructor]
         public ReactiveList(List<T> value)
         {
             Value = value;
-            ObservableList = new ObservableList<T>(value);
-            
+            m_ObservableList = new ObservableList<T>(value);
+
             ObservableList.ObserveAdd().Subscribe(OnObservableListAdd);
             ObservableList.ObserveRemove().Subscribe(OnObservableListRemove);
             ObservableList.ObserveMove().Subscribe(OnObservableListMove);
             ObservableList.ObserveReplace().Subscribe(OnObservableListReplace);
             ObservableList.ObserveReset().Subscribe(OnObservableListReset);
             ObservableList.ObserveCountChanged().Subscribe(OnObservableListCountChanged);
+        }
+
+        private ObservableList<T> InitializeOrReSync()
+        {
+            if (m_ObservableList != null && m_ObservableList.Count == Value.Count) return m_ObservableList;
+            
+            m_ObservableList = new ObservableList<T>(Value);
+            m_ObservableList.ObserveAdd().Subscribe(OnObservableListAdd);
+            m_ObservableList.ObserveRemove().Subscribe(OnObservableListRemove);
+            m_ObservableList.ObserveMove().Subscribe(OnObservableListMove);
+            m_ObservableList.ObserveReplace().Subscribe(OnObservableListReplace);
+            m_ObservableList.ObserveReset().Subscribe(OnObservableListReset);
+            m_ObservableList.ObserveCountChanged().Subscribe(OnObservableListCountChanged);
+
+            return m_ObservableList;
         }
 
         private void OnObservableListAdd(CollectionAddEvent<T> collectionAddEvent)
         {
             Value.Insert(collectionAddEvent.Index, collectionAddEvent.Value);
         }
+
         private void OnObservableListRemove(CollectionRemoveEvent<T> collectionRemoveEvent)
         {
             Value.RemoveAt(collectionRemoveEvent.Index);
         }
+
         private void OnObservableListMove(CollectionMoveEvent<T> collectionMoveEvent)
         {
             Value.Insert(collectionMoveEvent.NewIndex, collectionMoveEvent.Value);
         }
+
         private void OnObservableListReplace(CollectionReplaceEvent<T> collectionReplaceEvent)
         {
             Value[collectionReplaceEvent.Index] = collectionReplaceEvent.NewValue;
         }
+
         private void OnObservableListReset(Unit unit)
         {
             Value.Clear();
         }
+
         private void OnObservableListCountChanged(int count)
         {
             Value.Capacity = count;
@@ -94,6 +118,7 @@ namespace TW.Reactive.CustomComponent
             return reactiveValue.ObservableList.ToList();
         }
     }
+
     public partial class ReactiveList<T>
     {
         private void OnValueChange()
@@ -103,6 +128,7 @@ namespace TW.Reactive.CustomComponent
             ObservableList.AddRange(Value);
 #endif
         }
+
         private void CustomAddFunction()
         {
 #if UNITY_EDITOR
@@ -116,6 +142,7 @@ namespace TW.Reactive.CustomComponent
             ObservableList.Remove(element);
 #endif
         }
+
         private void CustomRemoveIndexFunction(int index)
         {
 #if UNITY_EDITOR
