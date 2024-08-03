@@ -25,6 +25,7 @@ namespace TW.Reactive.CustomComponent
         }
 #endif
         [OnValueChanged(nameof(OnValueChange))]
+        [Delayed]
         [SerializeField] private T m_Value;
         public T Value
         {
