@@ -34,7 +34,7 @@ namespace TW.Reactive.CustomComponent
             set
             {
                 m_Value = value;
-                ReactiveProperty.Value = value;
+                m_ReactiveProperty.Value = value;
             }
         }
 
@@ -62,7 +62,7 @@ namespace TW.Reactive.CustomComponent
         private void OnValueChange()
         {
 #if UNITY_EDITOR
-            ReactiveProperty.Value = m_Value;
+            m_ReactiveProperty.Value = m_Value;
 #endif
         }
         private ReactiveProperty<T> InitializeOrReSync()
