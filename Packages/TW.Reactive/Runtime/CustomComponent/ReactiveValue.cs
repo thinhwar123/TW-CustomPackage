@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MemoryPack;
 using R3;
@@ -36,19 +37,20 @@ namespace TW.Reactive.CustomComponent
                 ReactiveProperty.Value = value;
             }
         }
-        [MemoryPackIgnore]
-        public ReactiveProperty<T> ReactiveProperty {get; private set;}
+
+        [MemoryPackIgnore] public ReactiveProperty<T> m_ReactiveProperty;
+        [MemoryPackIgnore] public ReactiveProperty<T> ReactiveProperty => InitializeOrReSync();
 
         public ReactiveValue()
         {
-            ReactiveProperty = new ReactiveProperty<T>(m_Value);
+            m_ReactiveProperty = new ReactiveProperty<T>(m_Value);
             
         }
         [MemoryPackConstructor]
         public ReactiveValue(T value)
         {
             m_Value = value;
-            ReactiveProperty = new ReactiveProperty<T>(value);
+            m_ReactiveProperty = new ReactiveProperty<T>(value);
             Value = value;
         }
         
@@ -62,6 +64,12 @@ namespace TW.Reactive.CustomComponent
 #if UNITY_EDITOR
             ReactiveProperty.Value = m_Value;
 #endif
+        }
+        private ReactiveProperty<T> InitializeOrReSync()
+        {
+            if (m_ReactiveProperty != null && EqualityComparer<T>.Default.Equals(m_ReactiveProperty.Value, Value)) return m_ReactiveProperty;
+            m_ReactiveProperty = new ReactiveProperty<T>(m_Value);
+            return m_ReactiveProperty;
         }
     }
 }
