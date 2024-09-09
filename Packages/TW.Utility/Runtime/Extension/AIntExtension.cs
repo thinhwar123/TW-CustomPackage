@@ -2,7 +2,7 @@
 {
     public static class AIntExtension
     {
-        public static int Repeat(this int value, int length)
+        public static int Repeat(int value, int length)
         {
             while (value >= length)
             {
