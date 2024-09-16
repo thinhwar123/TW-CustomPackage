@@ -102,7 +102,7 @@ namespace TW.Reactive.CustomComponent
             Value[collectionReplaceEvent.Index] = collectionReplaceEvent.NewValue;
         }
 
-        private void OnObservableListReset(Unit unit)
+        private void OnObservableListReset(CollectionResetEvent<T> collectionResetEvent)
         {
             Value.Clear();
         }
