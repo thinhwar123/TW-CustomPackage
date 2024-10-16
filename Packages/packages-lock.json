@@ -47,6 +47,12 @@
       },
       "hash": "e61ba2931c7d57926098254e61df7d51488782e6"
     },
+    "com.tw.acacheeverything": {
+      "version": "file:TW.CacheEverything",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.tw.aenumquickconvert": {
       "version": "file:TW.Enum",
       "depth": 0,
@@ -90,11 +96,11 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.21.22",
         "com.unity.modules.assetbundle": "1.0.0",
-        "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.scriptablebuildpipeline": "1.21.22",
         "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
       },
       "url": "https://packages.unity.com"
@@ -137,8 +143,8 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.timeline": "1.7.1",
-        "com.autodesk.fbx": "4.2.1"
+        "com.autodesk.fbx": "4.2.1",
+        "com.unity.timeline": "1.7.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -269,9 +275,9 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.director": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0"
       },
       "url": "https://packages.unity.com"
