@@ -6,6 +6,7 @@ namespace TW.UGUI.Shared
     [Serializable]
     public struct SortingLayerId : IEquatable<SortingLayerId>
     {
+        [SortingLayerSelect]
         public int id;
 
         public int layer
