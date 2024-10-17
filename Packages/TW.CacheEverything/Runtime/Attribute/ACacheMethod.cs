@@ -8,6 +8,7 @@ namespace TW.ACacheEverything
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class ACacheMethod : Attribute
     {
+        
         public ACacheMethod()
         {
 

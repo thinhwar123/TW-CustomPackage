@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using TestExample.NewNamespace;
 
 
 namespace TestExample
@@ -16,7 +18,7 @@ namespace TestExample
                     return new TestClass1();
                 }
             }
-            [ACacheMethod]
+            [ACacheMethod()]
             public void TestMethod()
             {
                 Console.WriteLine("TestMethod");
@@ -34,7 +36,8 @@ namespace TestExample
     {
         public partial class TestClass2
         {
-            public void TestMethod()
+            [ACacheMethod("TestExample.NewNamespace")]
+            public void TestMethod(Example example)
             {
                
             }
@@ -45,15 +48,18 @@ namespace TestExample
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class ACacheMethod : Attribute
     {
-        public Type CacheType { get; }
-
+        private string[] Libraries { get; set; }
         public ACacheMethod()
         {
-            CacheType = typeof(Action);
+            Libraries = new[] {"System"};
         }
-        public ACacheMethod(Type type)
+        public ACacheMethod(params string[] libraries)
         {
-            CacheType = type;
+            if (!libraries.Contains("System"))
+            {
+                libraries = libraries.Append("System").Distinct().ToArray();
+            }
+            Libraries = libraries ;
         }
     }
 }

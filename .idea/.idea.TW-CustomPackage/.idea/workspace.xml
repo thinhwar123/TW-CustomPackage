@@ -5,20 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e16f999-c553-4b6d-84eb-0f0c5de6890e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAModel.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAPresenter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAPresenter.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/IAView.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/ISetupAble.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/TW.UGUI/Runtime/UGUI/MVPPattern/ISetupAble.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.Enum/Runtime/Source~/SourceGenerator/TW.SourcesGenerator.AEnumQuickConvert.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Packages/TW.Enum/Runtime/Source~/TW.SourcesGenerator.AEnumQuickConvert/.idea/.idea.TW.SourcesGenerator.AEnumQuickConvert/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TW-CustomPackage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Reactive/TW.Reactive.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Reactive/TW.Reactive.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Editor/Template/NewContextTemplate.cs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Editor/Template/NewContextTemplate.cs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/SimpleState/SingletonState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/UniTaskState/SingletonState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/SimpleState/SingletonState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Utility/Runtime/DesignPattern/StateMachine/UniTaskState/SingletonState.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Enum/Runtime/Source~/TW.SourcesGenerator.AEnumQuickConvert/TW.SourcesGenerator.AEnumQuickConvert.Example/bin/Debug/netstandard2.0/TW.SourcesGenerator.AEnumQuickConvert.Example.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Enum/Runtime/Source~/TW.SourcesGenerator.AEnumQuickConvert/TW.SourcesGenerator.AEnumQuickConvert.Example/bin/Debug/netstandard2.0/TW.SourcesGenerator.AEnumQuickConvert.Example.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Enum/Runtime/Source~/TW.SourcesGenerator.AEnumQuickConvert/TW.SourcesGenerator.AEnumQuickConvert/AEnumQuickConvertGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Enum/Runtime/Source~/TW.SourcesGenerator.AEnumQuickConvert/TW.SourcesGenerator.AEnumQuickConvert/AEnumQuickConvertGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/TW.Enum/Runtime/Source~/TW.SourcesGenerator.AEnumQuickConvert/TW.SourcesGenerator.AEnumQuickConvert/bin/Debug/netstandard2.0/TW.SourcesGenerator.AEnumQuickConvert.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/TW.Enum/Runtime/Source~/TW.SourcesGenerator.AEnumQuickConvert/TW.SourcesGenerator.AEnumQuickConvert/bin/Debug/netstandard2.0/TW.SourcesGenerator.AEnumQuickConvert.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,13 +24,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/360be51f10ff4304a2dcd8a7f11450fc1a600/e9/f897126d/ObservableList`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/504eea86076e45a7912ecf3c3b859b8a11c800/76/e0fd3035/DragAndDropUtilities.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b1fe495152fd4f0180f79e56e3bccacc173e00/02/a707db6f/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b1fe495152fd4f0180f79e56e3bccacc173e00/87/16ce8e1e/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b1fe495152fd4f0180f79e56e3bccacc173e00/93/2e0d17e4/SystemInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b88e091c245b42f8bb519034397c4aa71de00/ff/a0eb8829/MemoryPackGenerator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ec9b24b183264e4eb842abe9429b634a17400/75/02bb82e5/OnInspectorGUIAttribute.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/b88e091c245b42f8bb519034397c4aa71de00/a3/c0439b0b/MemoryPack.Generator.Roslyn3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../ExportProject/Plungeroo/Plungeroo/ExportedProject/Assets/Scripts/Assembly-CSharp/Action.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../ExportProject/Plungeroo/Plungeroo/ExportedProject/Assets/Scripts/Assembly-CSharp/ActionQueue.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../ExportProject/Plungeroo/Plungeroo/ExportedProject/Assets/Scripts/Assembly-CSharp/AutoScroll.cs" root0="FORCE_HIGHLIGHTING" />
@@ -47,6 +34,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/BaseGame/Scripts/Test.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/SlideTextureEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/TextureAtlasSlide.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SpriteAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TextMeshProUGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
@@ -104,13 +92,6 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\nguye\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\nguye\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\nguye\\AppData\\Local\\Symbols\\src&quot;
-    ]
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -195,6 +176,12 @@
       <workItem from="1716170191257" duration="1386000" />
       <workItem from="1717643559860" duration="4892000" />
       <workItem from="1717985401612" duration="2052000" />
+      <workItem from="1724663812220" duration="1532000" />
+      <workItem from="1725868545041" duration="1056000" />
+      <workItem from="1726471976493" duration="2720000" />
+      <workItem from="1727689385862" duration="4907000" />
+      <workItem from="1728615216916" duration="879000" />
+      <workItem from="1728979639668" duration="2488000" />
     </task>
     <servers />
   </component>
@@ -202,9 +189,15 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
 </project>
