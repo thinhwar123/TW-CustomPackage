@@ -2,6 +2,10 @@
 using R3;
 using UnityEngine.UI;
 
+#if REACTIVE_UNITASK_SUPPORT
+using Cysharp.Threading.Tasks;
+#endif
+
 namespace TW.Reactive.CustomComponent
 {
     public static class ReactiveValueExtension
@@ -18,5 +22,18 @@ namespace TW.Reactive.CustomComponent
                 .Subscribe(onClick)
                 .AddTo(self);
         }
+#if REACTIVE_UNITASK_SUPPORT
+        public static IDisposable SetOnClickDestination(this Button self, Func<UniTask> onClick)
+        {
+            return self.onClick
+                .AsObservable()
+                .Subscribe(OnClick)
+                .AddTo(self);
+            void OnClick(Unit _)
+            {
+                onClick().Forget();
+            }
+        }
+#endif
     }
 }

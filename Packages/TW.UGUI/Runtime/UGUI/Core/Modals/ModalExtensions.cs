@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using TW.UGUI.Core.Modals;
 
-namespace TW.UGUI.Utility
+namespace TW.UGUI.Core.Modals
 {
     public static class ModalExtensions
     {
