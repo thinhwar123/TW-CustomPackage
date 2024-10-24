@@ -7,70 +7,65 @@ using Sirenix.OdinInspector;
 namespace TW.Utility.DesignPattern
 {
     [System.Serializable]
-    public class StateMachine<T0> where T0 : class 
+    public class StateMachine
     {
-        [ShowInInspector] private T0 Owner { get; set; }
-        [ShowInInspector] private bool IsRunning { get; set; }
-        [ShowInInspector] private State<T0> CurrentUniTaskSingletonState { get; set; }
-        [ShowInInspector] private Queue<State<T0>> PendingTransitionStateQueue { get; set; }
+        private IState CurrentState { get; set; }
+        private Queue<IState> PendingStateQueue { get; set; } = new();
+        private bool IsRunning { get; set; } = false;
         private CancellationTokenSource CancellationTokenSource { get; set; }
-        public StateMachine(T0 owner)
+#if UNITY_EDITOR
+        [ShowInInspector, LabelText(nameof(StateMachine))]
+        public string CurrentStateName => CurrentState?.GetType().Name ?? "None";
+#endif
+        public StateMachine()
         {
-            Owner = owner;
-            PendingTransitionStateQueue = new Queue<State<T0>>();
+            IsRunning = false;
         }
-        
+
         public void Run()
         {
             CancellationTokenSource = new CancellationTokenSource();
             IsRunning = true;
-            _ = ExecuteState();
+            ExecuteState().Forget();
         }
-        
+
         public void Stop()
         {
             if (!IsRunning) return;
             IsRunning = false;
             CancellationTokenSource.Cancel();
             CancellationTokenSource.Dispose();
-            CancellationTokenSource = null;
         }
-        
+
         private async UniTask ExecuteState()
         {
-            await foreach (AsyncUnit _ in UniTaskAsyncEnumerable.EveryUpdate().WithCancellation(CancellationTokenSource.Token))
+            await foreach (AsyncUnit _ in UniTaskAsyncEnumerable.EveryUpdate()
+                               .WithCancellation(CancellationTokenSource.Token))
             {
-                while (PendingTransitionStateQueue.Count > 0)
+                while (PendingStateQueue.Count > 0)
                 {
-                    State<T0> transitionUniTaskState = PendingTransitionStateQueue.Dequeue();
-                    await ChangeState(transitionUniTaskState);
+                    await ChangeState(PendingStateQueue.Dequeue());
                 }
-                await CurrentUniTaskSingletonState.OnExecute(Owner, CancellationTokenSource.Token);
+
+                if (CurrentState != null) await CurrentState.OnUpdate(CancellationTokenSource.Token);
             }
         }
-        
-        public void RegisterState(State<T0> singletonState)
+
+        private async UniTask ChangeState(IState state)
         {
-            CurrentUniTaskSingletonState = singletonState;
-        }
-        
-        public void RequestTransition(State<T0> singletonState)
-        {
-            PendingTransitionStateQueue.Enqueue(singletonState);
-        }
-        
-        private async UniTask ChangeState(State<T0> nextSingletonState)
-        {
-            await CurrentUniTaskSingletonState.OnExit(Owner, CancellationTokenSource.Token);
-            CurrentUniTaskSingletonState = nextSingletonState;
-            await CurrentUniTaskSingletonState.OnEnter(Owner, CancellationTokenSource.Token);
+            if (CurrentState != null) await CurrentState.OnExit(CancellationTokenSource.Token);
+            CurrentState = state;
+            if (CurrentState != null) await CurrentState.OnEnter(CancellationTokenSource.Token);
         }
 
-        public bool IsCurrentState(State<T0> singletonState)
+        public void RegisterState(IState state)
         {
-            return CurrentUniTaskSingletonState == singletonState;
+            CurrentState = state;
         }
-        
+
+        public void RequestTransition(IState state)
+        {
+            PendingStateQueue.Enqueue(state);
+        }
     }
-
 }
