@@ -9,7 +9,7 @@ namespace TW.Utility.DesignPattern
     [System.Serializable]
     public class StateMachine
     {
-        private IState CurrentState { get; set; }
+        public IState CurrentState { get; private set; }
         private Queue<IState> PendingStateQueue { get; set; } = new();
         private bool IsRunning { get; set; } = false;
         private CancellationTokenSource CancellationTokenSource { get; set; }
@@ -66,6 +66,11 @@ namespace TW.Utility.DesignPattern
         public void RequestTransition(IState state)
         {
             PendingStateQueue.Enqueue(state);
+        }
+        
+        public bool IsCurrentState(IState state)
+        {
+            return CurrentState == state;
         }
     }
 }
