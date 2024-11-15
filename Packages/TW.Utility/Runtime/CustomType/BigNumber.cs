@@ -133,6 +133,7 @@
 using System;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace TW.Utility.CustomType
 {
@@ -140,43 +141,44 @@ namespace TW.Utility.CustomType
     [Serializable]
     public struct BigNumber : IFormattable
     {
-        public static string[] sRank =
+        public static string[] Abbreviations =
         {
             "",
             "K",
             "M",
             "B",
             "T",
-            "aa",
-            "bb",
-            "cc",
-            "dd",
-            "ee",
-            "ff",
-            "gg",
-            "hh",
-            "ii",
-            "jj",
-            "kk",
-            "ll",
-            "mm",
-            "nn",
-            "oo",
-            "pp",
-            "qq",
-            "rr",
-            "ss",
-            "tt",
-            "uu",
-            "vv",
-            "ww",
-            "xx",
-            "yy",
-            "zz",
+            "Qa",
+            "Qi",
+            "Sx",
+            "Sp",
+            "Oc",
+            "No",
+            "Dc",
+            "UDc",
+            "TDc",
+            "QaDc",
+            "QiDc",
+            "SxDc",
+            "SpDc",
+            "OcDc",
+            "NoDc",
+            "Vg",
+            "UVg",
+            "DVg",
+            "TVg",
+            "QaVg",
+            "QiVg",
+            "SxVg",
+            "SpVg",
+            "OcVg",
+            "NoVg",
+            "Tg",
         };
+        
 
-        public double v;
-        public int m;
+        public double coefficient;
+        public int exponent;
 
 
         //***********************************************************************
@@ -195,8 +197,8 @@ namespace TW.Utility.CustomType
 
         public BigNumber(long value)
         {
-            v = value;
-            m = 0;
+            coefficient = value;
+            exponent = 0;
         }
 
         //***********************************************************************
@@ -205,8 +207,8 @@ namespace TW.Utility.CustomType
 
         public BigNumber(ulong value)
         {
-            v = value;
-            m = 0;
+            coefficient = value;
+            exponent = 0;
         }
 
         //***********************************************************************
@@ -214,8 +216,8 @@ namespace TW.Utility.CustomType
         //***********************************************************************
         public BigNumber(float value)
         {
-            v = value;
-            m = 0;
+            coefficient = value;
+            exponent = 0;
         }
 
         //***********************************************************************
@@ -223,14 +225,14 @@ namespace TW.Utility.CustomType
         //***********************************************************************
         public BigNumber(double value)
         {
-            v = value;
-            m = 0;
+            coefficient = value;
+            exponent = 0;
         }
 
         public void Init(ulong value)
         {
-            v = value;
-            m = 0;
+            coefficient = value;
+            exponent = 0;
         }
 
 
@@ -240,14 +242,14 @@ namespace TW.Utility.CustomType
 
         public BigNumber(BigNumber bi)
         {
-            v = bi.v;
-            m = bi.m;
+            coefficient = bi.coefficient;
+            exponent = bi.exponent;
         }
 
-        public BigNumber(double _v, int _m)
+        public BigNumber(double coefficient, int exponent)
         {
-            v = _v;
-            m = _m;
+            this.coefficient = coefficient;
+            this.exponent = exponent;
         }
 
 
@@ -279,15 +281,15 @@ namespace TW.Utility.CustomType
         public BigNumber(string value, int radix)
         {
             BigNumber bi = ParseFromCharacterFormat(value);
-            v = bi.v;
-            m = bi.m;
+            coefficient = bi.coefficient;
+            exponent = bi.exponent;
         }
 
         public BigNumber(string value)
         {
             BigNumber bi = ParseFromCharacterFormat(value);
-            v = bi.v;
-            m = bi.m;
+            coefficient = bi.coefficient;
+            exponent = bi.exponent;
         }
 
         public static implicit operator BigNumber(long value)
@@ -322,7 +324,7 @@ namespace TW.Utility.CustomType
 
         public static bool operator ==(BigNumber bi1, BigNumber bi2)
         {
-            return bi1.m == bi2.m && Math.Abs(bi1.v - bi2.v) < 0.00000000001;
+            return bi1.exponent == bi2.exponent && Math.Abs(bi1.coefficient - bi2.coefficient) < 0.00000000001;
         }
 
 
@@ -351,16 +353,16 @@ namespace TW.Utility.CustomType
 
         public static bool operator >(BigNumber bi1, BigNumber bi2)
         {
-            int max = Math.Max(bi1.m, bi2.m);
+            int max = Math.Max(bi1.exponent, bi2.exponent);
 
-            double v1 = bi1.v;
-            double v2 = bi2.v;
-            for (int i = 0; i < max - bi1.m; i++)
+            double v1 = bi1.coefficient;
+            double v2 = bi2.coefficient;
+            for (int i = 0; i < max - bi1.exponent; i++)
             {
                 v1 /= 1000;
             }
 
-            for (int i = 0; i < max - bi2.m; i++)
+            for (int i = 0; i < max - bi2.exponent; i++)
             {
                 v2 /= 1000;
             }
@@ -370,17 +372,17 @@ namespace TW.Utility.CustomType
 
         public static bool operator <(BigNumber bi1, BigNumber bi2)
         {
-            int max = Math.Max(bi1.m, bi2.m);
+            int max = Math.Max(bi1.exponent, bi2.exponent);
 
-            double v1 = bi1.v;
-            double v2 = bi2.v;
+            double v1 = bi1.coefficient;
+            double v2 = bi2.coefficient;
 
-            for (int i = 0; i < max - bi1.m; i++)
+            for (int i = 0; i < max - bi1.exponent; i++)
             {
                 v1 /= 1000;
             }
 
-            for (int i = 0; i < max - bi2.m; i++)
+            for (int i = 0; i < max - bi2.exponent; i++)
             {
                 v2 /= 1000;
             }
@@ -763,9 +765,9 @@ namespace TW.Utility.CustomType
 
         public override string ToString()
         {
-            double vv = v;
-            int mm = m;
-            while (vv < 1 && m > 0)
+            double vv = coefficient;
+            int mm = exponent;
+            while (vv < 1 && exponent > 0)
             {
                 vv *= 1000;
                 mm--;
@@ -777,7 +779,7 @@ namespace TW.Utility.CustomType
                 mm++;
             }
 
-            return vv.ToString(CultureInfo.InvariantCulture) + sRank[mm];
+            return vv.ToString(CultureInfo.InvariantCulture) + Abbreviations[mm];
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
@@ -795,8 +797,8 @@ namespace TW.Utility.CustomType
 
         public string ToStringUI()
         {
-            double vv = v;
-            int mm = m;
+            double vv = coefficient;
+            int mm = exponent;
 
             while (vv < 1 && mm > 0)
             {
@@ -813,13 +815,13 @@ namespace TW.Utility.CustomType
             int digit = Math.Clamp(3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length, 0, 3);
             string s = Math.Round(vv, digit).ToString(CultureInfo.InvariantCulture);
 
-            return s + sRank[mm];
+            return s + Abbreviations[mm];
         }
 
         public string ToStringUIFloor()
         {
-            double vv = v;
-            int mm = m;
+            double vv = coefficient;
+            int mm = exponent;
 
             while (vv < 1 && mm > 0)
             {
@@ -836,7 +838,7 @@ namespace TW.Utility.CustomType
             // string s = Math.Round(vv, 3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length).ToString(CultureInfo.InvariantCulture);
             // string s = vv.ToString("0.000" ,CultureInfo.InvariantCulture);
             string s = (Math.Floor(vv * 1000) / 1000).ToString(CultureInfo.InvariantCulture);
-            return s + sRank[mm];
+            return s + Abbreviations[mm];
         }
 
         //***********************************************************************
@@ -996,15 +998,15 @@ namespace TW.Utility.CustomType
         public BigNumber Sqrt()
         {
             BigNumber result = new BigNumber(this);
-            if (result.m % 2 == 0)
+            if (result.exponent % 2 == 0)
             {
-                result.v = Math.Sqrt((double)result.v);
-                result.m /= 2;
+                result.coefficient = Math.Sqrt((double)result.coefficient);
+                result.exponent /= 2;
             }
             else
             {
-                result.v = Math.Sqrt((double)result.v * 1000);
-                result.m = (result.m - 1) / 2;
+                result.coefficient = Math.Sqrt((double)result.coefficient * 1000);
+                result.exponent = (result.exponent - 1) / 2;
             }
 
             return result;
@@ -1012,23 +1014,23 @@ namespace TW.Utility.CustomType
 
         public BigNumber SqrtPermanent()
         {
-            v = Math.Sqrt(v);
+            coefficient = Math.Sqrt(coefficient);
             return this;
         }
 
         public BigNumber Normalize()
         {
             BigNumber ret = new BigNumber(this);
-            while (ret is { v: < 1, m: > 0 })
+            while (ret is { coefficient: < 1, exponent: > 0 })
             {
-                ret.v *= 1000;
-                ret.m--;
+                ret.coefficient *= 1000;
+                ret.exponent--;
             }
 
-            while (ret.v >= 1000)
+            while (ret.coefficient >= 1000)
             {
-                ret.v /= 1000;
-                ret.m++;
+                ret.coefficient /= 1000;
+                ret.exponent++;
             }
 
             return ret;
@@ -1036,9 +1038,9 @@ namespace TW.Utility.CustomType
 
         public string ToString2()
         {
-            double vv = v;
-            int mm = m;
-            double num = v;
+            double vv = coefficient;
+            int mm = exponent;
+            double num = coefficient;
             double maxConvert = 10000000;
             bool isOver10Million = false;
             for (int i = 0; i < mm; i++)
@@ -1093,19 +1095,19 @@ namespace TW.Utility.CustomType
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
-                return s[..(s.Length > 5 ? 5 : s.Length)] + sRank[mm];
+                return s[..(s.Length > 5 ? 5 : s.Length)] + Abbreviations[mm];
             }
             else
             {
-                return s[..(s.Length > 3 ? 3 : s.Length)] + sRank[mm];
+                return s[..(s.Length > 3 ? 3 : s.Length)] + Abbreviations[mm];
             }
         }
 
         public string ToString3()
         {
-            double vv = v;
-            int mm = m;
-            double num = v;
+            double vv = coefficient;
+            int mm = exponent;
+            double num = coefficient;
             double maxConvert = 1000;
             bool isOver10Million = false;
             for (int i = 0; i < mm; i++)
@@ -1160,18 +1162,18 @@ namespace TW.Utility.CustomType
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
-                return s.Substring(0, s.Length > 5 ? 5 : s.Length) + sRank[mm];
+                return s.Substring(0, s.Length > 5 ? 5 : s.Length) + Abbreviations[mm];
             }
             else
             {
-                return s.Substring(0, s.Length > 3 ? 3 : s.Length) + sRank[mm];
+                return s.Substring(0, s.Length > 3 ? 3 : s.Length) + Abbreviations[mm];
             }
         }
 
         public string ToCharacterFormat()
         {
-            double vv = v;
-            int mm = m;
+            double vv = coefficient;
+            int mm = exponent;
             while (vv < 1 && mm > 0)
             {
                 vv *= 1000;
@@ -1201,19 +1203,19 @@ namespace TW.Utility.CustomType
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
-                return s.Substring(0, s.Length > 4 ? 4 : s.Length) + " " + sRank[mm];
+                return s.Substring(0, s.Length > 4 ? 4 : s.Length) + " " + Abbreviations[mm];
             }
             else
             {
-                return s.Substring(0, s.Length > 3 ? 3 : s.Length) + " " + sRank[mm];
+                return s.Substring(0, s.Length > 3 ? 3 : s.Length) + " " + Abbreviations[mm];
             }
         }
 
         public int ToInt()
         {
             //UnityEngine.Debug.Log("ToInt " + this.ToString());
-            double vv = v;
-            for (int i = 0; i < m; i++)
+            double vv = coefficient;
+            for (int i = 0; i < exponent; i++)
             {
                 vv *= 1000;
             }
@@ -1224,8 +1226,8 @@ namespace TW.Utility.CustomType
         public long ToLong()
         {
             //UnityEngine.Debug.Log("ToInt " + this.ToString());
-            double vv = v;
-            for (int i = 0; i < m; i++)
+            double vv = coefficient;
+            for (int i = 0; i < exponent; i++)
             {
                 vv *= 1000;
             }
@@ -1235,34 +1237,34 @@ namespace TW.Utility.CustomType
 
         public BigNumber ToIntBigNumber()
         {
-            int length = Mathf.Clamp(m * 3, 0, 15);
-            double vv = Math.Round(v, length);
-            return new BigNumber(vv, m);
+            int length = Mathf.Clamp(exponent * 3, 0, 15);
+            double vv = Math.Round(coefficient, length);
+            return new BigNumber(vv, exponent);
         }
 
         public BigNumber MultiplyWithFloat(float f)
         {
             BigNumber bi = new BigNumber(this);
-            bi.v *= f;
+            bi.coefficient *= f;
             return bi;
         }
 
         public BigNumber MultiplyWithFloatPermanent(float f)
         {
-            v *= f;
+            coefficient *= f;
             return this;
         }
 
         public BigNumber MultiplyInt(int i)
         {
             BigNumber bi = new BigNumber(this);
-            bi.v *= i;
+            bi.coefficient *= i;
             return bi;
         }
 
         public BigNumber MultiplyIntPermanent(int i, bool isReleaseVal = true)
         {
-            v *= i;
+            coefficient *= i;
             return this;
         }
 
@@ -1275,11 +1277,11 @@ namespace TW.Utility.CustomType
         {
             string s1 = "-1";
             int num = 0;
-            for (int i = 1; i < sRank.Length; i++)
+            for (int i = 1; i < Abbreviations.Length; i++)
             {
-                if (s.Contains(sRank[i]))
+                if (s.Contains(Abbreviations[i]))
                 {
-                    s1 = sRank[i];
+                    s1 = Abbreviations[i];
                     num = i;
                     break;
                 }
@@ -1336,16 +1338,16 @@ namespace TW.Utility.CustomType
 
             BigNumber ret = new BigNumber(this);
 
-            double rv = ret.v;
-            int rm = ret.m;
+            double rv = ret.coefficient;
+            int rm = ret.exponent;
             while (exp != 1)
             {
-                ret.v *= rv;
-                ret.m += rm;
-                while (ret.v >= 1000)
+                ret.coefficient *= rv;
+                ret.exponent += rm;
+                while (ret.coefficient >= 1000)
                 {
-                    ret.v /= 1000;
-                    ret.m++;
+                    ret.coefficient /= 1000;
+                    ret.exponent++;
                 }
 
                 exp--;
@@ -1363,11 +1365,11 @@ namespace TW.Utility.CustomType
 
         internal BigNumber Divide(BigNumber amount, bool isReleaseVal = false)
         {
-            int max = Math.Max(m, amount.m);
-            double v1 = v;
-            double v2 = amount.v;
-            int m1 = m;
-            int m2 = amount.m;
+            int max = Math.Max(exponent, amount.exponent);
+            double v1 = coefficient;
+            double v2 = amount.coefficient;
+            int m1 = exponent;
+            int m2 = amount.exponent;
             for (int i = 0; i < max - m1; i++)
             {
                 v1 /= 1000;
@@ -1391,7 +1393,7 @@ namespace TW.Utility.CustomType
 
         internal BigNumber Multiply(BigNumber amount, bool isReleaseVal = false)
         {
-            return (new BigNumber(v * amount.v, amount.m + m)).Normalize();
+            return (new BigNumber(coefficient * amount.coefficient, amount.exponent + exponent)).Normalize();
         }
 
         internal BigNumber SubtractPermanent(BigNumber amount, bool isRelease = false)
@@ -1403,11 +1405,11 @@ namespace TW.Utility.CustomType
 
         internal BigNumber Subtract(BigNumber amount, bool isRelease = false)
         {
-            int max = Math.Max(m, amount.m);
-            double v1 = v;
-            double v2 = amount.v;
-            int m1 = m;
-            int m2 = amount.m;
+            int max = Math.Max(exponent, amount.exponent);
+            double v1 = coefficient;
+            double v2 = amount.coefficient;
+            int m1 = exponent;
+            int m2 = amount.exponent;
             for (int i = 0; i < max - m1; i++)
             {
                 v1 /= 1000;
@@ -1431,11 +1433,11 @@ namespace TW.Utility.CustomType
 
         public BigNumber Add(BigNumber amount, bool isReleaseVal = false) //throws ArithmeticException
         {
-            int max = Math.Max(m, amount.m);
-            double v1 = v;
-            double v2 = amount.v;
-            int m1 = m;
-            int m2 = amount.m;
+            int max = Math.Max(exponent, amount.exponent);
+            double v1 = coefficient;
+            double v2 = amount.coefficient;
+            int m1 = exponent;
+            int m2 = amount.exponent;
             for (int i = 0; i < max - m1; i++)
             {
                 v1 /= 1000f;
@@ -1452,15 +1454,15 @@ namespace TW.Utility.CustomType
 
         private BigNumber CopyData(BigNumber val)
         {
-            v = val.v;
-            m = val.m;
+            coefficient = val.coefficient;
+            exponent = val.exponent;
             return this;
         }
 
         public float ToFloat()
         {
-            double d = v;
-            for (int i = 0; i < m; i++)
+            double d = coefficient;
+            for (int i = 0; i < exponent; i++)
             {
                 d *= 1000;
             }
@@ -1470,8 +1472,8 @@ namespace TW.Utility.CustomType
 
         public double ToDouble()
         {
-            double d = v;
-            for (int i = 0; i < m; i++)
+            double d = coefficient;
+            for (int i = 0; i < exponent; i++)
             {
                 d *= 1000;
             }
@@ -1481,8 +1483,8 @@ namespace TW.Utility.CustomType
 
         public BigNumber RoundToInt()
         {
-            int mm = m;
-            double vv = Math.Round(v, 3 * (m < 5 ? m : 5));
+            int mm = exponent;
+            double vv = Math.Round(coefficient, 3 * (exponent < 5 ? exponent : 5));
             return new BigNumber(vv, mm);
         }
     }

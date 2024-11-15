@@ -38,7 +38,7 @@ namespace TW.Utility.CustomType
             if (!value.Any(char.IsDigit)) return false;
             if (value.Count(x => x == '.') > 1) return false;
 
-            return BigNumber.sRank.Any(x => value.EndsWith(x) && value[..^x.Length].All(c => char.IsDigit(c) || c == '.'));
+            return BigNumber.Abbreviations.Any(x => value.EndsWith(x) && value[..^x.Length].All(c => char.IsDigit(c) || c == '.'));
         }
         private static bool IsCalculation(string value)
         {
@@ -71,7 +71,7 @@ namespace TW.Utility.CustomType
             if (!IsCalculation(expression)) return BigNumber.ZERO;
 
             List<object> tokens = new List<object>();
-            MatchCollection matches = Regex.Matches(expression, @"\d+(\.\d+)?[" + string.Join("", BigNumber.sRank) + @"]*\d*(\.\d+)?|[()+\-*/]");
+            MatchCollection matches = Regex.Matches(expression, @"\d+(\.\d+)?[" + string.Join("", BigNumber.Abbreviations) + @"]*\d*(\.\d+)?|[()+\-*/]");
 
             for (int index = 0; index < matches.Count; index++)
             {

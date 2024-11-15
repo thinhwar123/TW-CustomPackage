@@ -11,7 +11,7 @@ namespace TW.Utility.CustomType
     public class Probability<T>
     {
         [ShowInInspector, PropertyOrder(-1)]
-        public int Total => m_ProbabilityValueList.Sum(value => value.m_Chance);
+        public int Total => m_ProbabilityValueList?.Sum(value => value.m_Chance) ?? 0;
 
         [OnInspectorInit(nameof(OnInspectorInit))]
         [ListDrawerSettings(CustomAddFunction = nameof(CustomAddFunction), CustomRemoveElementFunction = nameof(CustomRemoveElementFunction))]
