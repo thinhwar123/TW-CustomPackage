@@ -1315,8 +1315,7 @@ namespace TW.Utility.CustomType
 
             return value;
         }
-
-        //public static BigNumber ZERO_CONST = BigNumber.GetBigNumber("0", 10);
+        
         public BigNumber PowPermanent(int exp)
         {
             BigNumber result = this.Pow(exp);
@@ -1355,6 +1354,38 @@ namespace TW.Utility.CustomType
 
             return ret.Normalize();
         }
+        
+        public BigNumber Pow(float exp)
+        {
+            switch (exp)
+            {
+                case < 0:
+                    throw new ArithmeticException("Negative exponent");
+                case 0:
+                    return new BigNumber(1);
+            }
+            if (this == 0) return this;
+            BigNumber ret = new BigNumber(this);
+            int tempE = Mathf.FloorToInt(exp);
+            float tempF = exp - tempE;
+            
+            double rv = ret.coefficient;
+            int rm = ret.exponent;
+            while (tempE != 1)
+            {
+                ret.coefficient *= rv;
+                ret.exponent += rm;
+                while (ret.coefficient >= 1000)
+                {
+                    ret.coefficient /= 1000;
+                    ret.exponent++;
+                }
+                tempE--;
+            }
+            ret.coefficient = ret.coefficient * Math.Pow(rv, tempF) * Math.Pow(1000, rm * tempF);
+            return ret.Normalize();
+        
+        }   
 
         internal BigNumber DividePermanent(BigNumber amount, bool isRelease = false)
         {
