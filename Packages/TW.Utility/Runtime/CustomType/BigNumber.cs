@@ -1518,5 +1518,10 @@ namespace TW.Utility.CustomType
             double vv = Math.Round(coefficient, 3 * (exponent < 5 ? exponent : 5));
             return new BigNumber(vv, mm);
         }
+        
+        public static BigNumber Lerp(BigNumber from, BigNumber to, float t)
+        {
+            return from + (to - from) * t;
+        }
     }
 }
