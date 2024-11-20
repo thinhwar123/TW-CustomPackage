@@ -40,6 +40,10 @@ https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity
 ```
 https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.Utility
 ```
+#### Custom Define
+```
+LITMOTION_SUPPORT
+```
 ### UGUI
 ```
 https://github.com/thinhwar123/TW-CustomPackage.git?path=Packages/TW.UGUI
