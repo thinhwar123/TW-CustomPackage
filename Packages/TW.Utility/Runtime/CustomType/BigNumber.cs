@@ -174,6 +174,37 @@ namespace TW.Utility.CustomType
             "OcVg",
             "NoVg",
             "Tg",
+            "UTg",
+            "DTg",
+            "TTg",
+            "QaTg",
+            "QiTg",
+            "SxTg",
+            "SpTg",
+            "OcTg",
+            "NoTg",
+            "Qd",
+            "UQd",
+            "DQd",
+            "TQd",
+            "QaQd",
+            "QiQd",
+            "SxQd",
+            "SpQd",
+            "OcQd",
+            "NoQd",
+            "Qn",
+            "UQn",
+            "DQn",
+            "TQn",
+            "QaQn",
+            "QiQn",
+            "SxQn",
+            "SpQn",
+            "OcQn",
+            "NoQn",
+            "Sg"
+            
         };
         
 
@@ -1283,7 +1314,10 @@ namespace TW.Utility.CustomType
                 {
                     abbreviationsLength++;
                 }
-                break;
+                else
+                {
+                    break;
+                }
             }
             string s1 = s[^abbreviationsLength..];
 
