@@ -1275,19 +1275,27 @@ namespace TW.Utility.CustomType
 
         public static BigNumber ParseFromCharacterFormat(string s)
         {
-            string s1 = "-1";
             int num = 0;
+            int abbreviationsLength = 0;
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                if (char.IsLetter(s[i]))
+                {
+                    abbreviationsLength++;
+                }
+                break;
+            }
+            string s1 = s[^abbreviationsLength..];
+
+            // split the string into two parts end with alphabet
             for (int i = 1; i < Abbreviations.Length; i++)
             {
-                if (s.Contains(Abbreviations[i]))
-                {
-                    s1 = Abbreviations[i];
-                    num = i;
-                    break;
-                }
+                if (Abbreviations[i] != s1) continue;
+                num = i;
+                break;
             }
 
-            if (s1 == "-1")
+            if (s1 == "")
             {
                 //UnityEngine.Debug.Log(s);
                 return new BigNumber(double.Parse(s, CultureInfo.InvariantCulture), 0);
