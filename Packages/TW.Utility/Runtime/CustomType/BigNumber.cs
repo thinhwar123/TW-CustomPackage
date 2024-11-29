@@ -141,72 +141,80 @@ namespace TW.Utility.CustomType
     [Serializable]
     public struct BigNumber : IFormattable
     {
-        public static string[] Abbreviations =
+        public static class Abbreviations
         {
-            "",
-            "K",
-            "M",
-            "B",
-            "T",
-            "Qa",
-            "Qi",
-            "Sx",
-            "Sp",
-            "Oc",
-            "No",
-            "Dc",
-            "UDc",
-            "TDc",
-            "QaDc",
-            "QiDc",
-            "SxDc",
-            "SpDc",
-            "OcDc",
-            "NoDc",
-            "Vg",
-            "UVg",
-            "DVg",
-            "TVg",
-            "QaVg",
-            "QiVg",
-            "SxVg",
-            "SpVg",
-            "OcVg",
-            "NoVg",
-            "Tg",
-            "UTg",
-            "DTg",
-            "TTg",
-            "QaTg",
-            "QiTg",
-            "SxTg",
-            "SpTg",
-            "OcTg",
-            "NoTg",
-            "Qd",
-            "UQd",
-            "DQd",
-            "TQd",
-            "QaQd",
-            "QiQd",
-            "SxQd",
-            "SpQd",
-            "OcQd",
-            "NoQd",
-            "Qn",
-            "UQn",
-            "DQn",
-            "TQn",
-            "QaQn",
-            "QiQn",
-            "SxQn",
-            "SpQn",
-            "OcQn",
-            "NoQn",
-            "Sg"
+            private static string[] AbbreviationArray { get; } =
+            {
+                "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f",
+                "g",
+                "h",
+                "i",
+                "j",
+                "k",
+                "l",
+                "m",
+                "n",
+                "o",
+                "p",
+                "q",
+                "r",
+                "s",
+                "t",
+                "u",
+                "v",
+                "w",
+                "x",
+                "y",
+                "z",
+            };
+            private static int AbbreviationLength { get; } = AbbreviationArray.Length;
             
-        };
-        
+            public static string FormExponent(int exponent)
+            {
+                return exponent switch
+                {
+                    <= 0 => "",
+                    1 => "K",
+                    2 => "M",
+                    3 => "B",
+                    4 => "T",
+                    _ => GetAbbreviation(exponent - 5)
+                };
+                
+                string GetAbbreviation(int index)
+                {
+                    if (index == 0) return "";
+                    return GetAbbreviation(index/AbbreviationLength) + GetAbbreviation(index % AbbreviationLength);
+                }
+            }
+            public static int ParseExponent(string exponent)
+            {
+                if (string.IsNullOrEmpty(exponent)) return 0;
+                return exponent switch
+                {
+                    "K" => 1,
+                    "M" => 2,
+                    "B" => 3,
+                    "T" => 4,
+                    _ => ParseAbbreviation(exponent)
+                };
+                
+                int ParseAbbreviation(string e)
+                {
+                    int result = 0;
+                    for (int i = 0; i < e.Length; i++)
+                    {
+                        result = result * AbbreviationLength + Array.IndexOf(AbbreviationArray, e[i].ToString());
+                    }
+                    return result + 5;
+                }
+            }
+        }
 
         public double coefficient;
         public int exponent;
@@ -810,7 +818,7 @@ namespace TW.Utility.CustomType
                 mm++;
             }
 
-            return vv.ToString(CultureInfo.InvariantCulture) + Abbreviations[mm];
+            return vv.ToString(CultureInfo.InvariantCulture) + Abbreviations.FormExponent(mm);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
@@ -846,7 +854,7 @@ namespace TW.Utility.CustomType
             int digit = Math.Clamp(3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length, 0, 3);
             string s = Math.Round(vv, digit).ToString(CultureInfo.InvariantCulture);
 
-            return s + Abbreviations[mm];
+            return s + Abbreviations.FormExponent(mm);
         }
 
         public string ToStringUIFloor()
@@ -869,7 +877,7 @@ namespace TW.Utility.CustomType
             // string s = Math.Round(vv, 3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length).ToString(CultureInfo.InvariantCulture);
             // string s = vv.ToString("0.000" ,CultureInfo.InvariantCulture);
             string s = (Math.Floor(vv * 1000) / 1000).ToString(CultureInfo.InvariantCulture);
-            return s + Abbreviations[mm];
+            return s + Abbreviations.FormExponent(mm);
         }
 
         //***********************************************************************
@@ -1126,11 +1134,11 @@ namespace TW.Utility.CustomType
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
-                return s[..(s.Length > 5 ? 5 : s.Length)] + Abbreviations[mm];
+                return s[..(s.Length > 5 ? 5 : s.Length)] + Abbreviations.FormExponent(mm);
             }
             else
             {
-                return s[..(s.Length > 3 ? 3 : s.Length)] + Abbreviations[mm];
+                return s[..(s.Length > 3 ? 3 : s.Length)] + Abbreviations.FormExponent(mm);
             }
         }
 
@@ -1193,11 +1201,11 @@ namespace TW.Utility.CustomType
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
-                return s.Substring(0, s.Length > 5 ? 5 : s.Length) + Abbreviations[mm];
+                return s.Substring(0, s.Length > 5 ? 5 : s.Length) + Abbreviations.FormExponent(mm);
             }
             else
             {
-                return s.Substring(0, s.Length > 3 ? 3 : s.Length) + Abbreviations[mm];
+                return s.Substring(0, s.Length > 3 ? 3 : s.Length) + Abbreviations.FormExponent(mm);
             }
         }
 
@@ -1234,11 +1242,11 @@ namespace TW.Utility.CustomType
             int index = s.IndexOf('.');
             if (index != -1 && index < 3)
             {
-                return s.Substring(0, s.Length > 4 ? 4 : s.Length) + " " + Abbreviations[mm];
+                return s.Substring(0, s.Length > 4 ? 4 : s.Length) + " " + Abbreviations.FormExponent(mm);
             }
             else
             {
-                return s.Substring(0, s.Length > 3 ? 3 : s.Length) + " " + Abbreviations[mm];
+                return s.Substring(0, s.Length > 3 ? 3 : s.Length) + " " + Abbreviations.FormExponent(mm);
             }
         }
 
@@ -1306,7 +1314,6 @@ namespace TW.Utility.CustomType
 
         public static BigNumber ParseFromCharacterFormat(string s)
         {
-            int num = 0;
             int abbreviationsLength = 0;
             for (int i = s.Length - 1; i >= 0; i--)
             {
@@ -1320,14 +1327,7 @@ namespace TW.Utility.CustomType
                 }
             }
             string s1 = s[^abbreviationsLength..];
-
-            // split the string into two parts end with alphabet
-            for (int i = 1; i < Abbreviations.Length; i++)
-            {
-                if (Abbreviations[i] != s1) continue;
-                num = i;
-                break;
-            }
+            int num = Abbreviations.ParseExponent(s1);
 
             if (s1 == "")
             {
