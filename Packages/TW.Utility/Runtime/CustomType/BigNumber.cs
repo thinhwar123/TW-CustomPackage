@@ -190,7 +190,7 @@ namespace TW.Utility.CustomType
                 string GetAbbreviation(int index)
                 {
                     if (index == 0) return "";
-                    return GetAbbreviation(index/AbbreviationLength) + GetAbbreviation(index % AbbreviationLength);
+                    return GetAbbreviation(index/AbbreviationLength) + AbbreviationArray[index % AbbreviationLength];
                 }
             }
             public static int ParseExponent(string exponent)
