@@ -190,8 +190,7 @@ namespace TW.Utility.CustomType
                 string GetAbbreviation(int index)
                 {
                     string result = "";
-                    while (index >= 0)
-                    {
+                    while (index >= 0) {
                         int remainder = index % AbbreviationLength;
                         result = AbbreviationArray[remainder] + result;
                         index = index / AbbreviationLength - 1; 
@@ -217,11 +216,7 @@ namespace TW.Utility.CustomType
                     for (int i = 0; i < e.Length; i++)
                     {
                         result = result * AbbreviationLength + (AbbreviationArray.ToList().IndexOf(e[i].ToString()) + 1);
-
                     }
-
-                    Debug.Log(e + " =>" + (result+4));
-                    
                     return result + 4;
                 }
             }
