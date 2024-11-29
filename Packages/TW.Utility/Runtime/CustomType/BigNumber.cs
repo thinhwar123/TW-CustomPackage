@@ -189,8 +189,14 @@ namespace TW.Utility.CustomType
                 
                 string GetAbbreviation(int index)
                 {
-                    if (index == 0) return "";
-                    return GetAbbreviation(index/AbbreviationLength) + AbbreviationArray[index % AbbreviationLength];
+                    string result = "";
+                    while (index >= 0)
+                    {
+                        int remainder = index % AbbreviationLength;
+                        result = AbbreviationArray[remainder] + result;
+                        index = index / AbbreviationLength - 1; 
+                    }
+                    return result;
                 }
             }
             public static int ParseExponent(string exponent)
@@ -210,9 +216,13 @@ namespace TW.Utility.CustomType
                     int result = 0;
                     for (int i = 0; i < e.Length; i++)
                     {
-                        result = result * AbbreviationLength + Array.IndexOf(AbbreviationArray, e[i].ToString());
+                        result = result * AbbreviationLength + (AbbreviationArray.ToList().IndexOf(e[i].ToString()) + 1);
+
                     }
-                    return result + 5;
+
+                    Debug.Log(e + " =>" + (result+4));
+                    
+                    return result + 4;
                 }
             }
 

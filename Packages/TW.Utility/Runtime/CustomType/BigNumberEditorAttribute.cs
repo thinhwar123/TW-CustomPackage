@@ -84,7 +84,6 @@ namespace TW.Utility.CustomType
 
             List<object> tokens = new List<object>();
             MatchCollection matches = Regex.Matches(expression, @"\d+(\.\d+)?((K|M|B|T)|(" + string.Join("|", BigNumber.Abbreviations.AbbreviationArray) + @"))*\d*(\.\d+)?|[()+\-*/]");
-
             
             for (int index = 0; index < matches.Count; index++)
             {
@@ -93,6 +92,7 @@ namespace TW.Utility.CustomType
                 if (IsBigNumber(match.Value))
                 {
                     tokens.Add(new BigNumber(match.Value));
+
                 }
                 else
                 {
