@@ -37,8 +37,20 @@ namespace TW.Utility.CustomType
             if (string.IsNullOrEmpty(value)) return false;
             if (!value.Any(char.IsDigit)) return false;
             if (value.Count(x => x == '.') > 1) return false;
-
-            return BigNumber.Abbreviations.Any(x => value.EndsWith(x) && value[..^x.Length].All(c => char.IsDigit(c) || c == '.'));
+            int abbreviationsLength = 0;
+            for (int i = value.Length - 1; i >= 0; i--)
+            {
+                if (char.IsLetter(value[i]))
+                {
+                    abbreviationsLength++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            string exponent = value[^abbreviationsLength..];
+            return BigNumber.Abbreviations.IsExponent(exponent) && value[..^abbreviationsLength].All(c => char.IsDigit(c) || c == '.');
         }
         private static bool IsCalculation(string value)
         {
@@ -71,8 +83,8 @@ namespace TW.Utility.CustomType
             if (!IsCalculation(expression)) return BigNumber.ZERO;
 
             List<object> tokens = new List<object>();
-            MatchCollection matches = Regex.Matches(expression, @"\d+(\.\d+)?[" + string.Join("", BigNumber.Abbreviations) + @"]*\d*(\.\d+)?|[()+\-*/]");
-
+            MatchCollection matches = Regex.Matches(expression, @"\d+(\.\d+)?[" + string.Join("", BigNumber.Abbreviations.AbbreviationArray) + @"]*\d*(\.\d+)?|[()+\-*/]");
+            
             for (int index = 0; index < matches.Count; index++)
             {
                 Match match = matches[index];

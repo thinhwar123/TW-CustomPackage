@@ -132,6 +132,7 @@
 
 using System;
 using System.Globalization;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -143,7 +144,7 @@ namespace TW.Utility.CustomType
     {
         public static class Abbreviations
         {
-            private static string[] AbbreviationArray { get; } =
+            public static string[] AbbreviationArray { get; } =
             {
                 "a",
                 "b",
@@ -212,6 +213,30 @@ namespace TW.Utility.CustomType
                         result = result * AbbreviationLength + Array.IndexOf(AbbreviationArray, e[i].ToString());
                     }
                     return result + 5;
+                }
+            }
+
+            public static bool IsExponent(string exponent)
+            {
+                if (string.IsNullOrEmpty(exponent)) return true;
+                return exponent switch
+                {
+                    "K" => true,
+                    "M" => true,
+                    "B" => true,
+                    "T" => true,
+                    _ => IsAbbreviation(exponent)
+                };
+                bool IsAbbreviation(string e)
+                {
+                    foreach (char c in e)
+                    {
+                        if (!AbbreviationArray.Contains(c.ToString()))
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
                 }
             }
         }
