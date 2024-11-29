@@ -83,7 +83,8 @@ namespace TW.Utility.CustomType
             if (!IsCalculation(expression)) return BigNumber.ZERO;
 
             List<object> tokens = new List<object>();
-            MatchCollection matches = Regex.Matches(expression, @"\d+(\.\d+)?[" + string.Join("", BigNumber.Abbreviations.AbbreviationArray) + @"]*\d*(\.\d+)?|[()+\-*/]");
+            MatchCollection matches = Regex.Matches(expression, @"\d+(\.\d+)?((K|M|B|T)|(" + string.Join("|", BigNumber.Abbreviations.AbbreviationArray) + @"))*\d*(\.\d+)?|[()+\-*/]");
+
             
             for (int index = 0; index < matches.Count; index++)
             {
