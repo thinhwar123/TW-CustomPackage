@@ -11,7 +11,7 @@ namespace TW.Utility.DesignPattern
     {
         public IState CurrentState { get; private set; }
         private Queue<IState> PendingStateQueue { get; set; } = new();
-        private bool IsRunning { get; set; } = false;
+        public bool IsRunning { get; set; } = false;
         private CancellationTokenSource CancellationTokenSource { get; set; }
 #if UNITY_EDITOR
         [ShowInInspector, LabelText(nameof(StateMachine))]
