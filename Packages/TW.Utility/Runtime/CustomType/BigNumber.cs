@@ -1090,16 +1090,22 @@ namespace TW.Utility.CustomType
         public BigNumber Normalize()
         {
             BigNumber ret = new BigNumber(this);
-            while (ret is { coefficient: < 1, exponent: > 0 })
+            int safetyCounter = 1000; // Safety counter to prevent infinite loops
+
+            while (ret.coefficient < 1 && ret.exponent > 0 && safetyCounter > 0)
             {
                 ret.coefficient *= 1000;
                 ret.exponent--;
+                safetyCounter--;
             }
 
-            while (ret.coefficient >= 1000)
+            safetyCounter = 1000; // Reset safety counter
+
+            while (ret.coefficient >= 1000 && safetyCounter > 0)
             {
                 ret.coefficient /= 1000;
                 ret.exponent++;
+                safetyCounter--;
             }
 
             return ret;
@@ -1594,6 +1600,14 @@ namespace TW.Utility.CustomType
         public static BigNumber Lerp(BigNumber from, BigNumber to, float t)
         {
             return from + (to - from) * t;
+        }
+        public static BigNumber Min(BigNumber a, BigNumber b)
+        {
+            return a < b ? a : b;
+        }
+        public static BigNumber Max(BigNumber a, BigNumber b)
+        {
+            return a > b ? a : b;
         }
     }
 }
