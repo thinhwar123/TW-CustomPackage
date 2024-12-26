@@ -691,6 +691,11 @@ namespace TW.Utility.CustomType
 
             return ret.Multiply(bi2);
         }
+        
+        public static BigNumber operator -(BigNumber bi1)
+        {
+            return new BigNumber(-bi1.coefficient, bi1.exponent);
+        }
 
         //***********************************************************************
         // Overloading of modulus operator
