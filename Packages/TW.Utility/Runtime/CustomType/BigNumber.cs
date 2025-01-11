@@ -1097,7 +1097,7 @@ namespace TW.Utility.CustomType
             BigNumber ret = new BigNumber(this);
             int safetyCounter = 1000; // Safety counter to prevent infinite loops
 
-            while (ret.coefficient < 1 && ret.exponent > 0 && safetyCounter > 0)
+            while (ret is { coefficient: < 1, exponent: > 0 } && safetyCounter > 0)
             {
                 ret.coefficient *= 1000;
                 ret.exponent--;
@@ -1613,6 +1613,10 @@ namespace TW.Utility.CustomType
         public static BigNumber Max(BigNumber a, BigNumber b)
         {
             return a > b ? a : b;
+        }
+        public static BigNumber Abs(BigNumber a)
+        {
+            return a < 0 ? -a : a;
         }
     }
 }
