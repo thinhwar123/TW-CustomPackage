@@ -39,6 +39,12 @@ namespace TW.Utility.Extension
         {
             return await SendRequest(spreadsheetId, tabName);
         }
+        
+        public static async Task<List<Dictionary<string, string>>> GetDataTable(string spreadsheetId, string tabName)
+        {
+            string json = await SendRequest(spreadsheetId, tabName);
+            return JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(json);
+        }
 
         private static async Task<string> SendRequest(string spreadsheetId, string tabName)
         {
