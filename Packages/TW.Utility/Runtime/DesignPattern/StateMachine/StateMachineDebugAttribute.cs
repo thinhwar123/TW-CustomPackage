@@ -9,7 +9,7 @@ namespace TW.Utility.DesignPattern
 {
     public interface IStateMachineDebug
     {
-        public bool IsRunning();
+        public bool IsOnRunning();
         public string GetCurrentState();
         public string[] GetPendingTransitionStateQueue();
     }
@@ -26,7 +26,7 @@ namespace TW.Utility.DesignPattern
         {
             IStateMachineDebug value = (this.ValueEntry.SmartValue as IStateMachineDebug);
 
-            bool isRunning = value != null && value.IsRunning();
+            bool isRunning = value != null && value.IsOnRunning();
             Rect rect = EditorGUI.PrefixLabel(EditorGUILayout.GetControlRect(), label);
             EditorGUI.Toggle(rect, isRunning);
 

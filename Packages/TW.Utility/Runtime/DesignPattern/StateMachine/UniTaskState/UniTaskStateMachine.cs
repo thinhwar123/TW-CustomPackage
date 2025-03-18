@@ -83,7 +83,7 @@ namespace TW.Utility.DesignPattern
 
         #region Debug
 
-        public bool IsRunning()
+        public bool IsOnRunning()
         {
             return m_IsRunning;
         }
