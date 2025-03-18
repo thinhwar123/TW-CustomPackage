@@ -27,8 +27,6 @@ namespace TW.Utility.Tool
                 styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_HashCode").intValue = TMP_TextParsingUtilities.GetHashCode(TMPStyleConfigs[i].Style);
                 styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_OpeningDefinition").stringValue = $"<sprite index={TMPStyleConfigs[i].Index}>";
             }
-            styleList.GetArrayElementAtIndex(TMPStyleConfigs.Length).FindPropertyRelative("m_Name").stringValue = "Normal";
-            styleList.GetArrayElementAtIndex(TMPStyleConfigs.Length).FindPropertyRelative("m_HashCode").intValue = TMP_TextParsingUtilities.GetHashCode("Normal");
             styleList.serializedObject.ApplyModifiedProperties();
         }
 
