@@ -19,10 +19,12 @@ namespace TW.Utility.Tool
             SerializedProperty styleList = serializedObject.FindProperty("m_StyleList");
             ClearSpriteStyle(styleList);
 
-            styleList.arraySize = styleList.arraySize + TMPStyleConfigs.Length;
+            int curentArraySize = styleList.arraySize;
+            styleList.arraySize = curentArraySize + TMPStyleConfigs.Length;
+            
             for (int i = 0; i < TMPStyleConfigs.Length; i++)
             {
-                int index = i + styleList.arraySize;
+                int index = i + curentArraySize;
                 styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_Name").stringValue = TMPStyleConfigs[i].Style;
                 styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_HashCode").intValue = TMP_TextParsingUtilities.GetHashCode(TMPStyleConfigs[i].Style);
                 styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_OpeningDefinition").stringValue = $"<sprite index={TMPStyleConfigs[i].Index}>";
