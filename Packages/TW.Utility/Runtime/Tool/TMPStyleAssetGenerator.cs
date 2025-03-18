@@ -1,7 +1,12 @@
 ﻿using Sirenix.OdinInspector;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+using UnityEditor;
+#endif
 
 namespace TW.Utility.Tool
 {
@@ -15,21 +20,25 @@ namespace TW.Utility.Tool
         [Button]
         public void GenerateTMPStyleAsset()
         {
+            EditorUtility.SetDirty(TMPStyleSheet);
             SerializedObject serializedObject = new SerializedObject(TMPStyleSheet);
             SerializedProperty styleList = serializedObject.FindProperty("m_StyleList");
             ClearSpriteStyle(styleList);
-
-            int curentArraySize = styleList.arraySize;
-            styleList.arraySize = curentArraySize + TMPStyleConfigs.Length;
+            int currentArraySize = styleList.arraySize;
+            styleList.arraySize = currentArraySize + TMPStyleConfigs.Length;
             
             for (int i = 0; i < TMPStyleConfigs.Length; i++)
             {
-                int index = i + curentArraySize;
+                int index = i + currentArraySize;
                 styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_Name").stringValue = TMPStyleConfigs[i].Style;
                 styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_HashCode").intValue = TMP_TextParsingUtilities.GetHashCode(TMPStyleConfigs[i].Style);
                 styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_OpeningDefinition").stringValue = $"<sprite index={TMPStyleConfigs[i].Index}>";
+                styleList.GetArrayElementAtIndex(index).FindPropertyRelative("m_ClosingDefinition").stringValue = "";
             }
-            styleList.serializedObject.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties();
+            TMPStyleSheet.RefreshStyles();
+            string[] path = SceneManager.GetActiveScene().path.Split(char.Parse("/"));
+            EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), string.Join("/", path));
         }
 
         private void ClearSpriteStyle(SerializedProperty styleList)
