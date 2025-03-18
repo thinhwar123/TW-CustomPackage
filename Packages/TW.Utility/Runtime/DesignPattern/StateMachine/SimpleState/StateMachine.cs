@@ -36,8 +36,9 @@ namespace TW.Utility.DesignPattern
 
         private async UniTask ExecuteState()
         {
-            await foreach (AsyncUnit _ in UniTaskAsyncEnumerable.EveryUpdate()
-                               .WithCancellation(CancellationTokenSource.Token))
+            UniTaskCancelableAsyncEnumerable<AsyncUnit> asyncEnumerable = UniTaskAsyncEnumerable.EveryUpdate()
+                .WithCancellation(CancellationTokenSource.Token);   
+            await foreach (AsyncUnit _ in asyncEnumerable)
             {
                 while (PendingStateQueue.Count > 0)
                 {
