@@ -16,6 +16,7 @@ namespace TW.Utility.Tool
     {
         [field: SerializeField] public TMP_StyleSheet TMPStyleSheet { get; private set; }
         [field: SerializeField] public TMPStyleConfig[] TMPStyleConfigs { get; private set; }
+#if UNITY_EDITOR
 
         [Button]
         public void GenerateTMPStyleAsset()
@@ -63,4 +64,5 @@ namespace TW.Utility.Tool
         [field: SerializeField] public string Style {get; private set;}
         [field: SerializeField] public int Index {get; private set;}
     }
+#endif
 }
