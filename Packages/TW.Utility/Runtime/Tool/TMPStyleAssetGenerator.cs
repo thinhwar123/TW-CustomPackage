@@ -56,6 +56,7 @@ namespace TW.Utility.Tool
                 i++;
             }
         }
+#endif
     }
     
     [System.Serializable]
@@ -64,5 +65,4 @@ namespace TW.Utility.Tool
         [field: SerializeField] public string Style {get; private set;}
         [field: SerializeField] public int Index {get; private set;}
     }
-#endif
 }
