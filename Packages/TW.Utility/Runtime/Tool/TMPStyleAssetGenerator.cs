@@ -14,6 +14,7 @@ namespace TW.Utility.Tool
 
     public class TMPStyleAssetGenerator : ScriptableObject
     {
+#if UNITY_EDITOR
         [field: SerializeField] public TMP_StyleSheet TMPStyleSheet { get; private set; }
         [field: SerializeField] public TMPStyleConfig[] TMPStyleConfigs { get; private set; }
 
@@ -55,6 +56,7 @@ namespace TW.Utility.Tool
                 i++;
             }
         }
+#endif
     }
     
     [System.Serializable]
