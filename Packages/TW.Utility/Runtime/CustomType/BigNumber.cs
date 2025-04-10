@@ -894,8 +894,8 @@ namespace TW.Utility.CustomType
 
         public string ToStringUIFloor()
         {
-            double vv = coefficient;
             int mm = exponent;
+            double vv = Math.Round(coefficient, 3 * (exponent < 5 ? exponent : 5));
 
             while (vv < 1 && mm > 0)
             {
@@ -909,9 +909,9 @@ namespace TW.Utility.CustomType
                 mm++;
             }
 
-            // string s = Math.Round(vv, 3 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length).ToString(CultureInfo.InvariantCulture);
-            // string s = vv.ToString("0.000" ,CultureInfo.InvariantCulture);
-            string s = (Math.Floor(vv * 1000) / 1000).ToString(CultureInfo.InvariantCulture);
+            int digit = Math.Clamp(4 - Math.Round(vv, 0).ToString(CultureInfo.InvariantCulture).Length, 0, 4);
+            string s = Math.Round(vv, digit).ToString(CultureInfo.InvariantCulture);
+
             return s + Abbreviations.FormExponent(mm);
         }
 
