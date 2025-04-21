@@ -65,6 +65,22 @@ namespace TW.Utility.Extension
             transform.localRotation = Quaternion.identity;
             return res;
         }
+        
+        /// <summary>
+        /// Gets the component of type T from the transform. If it doesn't exist, adds a new component of type T to the transform.
+        /// </summary>
+        /// <typeparam name="T">The type of component to get or add.</typeparam>
+        /// <param name="transform">The transform to get the component from.</param>
+        /// <returns>The component of type T.</returns>
+        public static T GetOrAddComponent<T>(this Transform transform) where T : Component
+        {
+            T component = transform.GetComponent<T>();
+            if (component == null)
+            {
+                component = transform.gameObject.AddComponent<T>();
+            }
+            return component;
+        }
     }
 
 }
