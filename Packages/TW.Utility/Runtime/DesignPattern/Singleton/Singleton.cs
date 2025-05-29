@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TW.Utility.DesignPattern
 {
-    public class Singleton<T> : AwaitableCachedMonoBehaviour where T : AwaitableCachedMonoBehaviour
+    public class Singleton<T> : ACachedMonoBehaviour where T : ACachedMonoBehaviour
     {
         private static T instance;
 
