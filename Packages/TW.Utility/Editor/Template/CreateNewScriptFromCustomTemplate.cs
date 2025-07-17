@@ -32,10 +32,20 @@ namespace TW.Utility.Editor.Template
         
         #region MVP Scripts
         
-        [MenuItem(itemName: "Assets/CustomTemplate/MVP/Create New Context", isValidateFunction: false, priority: 1)]
-        public static void CreateScriptContextFromTemplate()
+        [MenuItem(itemName: "Assets/CustomTemplate/MVP/Create New Screen", isValidateFunction: false, priority: 1)]
+        public static void CreateScriptScreenFromTemplate()
         {
-            CreateScriptFromTemplate("NewContextTemplate.cs", "NewContext.cs");
+            CreateScriptFromTemplate("NewScreenTemplate.cs", "Screen.cs");
+        }
+        [MenuItem(itemName: "Assets/CustomTemplate/MVP/Create New Modal", isValidateFunction: false, priority: 1)]
+        public static void CreateScriptModalFromTemplate()
+        {
+            CreateScriptFromTemplate("NewModalTemplate.cs", "Modal.cs");
+        }
+        [MenuItem(itemName: "Assets/CustomTemplate/MVP/Create New Activity", isValidateFunction: false, priority: 1)]
+        public static void CreateScriptActivityFromTemplate()
+        {
+            CreateScriptFromTemplate("NewActivityTemplate.cs", "Activity.cs");
         }
         
         #endregion
