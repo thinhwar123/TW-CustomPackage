@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 
-namespace TW.Utility.DesignPattern
+namespace TW.Utility.DesignPattern.UniTaskState
 {
     public interface IState
     {

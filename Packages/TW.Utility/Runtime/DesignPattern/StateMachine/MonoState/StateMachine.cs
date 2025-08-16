@@ -1,10 +1,8 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Linq;
+using Sirenix.OdinInspector;
 
-namespace TW.Utility.DesignPattern.UniTaskState
+namespace DesignPattern.StateMachine.MonoState
 {
     [System.Serializable]
     public class StateMachine
@@ -12,7 +10,6 @@ namespace TW.Utility.DesignPattern.UniTaskState
         public IState CurrentState { get; private set; }
         private Queue<IState> PendingStateQueue { get; set; } = new();
         public bool IsRunning { get; set; } = false;
-        private CancellationTokenSource CancellationTokenSource { get; set; }
 
         public StateMachine()
         {
@@ -21,39 +18,33 @@ namespace TW.Utility.DesignPattern.UniTaskState
 
         public void Run()
         {
-            CancellationTokenSource = new CancellationTokenSource();
+            if (IsRunning) return;
             IsRunning = true;
-            ExecuteState().Forget();
+            StateMachineRunner.Register(this);
         }
 
         public void Stop()
         {
             if (!IsRunning) return;
             IsRunning = false;
-            CancellationTokenSource.Cancel();
-            CancellationTokenSource.Dispose();
+            StateMachineRunner.Unregister(this);
         }
 
-        private async UniTask ExecuteState()
+        public void ExecuteState()
         {
-            UniTaskCancelableAsyncEnumerable<AsyncUnit> asyncEnumerable = UniTaskAsyncEnumerable.EveryUpdate()
-                .WithCancellation(CancellationTokenSource.Token);   
-            await foreach (AsyncUnit _ in asyncEnumerable)
+            while (PendingStateQueue.Count > 0)
             {
-                while (PendingStateQueue.Count > 0)
-                {
-                    await ChangeState(PendingStateQueue.Dequeue());
-                }
-
-                if (CurrentState != null) await CurrentState.OnUpdate(CancellationTokenSource.Token);
+                ChangeState(PendingStateQueue.Dequeue());
             }
+
+            CurrentState?.OnUpdate();
         }
 
-        private async UniTask ChangeState(IState state)
+        private void ChangeState(IState state)
         {
-            if (CurrentState != null) await CurrentState.OnExit(CancellationTokenSource.Token);
+            CurrentState?.OnExit();
             CurrentState = state;
-            if (CurrentState != null) await CurrentState.OnEnter(CancellationTokenSource.Token);
+            CurrentState?.OnEnter();
         }
 
         public void RegisterState(IState state)
@@ -73,6 +64,11 @@ namespace TW.Utility.DesignPattern.UniTaskState
 
         #region Debug Only
 
+#if UNITY_EDITOR
+        [ShowInInspector] private bool DebugIsRunning => IsOnRunning();
+        [ShowInInspector] private string DebugCurrentState => GetCurrentState();
+        [ShowInInspector] private string[] DebugPendingStateQueue => GetPendingTransitionStateQueue();
+
         public bool IsOnRunning()
         {
             return IsRunning;
@@ -87,6 +83,7 @@ namespace TW.Utility.DesignPattern.UniTaskState
         {
             return PendingStateQueue?.Select(state => state.ToString()).ToArray();
         }
+#endif
 
         #endregion
     }
