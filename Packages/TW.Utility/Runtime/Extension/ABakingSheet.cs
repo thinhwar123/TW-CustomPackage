@@ -55,7 +55,7 @@ namespace TW.Utility.Extension
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log($"Update Success {spreadsheetId}/{tabName}");
+                Debug.Log($"Update Success {tabName}");
                 return www.downloadHandler.text;
             }
             else
