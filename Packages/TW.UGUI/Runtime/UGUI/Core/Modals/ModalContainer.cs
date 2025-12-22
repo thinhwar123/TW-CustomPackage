@@ -18,6 +18,7 @@ namespace TW.UGUI.Core.Modals
 
         public static IReadOnlyCollection<ModalContainer> Containers => s_instancesCachedByTransformId.Values;
 
+#if UNITY_EDITOR
         /// <seealso href="https://docs.unity3d.com/Manual/DomainReloading.html"/>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void Init()
@@ -25,6 +26,7 @@ namespace TW.UGUI.Core.Modals
             s_instancesCachedByTransformId = new();
             s_instancesCachedByName = new();
         }
+#endif
 
         private readonly List<IModalContainerCallbackReceiver> _callbackReceivers = new();
         private readonly List<ViewRef<Modal>> _modals = new();

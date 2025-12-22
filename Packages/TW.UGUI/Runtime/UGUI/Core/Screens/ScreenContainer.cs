@@ -18,6 +18,7 @@ namespace TW.UGUI.Core.Screens
 
         public static IReadOnlyCollection<ScreenContainer> Containers => s_instancesCacheByTransformId.Values;
 
+#if UNITY_EDITOR
         /// <seealso href="https://docs.unity3d.com/Manual/DomainReloading.html"/>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void Init()
@@ -25,6 +26,7 @@ namespace TW.UGUI.Core.Screens
             s_instancesCacheByTransformId = new();
             s_instancesCacheByName = new();
         }
+#endif
 
         private readonly List<IScreenContainerCallbackReceiver> _callbackReceivers = new();
         private readonly List<ViewRef<Screen>> _screens = new();
