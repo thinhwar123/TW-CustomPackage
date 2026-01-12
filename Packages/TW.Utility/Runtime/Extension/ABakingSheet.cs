@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
+
+#if UNITASK_SUPPORT
+using Cysharp.Threading.Tasks;
+#endif
 
 namespace TW.Utility.Extension
 {
@@ -23,7 +26,11 @@ namespace TW.Utility.Extension
         /// <param name="spreadsheetId">The ID of the target spreadsheet.</param>
         /// <param name="tabName">The name of the tab (worksheet) within the spreadsheet.</param>
         /// <returns>A Task representing the asynchronous operation, returning the spreadsheet content in CSV format.</returns>
+#if UNITASK_SUPPORT
+        public static async UniTask<string> GetCsv(string spreadsheetId, string tabName)
+#else
         public static async Task<string> GetCsv(string spreadsheetId, string tabName)
+#endif
         {
             string json = await SendRequest(spreadsheetId, tabName);
             return JsonToCsv(json);
@@ -35,18 +42,30 @@ namespace TW.Utility.Extension
         /// <param name="spreadsheetId">The ID of the target spreadsheet.</param>
         /// <param name="tabName">The name of the tab (worksheet) within the spreadsheet.</param>
         /// <returns>A Task representing the asynchronous operation, returning the spreadsheet content in JSON format.</returns>
+#if UNITASK_SUPPORT
+        public static async UniTask<string> GetJson(string spreadsheetId, string tabName)
+#else
         public static async Task<string> GetJson(string spreadsheetId, string tabName)
+#endif
         {
             return await SendRequest(spreadsheetId, tabName);
         }
         
+#if UNITASK_SUPPORT
+        public static async UniTask<List<Dictionary<string, string>>> GetDataTable(string spreadsheetId, string tabName)
+#else
         public static async Task<List<Dictionary<string, string>>> GetDataTable(string spreadsheetId, string tabName)
+#endif 
         {
             string json = await SendRequest(spreadsheetId, tabName);
             return JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(json);
         }
 
+#if UNITASK_SUPPORT
+        private static async UniTask<string> SendRequest(string spreadsheetId, string tabName)
+#else
         private static async Task<string> SendRequest(string spreadsheetId, string tabName)
+#endif 
         {
             string url = $"https://opensheet.elk.sh/{spreadsheetId}/{tabName}";
             UnityWebRequest www = UnityWebRequest.Get(url);
