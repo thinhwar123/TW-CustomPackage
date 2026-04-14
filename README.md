@@ -32,7 +32,7 @@ https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity
 ```
 - [LitMotion](https://github.com/annulusgames/LitMotion)
 ```
-https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion.Animation
+https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion
 ```
 - [ZString](https://github.com/Cysharp/ZString)
 ```
