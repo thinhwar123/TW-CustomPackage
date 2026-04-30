@@ -1,5 +1,5 @@
 {
-    "name": "ADataModule",
+    "name": "ADataModule.Runtime",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
