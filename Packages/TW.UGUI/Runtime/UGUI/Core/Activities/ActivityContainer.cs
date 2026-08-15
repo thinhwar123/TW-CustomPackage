@@ -12,7 +12,7 @@ namespace TW.UGUI.Core.Activities
 {
     public class ActivityContainer : WindowContainerBase
     {
-        private static Dictionary<int, ActivityContainer> s_instancesCachedByTransformId = new();
+        private static Dictionary<WindowId, ActivityContainer> s_instancesCachedByTransformId = new();
         private static Dictionary<string, ActivityContainer> s_instancesCachedByName = new();
 
         public static IReadOnlyCollection<ActivityContainer> Containers => s_instancesCachedByTransformId.Values;
@@ -51,7 +51,7 @@ namespace TW.UGUI.Core.Activities
         /// <returns></returns>
         public static ActivityContainer Of(RectTransform rectTransform, bool useCache = true)
         {
-            var id = rectTransform.GetInstanceID();
+            var id = WindowId.Of(rectTransform);
             if (useCache && s_instancesCachedByTransformId.TryGetValue(id, out var container))
             {
                 return container;
@@ -227,7 +227,7 @@ namespace TW.UGUI.Core.Activities
             _activities.Clear();
             s_instancesCachedByName.Remove(LayerName);
 
-            using var keysToRemove = new PooledList<int>(s_instancesCachedByTransformId.Count);
+            using var keysToRemove = new PooledList<WindowId>(s_instancesCachedByTransformId.Count);
 
             foreach (var cache in s_instancesCachedByTransformId)
             {

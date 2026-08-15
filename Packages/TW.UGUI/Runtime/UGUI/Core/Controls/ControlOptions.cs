@@ -4,7 +4,7 @@ using TW.UGUI.Shared;
 
 namespace TW.UGUI.Core.Controls
 {
-    public delegate void OnControlLoadedCallback(int controlId, Control control, Memory<object> args);
+    public delegate void OnControlLoadedCallback(WindowId controlId, Control control, Memory<object> args);
 
     public readonly struct ControlOptions
     {

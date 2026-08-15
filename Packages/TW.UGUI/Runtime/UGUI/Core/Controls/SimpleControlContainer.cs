@@ -14,9 +14,9 @@ namespace TW.UGUI.Core.Controls
         [SerializeField] private bool _destroyOnHide;
 
         private readonly List<ISimpleControlContainerCallbackReceiver> _callbackReceivers = new();
-        private readonly Dictionary<int, ViewRef<Control>> _controls = new();
+        private readonly Dictionary<WindowId, ViewRef<Control>> _controls = new();
 
-        public IReadOnlyDictionary<int, ViewRef<Control>> Controls => _controls;
+        public IReadOnlyDictionary<WindowId, ViewRef<Control>> Controls => _controls;
 
         public RectTransform Content
         {
@@ -160,7 +160,7 @@ namespace TW.UGUI.Core.Controls
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask<int> ShowAsync<TControl>(ControlOptions options, params object[] args)
+        public async UniTask<WindowId> ShowAsync<TControl>(ControlOptions options, params object[] args)
             where TControl : Control
         {
             return await ShowAsyncInternal<TControl>(options, args);
@@ -171,7 +171,7 @@ namespace TW.UGUI.Core.Controls
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask<int> ShowAsync<TControl>(ControlOptions options, Memory<object> args = default)
+        public async UniTask<WindowId> ShowAsync<TControl>(ControlOptions options, Memory<object> args = default)
             where TControl : Control
         {
             return await ShowAsyncInternal<TControl>(options, args);
@@ -182,7 +182,7 @@ namespace TW.UGUI.Core.Controls
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask<int> ShowAsync(ControlOptions options, params object[] args)
+        public async UniTask<WindowId> ShowAsync(ControlOptions options, params object[] args)
         {
             return await ShowAsyncInternal<Control>(options, args);
         }
@@ -192,7 +192,7 @@ namespace TW.UGUI.Core.Controls
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask<int> ShowAsync(ControlOptions options, Memory<object> args = default)
+        public async UniTask<WindowId> ShowAsync(ControlOptions options, Memory<object> args = default)
         {
             return await ShowAsyncInternal<Control>(options, args);
         }
@@ -204,7 +204,7 @@ namespace TW.UGUI.Core.Controls
             await ShowAsyncInternal<TControl>(options, args);
         }
 
-        private async UniTask<int> ShowAsyncInternal<TControl>(ControlOptions options, Memory<object> args)
+        private async UniTask<WindowId> ShowAsyncInternal<TControl>(ControlOptions options, Memory<object> args)
             where TControl : Control
         {
             var resourcePath = options.resourcePath;
@@ -255,11 +255,11 @@ namespace TW.UGUI.Core.Controls
             return controlId;
         }
 
-        private async UniTask<(int, TControl)> GetControlAsync<TControl>(ControlOptions options)
+        private async UniTask<(WindowId, TControl)> GetControlAsync<TControl>(ControlOptions options)
             where TControl : Control
         {
             var control = await GetViewAsync<TControl>(options.AsViewOptions());
-            var controlId = control.GetInstanceID();
+            var controlId = WindowId.Of(control);
 
             _controls[controlId] = new ViewRef<Control>(control, options.resourcePath, options.poolingPolicy);
 
@@ -271,7 +271,7 @@ namespace TW.UGUI.Core.Controls
         /// </summary>
         /// <remarks>Fire-and-forget</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Hide(int controlId, bool playAnimation, params object[] args)
+        public void Hide(WindowId controlId, bool playAnimation, params object[] args)
         {
             HideAndForget(controlId, playAnimation, args).Forget();
         }
@@ -281,7 +281,7 @@ namespace TW.UGUI.Core.Controls
         /// </summary>
         /// <remarks>Fire-and-forget</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Hide(int controlId, bool playAnimation, Memory<object> args = default)
+        public void Hide(WindowId controlId, bool playAnimation, Memory<object> args = default)
         {
             HideAndForget(controlId, playAnimation, args).Forget();
         }
@@ -291,7 +291,7 @@ namespace TW.UGUI.Core.Controls
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask HideAsync(int controlId, bool playAnimation, params object[] args)
+        public async UniTask HideAsync(WindowId controlId, bool playAnimation, params object[] args)
         {
             await HideAsyncInternal(controlId, playAnimation, args);
         }
@@ -301,18 +301,18 @@ namespace TW.UGUI.Core.Controls
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask HideAsync(int controlId, bool playAnimation, Memory<object> args = default)
+        public async UniTask HideAsync(WindowId controlId, bool playAnimation, Memory<object> args = default)
         {
             await HideAsyncInternal(controlId, playAnimation, args);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private async UniTaskVoid HideAndForget(int controlId, bool playAnimation, Memory<object> args)
+        private async UniTaskVoid HideAndForget(WindowId controlId, bool playAnimation, Memory<object> args)
         {
             await HideAsyncInternal(controlId, playAnimation, args);
         }
 
-        private async UniTask HideAsyncInternal(int controlId, bool playAnimation, Memory<object> args)
+        private async UniTask HideAsyncInternal(WindowId controlId, bool playAnimation, Memory<object> args)
         {
             if (_controls.TryGetValue(controlId, out var exitControlRef) == false)
             {
@@ -413,7 +413,7 @@ namespace TW.UGUI.Core.Controls
         private async UniTask HideAllAsyncInternal(bool playAnimation, Memory<object> args)
         {
             var controls = _controls;
-            var controlIds = new List<int>(controls.Count);
+            var controlIds = new List<WindowId>(controls.Count);
             var tasks = new List<UniTask>(controls.Count);
             controlIds.AddRange(controls.Keys);
 

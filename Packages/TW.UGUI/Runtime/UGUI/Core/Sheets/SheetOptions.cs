@@ -4,7 +4,7 @@ using TW.UGUI.Shared;
 
 namespace TW.UGUI.Core.Sheets
 {
-    public delegate void OnSheetLoadedCallback(int sheetId, Sheet sheet, Memory<object> args);
+    public delegate void OnSheetLoadedCallback(WindowId sheetId, Sheet sheet, Memory<object> args);
 
     public readonly struct SheetOptions
     {

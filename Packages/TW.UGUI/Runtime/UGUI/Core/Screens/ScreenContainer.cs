@@ -13,7 +13,7 @@ namespace TW.UGUI.Core.Screens
 {
     public class ScreenContainer : WindowContainerBase
     {
-        private static Dictionary<int, ScreenContainer> s_instancesCacheByTransformId = new();
+        private static Dictionary<WindowId, ScreenContainer> s_instancesCacheByTransformId = new();
         private static Dictionary<string, ScreenContainer> s_instancesCacheByName = new();
 
         public static IReadOnlyCollection<ScreenContainer> Containers => s_instancesCacheByTransformId.Values;
@@ -66,7 +66,7 @@ namespace TW.UGUI.Core.Screens
             screens.Clear();
             s_instancesCacheByName.Remove(LayerName);
 
-            using var keysToRemove = new PooledList<int>(s_instancesCacheByTransformId.Count);
+            using var keysToRemove = new PooledList<WindowId>(s_instancesCacheByTransformId.Count);
 
             foreach (var cache in s_instancesCacheByTransformId)
             {
@@ -103,7 +103,7 @@ namespace TW.UGUI.Core.Screens
         /// <returns></returns>
         public static ScreenContainer Of(RectTransform rectTransform, bool useCache = true)
         {
-            var id = rectTransform.GetInstanceID();
+            var id = WindowId.Of(rectTransform);
 
             if (useCache && s_instancesCacheByTransformId.TryGetValue(id, out var container))
             {
@@ -349,7 +349,6 @@ namespace TW.UGUI.Core.Screens
             var enterScreen = _screens[index].View;
             enterScreen.Settings = Settings;
 
-            var screenId = enterScreen.GetInstanceID();
             _screens.RemoveAt(index);
 
             RectTransform.RemoveChild(enterScreen.transform);
@@ -360,7 +359,6 @@ namespace TW.UGUI.Core.Screens
 
             ViewRef<Screen>? exitScreenRef = _screens.Count == 0 ? null : _screens[^1];
             Screen exitScreen = exitScreenRef.HasValue ? exitScreenRef.Value.View : null;
-            var exitScreenId = exitScreen == false ? (int?) null : exitScreen.GetInstanceID();
 
             if (exitScreen)
             {
@@ -389,7 +387,7 @@ namespace TW.UGUI.Core.Screens
             await enterScreen.EnterAsync(true, options.options.playAnimation, exitScreen);
 
             // End Transition
-            if (_isActiveScreenStacked == false && exitScreenId.HasValue)
+            if (_isActiveScreenStacked == false && exitScreenRef.HasValue)
             {
                 _screens.RemoveAt(_screens.Count - 1);
             }
@@ -547,7 +545,6 @@ namespace TW.UGUI.Core.Screens
 
             ViewRef<Screen>? exitScreenRef = _screens.Count == 0 ? null : _screens[^1];
             Screen exitScreen = exitScreenRef.HasValue ? exitScreenRef.Value.View : null;
-            var exitScreenId = exitScreen == null ? (int?) null : exitScreen.GetInstanceID();
 
             if (exitScreen)
             {
@@ -576,7 +573,7 @@ namespace TW.UGUI.Core.Screens
             await enterScreen.EnterAsync(true, options.options.playAnimation, exitScreen);
 
             // End Transition
-            if (_isActiveScreenStacked == false && exitScreenId.HasValue)
+            if (_isActiveScreenStacked == false && exitScreenRef.HasValue)
             {
                 _screens.RemoveAt(_screens.Count - 1);
             }

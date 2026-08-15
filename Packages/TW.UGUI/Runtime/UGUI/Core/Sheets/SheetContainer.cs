@@ -13,12 +13,12 @@ namespace TW.UGUI.Core.Sheets
     public class SheetContainer : ControlContainerBase
     {
         private readonly List<ISheetContainerCallbackReceiver> _callbackReceivers = new();
-        private readonly Dictionary<int, ViewRef<Sheet>> _sheets = new();
-        private int? _activeSheetId;
+        private readonly Dictionary<WindowId, ViewRef<Sheet>> _sheets = new();
+        private WindowId? _activeSheetId;
 
-        public IReadOnlyDictionary<int, ViewRef<Sheet>> Sheets => _sheets;
+        public IReadOnlyDictionary<WindowId, ViewRef<Sheet>> Sheets => _sheets;
 
-        public int? ActiveSheetId => _activeSheetId;
+        public WindowId? ActiveSheetId => _activeSheetId;
 
         public Sheet ActiveSheet
         {
@@ -171,7 +171,7 @@ namespace TW.UGUI.Core.Sheets
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask<int> RegisterAsync<TSheet>(SheetOptions options, params object[] args)
+        public async UniTask<WindowId> RegisterAsync<TSheet>(SheetOptions options, params object[] args)
             where TSheet : Sheet
         {
             return await RegisterAsyncInternal<TSheet>(options, args);
@@ -182,7 +182,7 @@ namespace TW.UGUI.Core.Sheets
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask<int> RegisterAsync<TSheet>(SheetOptions options, Memory<object> args = default)
+        public async UniTask<WindowId> RegisterAsync<TSheet>(SheetOptions options, Memory<object> args = default)
             where TSheet : Sheet
         {
             return await RegisterAsyncInternal<TSheet>(options, args);
@@ -193,7 +193,7 @@ namespace TW.UGUI.Core.Sheets
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask<int> RegisterAsync(SheetOptions options, params object[] args)
+        public async UniTask<WindowId> RegisterAsync(SheetOptions options, params object[] args)
         {
             return await RegisterAsyncInternal<Sheet>(options, args);
         }
@@ -203,7 +203,7 @@ namespace TW.UGUI.Core.Sheets
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask<int> RegisterAsync(SheetOptions options, Memory<object> args = default)
+        public async UniTask<WindowId> RegisterAsync(SheetOptions options, Memory<object> args = default)
         {
             return await RegisterAsyncInternal<Sheet>(options, args);
         }
@@ -215,7 +215,7 @@ namespace TW.UGUI.Core.Sheets
             await RegisterAsyncInternal<TSheet>(options, args);
         }
 
-        private async UniTask<int> RegisterAsyncInternal<TSheet>(SheetOptions options, Memory<object> args)
+        private async UniTask<WindowId> RegisterAsyncInternal<TSheet>(SheetOptions options, Memory<object> args)
             where TSheet : Sheet
         {
             var resourcePath = options.resourcePath;
@@ -234,11 +234,11 @@ namespace TW.UGUI.Core.Sheets
             return sheetId;
         }
 
-        private async UniTask<(int, TSheet)> GetSheetAsync<TSheet>(SheetOptions options)
+        private async UniTask<(WindowId, TSheet)> GetSheetAsync<TSheet>(SheetOptions options)
             where TSheet : Sheet
         {
             var sheet = await GetViewAsync<TSheet>(options.AsViewOptions());
-            var sheetId = sheet.GetInstanceID();
+            var sheetId = WindowId.Of(sheet);
 
             this._sheets[sheetId] = new ViewRef<Sheet>(sheet, options.resourcePath, options.poolingPolicy);
 
@@ -250,7 +250,7 @@ namespace TW.UGUI.Core.Sheets
         /// </summary>
         /// <remarks>Fire-and-forget</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Show(int sheetId, bool playAnimation, params object[] args)
+        public void Show(WindowId sheetId, bool playAnimation, params object[] args)
         {
             ShowAndForget(sheetId, playAnimation, args).Forget();
         }
@@ -260,7 +260,7 @@ namespace TW.UGUI.Core.Sheets
         /// </summary>
         /// <remarks>Fire-and-forget</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Show(int sheetId, bool playAnimation, Memory<object> args = default)
+        public void Show(WindowId sheetId, bool playAnimation, Memory<object> args = default)
         {
             ShowAndForget(sheetId, playAnimation, args).Forget();
         }
@@ -270,7 +270,7 @@ namespace TW.UGUI.Core.Sheets
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask ShowAsync(int sheetId, bool playAnimation, params object[] args)
+        public async UniTask ShowAsync(WindowId sheetId, bool playAnimation, params object[] args)
         {
             await ShowAsyncInternal(sheetId, playAnimation, args);
         }
@@ -280,18 +280,18 @@ namespace TW.UGUI.Core.Sheets
         /// </summary>
         /// <remarks>Asynchronous</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async UniTask ShowAsync(int sheetId, bool playAnimation, Memory<object> args = default)
+        public async UniTask ShowAsync(WindowId sheetId, bool playAnimation, Memory<object> args = default)
         {
             await ShowAsyncInternal(sheetId, playAnimation, args);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private async UniTaskVoid ShowAndForget(int sheetId, bool playAnimation, Memory<object> args)
+        private async UniTaskVoid ShowAndForget(WindowId sheetId, bool playAnimation, Memory<object> args)
         {
             await ShowAsyncInternal(sheetId, playAnimation, args);
         }
 
-        private async UniTask ShowAsyncInternal(int sheetId, bool playAnimation, Memory<object> args)
+        private async UniTask ShowAsyncInternal(WindowId sheetId, bool playAnimation, Memory<object> args)
         {
             if (IsInTransition)
             {

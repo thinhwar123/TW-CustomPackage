@@ -13,7 +13,7 @@ namespace TW.UGUI.Core.Modals
 {
     public class ModalContainer : WindowContainerBase
     {
-        private static Dictionary<int, ModalContainer> s_instancesCachedByTransformId = new();
+        private static Dictionary<WindowId, ModalContainer> s_instancesCachedByTransformId = new();
         private static Dictionary<string, ModalContainer> s_instancesCachedByName = new();
 
         public static IReadOnlyCollection<ModalContainer> Containers => s_instancesCachedByTransformId.Values;
@@ -85,7 +85,7 @@ namespace TW.UGUI.Core.Modals
 
             s_instancesCachedByName.Remove(LayerName);
 
-            using var keysToRemove = new PooledList<int>(s_instancesCachedByTransformId.Count);
+            using var keysToRemove = new PooledList<WindowId>(s_instancesCachedByTransformId.Count);
 
             foreach (var cache in s_instancesCachedByTransformId)
             {
@@ -127,7 +127,7 @@ namespace TW.UGUI.Core.Modals
         /// <returns></returns>
         public static ModalContainer Of(RectTransform rectTransform, bool useCache = true)
         {
-            var id = rectTransform.GetInstanceID();
+            var id = WindowId.Of(rectTransform);
 
             if (useCache && s_instancesCachedByTransformId.TryGetValue(id, out var container))
             {
@@ -386,7 +386,6 @@ namespace TW.UGUI.Core.Modals
             var enterModal = _modals[index].View;
             enterModal.Settings = Settings;
 
-            var modalId = enterModal.GetInstanceID();
             _modals.RemoveAt(index);
             RectTransform.RemoveChild(enterModal.transform);
 
