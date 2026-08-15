@@ -23,9 +23,13 @@ namespace TW.Utility.DesignPattern
             // We'll always just grab the last one, which eliminates
             // any need to shuffle the objects around in memory.
             private readonly Queue<GameObject> m_Inactive;
-            //A Hashset which contains all GetInstanceIDs from the instantiated GameObjects 
+            //A Hashset which contains all unique object ids from the instantiated GameObjects 
             //so we know which GameObject is a member of this pool.
+#if UNITY_6000_5_OR_NEWER
+            public readonly HashSet<EntityId> m_MemberIDs;
+#else
             public readonly HashSet<int> m_MemberIDs;
+#endif
 
 
             // The prefab that we are pooling
@@ -41,7 +45,11 @@ namespace TW.Utility.DesignPattern
                 // whole initialQty thing is a placebo that we could
                 // strip out for more minimal code. But it can't *hurt*.
                 m_Inactive = new Queue<GameObject>(initialQty);
+#if UNITY_6000_5_OR_NEWER
+                m_MemberIDs = new HashSet<EntityId>();
+#else
                 m_MemberIDs = new HashSet<int>();
+#endif
             }
 
             public void Preload(int initialQty, Transform parent = null)
@@ -53,7 +61,7 @@ namespace TW.Utility.DesignPattern
                     obj.name = $"{m_Prefab.name} ({m_NextId++})";
 
                     // Add the unique GameObject ID to our MemberHashset so we know this GO belongs to us.
-                    m_MemberIDs.Add(obj.GetInstanceID());
+                    m_MemberIDs.Add(obj.GetPoolId());
 
                     obj.SetActive(false);
 
@@ -75,7 +83,7 @@ namespace TW.Utility.DesignPattern
                         obj.name = $"{m_Prefab.name} ({m_NextId++})";
 
                         // Add the unique GameObject ID to our MemberHashset so we know this GO belongs to us.
-                        m_MemberIDs.Add(obj.GetInstanceID());
+                        m_MemberIDs.Add(obj.GetPoolId());
                     }
                     else
                     {
@@ -114,7 +122,7 @@ namespace TW.Utility.DesignPattern
                         obj.name = $"{m_Prefab.name} ({m_NextId++})";
 
                         // Add the unique GameObject ID to our MemberHashset so we know this GO belongs to us.
-                        m_MemberIDs.Add(obj.GetInstanceID());
+                        m_MemberIDs.Add(obj.GetPoolId());
                     }
                     else
                     {
@@ -185,7 +193,11 @@ namespace TW.Utility.DesignPattern
 
 
         // All of our pools
+#if UNITY_6000_5_OR_NEWER
+        private static Dictionary<EntityId, Pool> pools;
+#else
         private static Dictionary<int, Pool> pools;
+#endif
 
         /// <summary>
         /// Initialize our dictionary.
@@ -193,13 +205,21 @@ namespace TW.Utility.DesignPattern
         private static void Init(GameObject prefab = null, int qty = DefaultPoolSize)
         {
             if (pools == null)
+            {
+#if UNITY_6000_5_OR_NEWER
+                pools = new Dictionary<EntityId, Pool>();
+#else
                 pools = new Dictionary<int, Pool>();
+#endif
+            }
+
 
             if (prefab != null)
             {
                 //changed from (prefab, Pool) to (int, Pool) which should be faster if we have 
                 //many different prefabs.
-                var prefabID = prefab.GetInstanceID();
+                var prefabID = prefab.GetPoolId();
+
                 if (!pools.ContainsKey(prefabID))
                     pools[prefabID] = new Pool(prefab, qty);
             }
@@ -208,7 +228,7 @@ namespace TW.Utility.DesignPattern
         public static void PoolPreLoad(GameObject prefab, int qty, Transform newParent = null)
         {
             Init(prefab, 1);
-            pools[prefab.GetInstanceID()].Preload(qty, newParent);
+            pools[prefab.GetPoolId()].Preload(qty, newParent);
         }
 
         /// <summary>
@@ -249,7 +269,7 @@ namespace TW.Utility.DesignPattern
         {
             Init(prefab);
 
-            return pools[prefab.GetInstanceID()].Spawn(pos, rot);
+            return pools[prefab.GetPoolId()].Spawn(pos, rot);
         }
 
         public static GameObject Spawn(GameObject prefab)
@@ -269,12 +289,12 @@ namespace TW.Utility.DesignPattern
         public static T Spawn<T>(T prefab, Vector3 pos, Quaternion rot) where T : Component
         {
             Init(prefab.gameObject);
-            return pools[prefab.gameObject.GetInstanceID()].Spawn<T>(pos, rot);
+            return pools[prefab.gameObject.GetPoolId()].Spawn<T>(pos, rot);
         }
         public static T Spawn<T>(T prefab, Vector3 pos, Quaternion rot, Transform parent) where T : Component
         {
             Init(prefab.gameObject);
-            return pools[prefab.gameObject.GetInstanceID()].Spawn<T>(pos, rot, parent);
+            return pools[prefab.gameObject.GetPoolId()].Spawn<T>(pos, rot, parent);
         }
 
         /// <summary>
@@ -285,7 +305,7 @@ namespace TW.Utility.DesignPattern
             Pool p = null;
             foreach (var pool in pools.Values)
             {
-                if (pool.m_MemberIDs.Contains(obj.GetInstanceID()))
+                if (pool.m_MemberIDs.Contains(obj.GetPoolId()))
                 {
                     p = pool;
                     break;
@@ -307,9 +327,15 @@ namespace TW.Utility.DesignPattern
         public static int GetStackCount(GameObject prefab)
         {
             if (pools == null)
+            {
+#if UNITY_6000_5_OR_NEWER
+                pools = new Dictionary<EntityId, Pool>();
+#else
                 pools = new Dictionary<int, Pool>();
+#endif
+            }
             if (prefab == null) return 0;
-            return pools.ContainsKey(prefab.GetInstanceID()) ? pools[prefab.GetInstanceID()].StackCount : 0;
+            return pools.ContainsKey(prefab.GetPoolId()) ? pools[prefab.GetPoolId()].StackCount : 0;
         }
 
         public static void ClearPool()
@@ -345,5 +371,13 @@ namespace TW.Utility.DesignPattern
                 CachedTransforms.Add(obj, obj.transform);
             return CachedTransforms[obj];
         }
+
+        // Helper method to get a unique object id regardless of Unity version.
+        // Unity 6.5 removes GetInstanceID() in favor of the 64-bit EntityId.
+#if UNITY_6000_5_OR_NEWER
+        private static EntityId GetPoolId(this GameObject obj) => obj.GetEntityId();
+#else
+        private static int GetPoolId(this GameObject obj) => obj.GetInstanceID();
+#endif
     } 
 }

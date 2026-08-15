@@ -15,7 +15,8 @@ namespace TW.Utility.Extension
         /// <returns>The found component of type T, or null if not found in the hierarchy.</returns>
         public static T GetComponentInParentUntilNoParent<T>(this Transform component) where T : Component
         {
-            return component.GetComponentInParent<T>() ?? component.transform.parent?.GetComponentInParentUntilNoParent<T>();
+            return component.GetComponentInParent<T>() ??
+                   component.transform.parent?.GetComponentInParentUntilNoParent<T>();
         }
 
         /// <summary>
@@ -27,7 +28,8 @@ namespace TW.Utility.Extension
         /// <returns>The found component of type T, or null if not found in the hierarchy.</returns>
         public static T GetComponentInParentUntilNoParent<T>(this Component component) where T : Component
         {
-            return component.GetComponentInParent<T>() ?? component.transform.parent?.GetComponentInParentUntilNoParent<T>();
+            return component.GetComponentInParent<T>() ??
+                   component.transform.parent?.GetComponentInParentUntilNoParent<T>();
         }
 
         /// <summary>
@@ -39,8 +41,18 @@ namespace TW.Utility.Extension
         /// <returns>The found component of type T, or null if not found in the hierarchy.</returns>
         public static T GetComponentInParentUntilNoParent<T>(this MonoBehaviour monoBehaviour) where T : Component
         {
-            return monoBehaviour.GetComponentInParent<T>() ?? monoBehaviour.transform.parent?.GetComponentInParentUntilNoParent<T>();
+            return monoBehaviour.GetComponentInParent<T>() ??
+                   monoBehaviour.transform.parent?.GetComponentInParentUntilNoParent<T>();
+        }
+
+        /// <summary>
+        /// Sets the active state of the GameObject that this Component is attached to.
+        /// </summary>
+        /// <param name="component">The Component whose GameObject will be enabled or disabled.</param>
+        /// <param name="value">True to activate the GameObject, false to deactivate it.</param>
+        public static void SetActive(this Component component, bool value)
+        {
+            component.gameObject.SetActive(value);
         }
     }
-
 }

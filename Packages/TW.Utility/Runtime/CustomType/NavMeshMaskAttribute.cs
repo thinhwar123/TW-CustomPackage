@@ -21,12 +21,12 @@ namespace TW.Utility.CustomType
 
             EditorGUI.BeginChangeCheck();
 
-            string[] areaNames = GameObjectUtility.GetNavMeshAreaNames().Where(value => value != "").ToArray();
+            string[] areaNames = UnityEngine.AI.NavMesh.GetAreaNames().Where(value => value != "").ToArray();
             string[] completeAreaNames = new string[areaNames.Length];
 
             foreach (string name in areaNames)
             {
-                completeAreaNames[GameObjectUtility.GetNavMeshAreaFromName(name)] = name;
+                completeAreaNames[UnityEngine.AI.NavMesh.GetAreaFromName(name)] = name;
             }
 
             int mask = serializedProperty.intValue;

@@ -1,75 +1,86 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MemoryPack;
+using System.Reflection;
+using Newtonsoft.Json;
 using R3;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 #if UNITY_EDITOR
 using Sirenix.OdinInspector.Editor;
 #endif
+using UnityEngine;
 
 namespace TW.Reactive.CustomComponent
 {
-    [MemoryPackable]
-    [Serializable]
-    public partial class ReactiveValue<T>
+    [System.Serializable]
+    public class Reactive<T> : SerializableReactiveProperty<T>
     {
-#if UNITY_EDITOR
-        public class ReactiveStructValueDrawer : OdinValueDrawer<ReactiveValue<T>> 
+        public Reactive() : base()
         {
+        }
+
+        public Reactive(T initialValue) : base(initialValue)
+        {
+#if UNITY_EDITOR
+            EditorValue = initialValue;
+#endif
+        }
+
+        public static implicit operator T(Reactive<T> reactive) => reactive.Value;
+
+
+#if UNITY_EDITOR
+        [field: OnValueChanged("OnEditorValueChanged")] [field: SerializeField]
+        private T EditorValue = default;
+
+        private IDisposable subscription;
+
+        private void OnEditorValueChanged()
+        {
+            Value = EditorValue;
+        }
+
+        public class ReactiveValueDrawer : OdinValueDrawer<Reactive<T>>
+        {
+            protected override void Initialize()
+            {
+                base.Initialize();
+                ValueEntry.SmartValue.subscription?.Dispose();
+                ValueEntry.SmartValue.subscription = ValueEntry.SmartValue.Subscribe(OnValueChanged);
+            }
+
             protected override void DrawPropertyLayout(GUIContent label)
             {
-                ValueEntry.Property.Children.First().Draw(label);
+                ValueEntry.Property.Children[1].Draw(label);
             }
-        }
-#endif
-        [OnValueChanged(nameof(OnValueChange))]
-        [Delayed]
-        [SerializeField] private T m_Value;
-        public T Value
-        {
-            get => m_Value;
-            set
+
+            private void OnValueChanged(T value)
             {
-                m_Value = value;
-                m_ReactiveProperty.Value = value;
+                ValueEntry.SmartValue.EditorValue = value;
             }
         }
-
-        [MemoryPackIgnore] public ReactiveProperty<T> m_ReactiveProperty;
-        [MemoryPackIgnore] public ReactiveProperty<T> ReactiveProperty => InitializeOrReSync();
-
-        public ReactiveValue()
-        {
-            m_ReactiveProperty = new ReactiveProperty<T>(m_Value);
-            
-        }
-        [MemoryPackConstructor]
-        public ReactiveValue(T value)
-        {
-            m_Value = value;
-            m_ReactiveProperty = new ReactiveProperty<T>(value);
-            Value = value;
-        }
-        
-        public static implicit operator T(ReactiveValue<T> reactiveValue)
-        {
-            return reactiveValue.Value;
-        }
-
-        private void OnValueChange()
-        {
-#if UNITY_EDITOR
-            m_ReactiveProperty.Value = m_Value;
 #endif
-        }
-        private ReactiveProperty<T> InitializeOrReSync()
+    }
+
+    public class ReactiveConverterFactory : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
         {
-            if (m_ReactiveProperty != null && EqualityComparer<T>.Default.Equals(m_ReactiveProperty.Value, Value)) return m_ReactiveProperty;
-            m_ReactiveProperty = new ReactiveProperty<T>(m_Value);
-            return m_ReactiveProperty;
+            return objectType.IsGenericType &&
+                   objectType.GetGenericTypeDefinition() == typeof(Reactive<>);
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+            JsonSerializer serializer)
+        {
+            Type valueType = objectType.GetGenericArguments()[0];
+            object value = serializer.Deserialize(reader, valueType);
+            return Activator.CreateInstance(objectType, value);
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            PropertyInfo prop = value!.GetType().GetProperty("Value");
+            serializer.Serialize(writer, prop!.GetValue(value));
         }
     }
 }
