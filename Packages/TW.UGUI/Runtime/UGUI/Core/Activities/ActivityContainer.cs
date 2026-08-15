@@ -30,8 +30,19 @@ namespace TW.UGUI.Core.Activities
         private readonly List<IActivityContainerCallbackReceiver> _callbackReceivers = new();
         private readonly Dictionary<string, ViewRef<Activity>> _activities = new();
 
-        public IReadOnlyDictionary<string, ViewRef<Activity>> Activities => _activities;
+        private int _transitionCount;
 
+        /// <summary>
+        /// True if in transition.
+        /// </summary>
+        /// <remarks>
+        /// Unlike the stack based containers, several activities can transition at the same time,
+        /// so this is true while at least one Show/Hide transition is still running.
+        /// </remarks>
+        public bool IsInTransition => _transitionCount > 0;
+
+        public IReadOnlyDictionary<string, ViewRef<Activity>> Activities => _activities;
+        
         /// <summary>
         /// Get the <see cref="ActivityContainer" /> that manages the screen to which <see cref="transform" /> belongs.
         /// </summary>
@@ -370,41 +381,51 @@ namespace TW.UGUI.Core.Activities
                 return;
             }
 
+            _transitionCount++;
+
             if (Settings.EnableInteractionInTransition == false)
             {
                 Interactable = false;
             }
 
-            var activity = await GetViewAsync<TActivity>(options.options);
-            Add(resourcePath, activity, options.options.poolingPolicy);
-            options.options.onLoaded?.Invoke(activity, args);
-
-            await activity.AfterLoadAsync(RectTransform, args);
-
-            activity.SetSortingLayer(options.sortingLayer, options.orderInLayer);
-
-            // Preprocess
-            foreach (var callbackReceiver in _callbackReceivers)
+            try
             {
-                callbackReceiver.BeforeShow(activity, args);
+                var activity = await GetViewAsync<TActivity>(options.options);
+                Add(resourcePath, activity, options.options.poolingPolicy);
+                options.options.onLoaded?.Invoke(activity, args);
+
+                await activity.AfterLoadAsync(RectTransform, args);
+
+                activity.SetSortingLayer(options.sortingLayer, options.orderInLayer);
+
+                // Preprocess
+                foreach (var callbackReceiver in _callbackReceivers)
+                {
+                    callbackReceiver.BeforeShow(activity, args);
+                }
+
+                await activity.BeforeEnterAsync(true, args);
+
+                // Play Animation
+                await activity.EnterAsync(true, options.options.playAnimation);
+
+                // Postprocess
+                activity.AfterEnter(true, args);
+
+                foreach (var callbackReceiver in _callbackReceivers)
+                {
+                    callbackReceiver.AfterShow(activity, args);
+                }
             }
-
-            await activity.BeforeEnterAsync(true, args);
-
-            // Play Animation
-            await activity.EnterAsync(true, options.options.playAnimation);
-
-            // Postprocess
-            activity.AfterEnter(true, args);
-
-            foreach (var callbackReceiver in _callbackReceivers)
+            finally
             {
-                callbackReceiver.AfterShow(activity, args);
-            }
+                // End Transition
+                _transitionCount--;
 
-            if (Settings.EnableInteractionInTransition == false)
-            {
-                Interactable = true;
+                if (Settings.EnableInteractionInTransition == false)
+                {
+                    Interactable = true;
+                }
             }
         }
 
@@ -466,44 +487,53 @@ namespace TW.UGUI.Core.Activities
                 return;
             }
 
+            _transitionCount++;
+
             if (Settings.EnableInteractionInTransition == false)
             {
                 Interactable = false;
             }
 
-            var activity = viewRef.View;
-            activity.Settings = Settings;
-
-            // Preprocess
-            foreach (var callbackReceiver in _callbackReceivers)
+            try
             {
-                callbackReceiver.BeforeHide(activity, args);
+                var activity = viewRef.View;
+                activity.Settings = Settings;
+
+                // Preprocess
+                foreach (var callbackReceiver in _callbackReceivers)
+                {
+                    callbackReceiver.BeforeHide(activity, args);
+                }
+
+                await activity.BeforeEnterAsync(false, args);
+
+                // Play Animation
+                await activity.EnterAsync(false, playAnimation);
+
+                // End Transition
+                Remove(resourcePath);
+
+                // Postprocess
+                activity.AfterEnter(false, args);
+
+                foreach (var callbackReceiver in _callbackReceivers)
+                {
+                    callbackReceiver.AfterHide(activity, args);
+                }
+
+                // Unload unused Activity
+                await activity.BeforeReleaseAsync(args);
+
+                DestroyAndForget(activity, resourcePath, viewRef.PoolingPolicy).Forget();
             }
-
-            await activity.BeforeEnterAsync(false, args);
-
-            // Play Animation
-            await activity.EnterAsync(false, playAnimation);
-
-            // End Transition
-            Remove(resourcePath);
-
-            // Postprocess
-            activity.AfterEnter(false, args);
-
-            foreach (var callbackReceiver in _callbackReceivers)
+            finally
             {
-                callbackReceiver.AfterHide(activity, args);
-            }
+                _transitionCount--;
 
-            // Unload unused Activity
-            await activity.BeforeReleaseAsync(args);
-
-            DestroyAndForget(activity, resourcePath, viewRef.PoolingPolicy).Forget();
-
-            if (Settings.EnableInteractionInTransition == false)
-            {
-                Interactable = true;
+                if (Settings.EnableInteractionInTransition == false)
+                {
+                    Interactable = true;
+                }
             }
         }
 
