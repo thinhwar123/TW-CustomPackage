@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Cysharp.Threading.Tasks;
@@ -13,7 +13,24 @@ namespace TW.UGUI.Core.Views
 {
     public abstract class ViewContainerBase : View, IViewContainer
     {
+        /// <summary>
+        /// One asset handle per resource path, shared by every view instantiated from it.
+        /// A handle is in this map exactly while <see cref="_resourcePathToRefCount"/> has a count for its path.
+        /// </summary>
         private readonly Dictionary<string, AssetLoadHandle<GameObject>> _resourcePathToHandle = new();
+
+        /// <summary>
+        /// Live views (in use or pooled) plus loads in progress for each resource path.
+        /// The handle is released only when this reaches 0, so destroying one view never unloads
+        /// the asset (and possibly its whole bundle) out from under another view of the same path.
+        /// </summary>
+        private readonly Dictionary<string, int> _resourcePathToRefCount = new();
+
+        /// <summary>
+        /// Views that hold one reference each. Destroying a view releases its reference once, even if destroyed twice.
+        /// </summary>
+        private readonly HashSet<View> _referencedViews = new();
+
         private readonly Dictionary<string, Queue<View>> _resourcePathToPool = new();
 
         private IAssetLoader _assetLoader;
@@ -126,11 +143,17 @@ namespace TW.UGUI.Core.Views
             }
 
             var doDestroying = false;
+            var referencesToRemove = 0;
 
             for (var i = 0; i < amountToDestroy; i++)
             {
                 if (pool.TryDequeue(out var view))
                 {
+                    if (StopReferencing(view))
+                    {
+                        referencesToRemove++;
+                    }
+
                     if (view && view.gameObject)
                     {
                         Destroy(view.gameObject);
@@ -144,12 +167,10 @@ namespace TW.UGUI.Core.Views
                 await UniTask.NextFrame();
             }
 
-            if (pool.Count < 1
-                && _resourcePathToHandle.TryGetValue(resourcePath, out var handle)
-            )
+            // Views still in use keep the handle alive; it is released with the last reference.
+            for (var i = 0; i < referencesToRemove; i++)
             {
-                AssetLoader.Release(handle.Id);
-                _resourcePathToHandle.Remove(resourcePath);
+                RemoveReference(resourcePath);
             }
         }
 
@@ -189,27 +210,22 @@ namespace TW.UGUI.Core.Views
                 return;
             }
 
-            var assetLoadHandle = loadAsync
-                ? AssetLoader.LoadAsync<GameObject>(resourcePath)
-                : AssetLoader.Load<GameObject>(resourcePath);
+            // Held while loading; each pooled instance then holds its own reference.
+            AddReference(resourcePath);
 
-            while (assetLoadHandle.IsDone == false)
+            try
             {
-                await UniTask.NextFrame();
+                var assetLoadHandle = await GetLoadedHandleAsync(resourcePath, loadAsync);
+                var differentAmount = amount - pool.Count;
+
+                for (var i = 0; i < differentAmount; i++)
+                {
+                    InstantiateToPool(resourcePath, assetLoadHandle, pool);
+                }
             }
-
-            if (assetLoadHandle.Status == AssetLoadStatus.Failed)
+            finally
             {
-                throw assetLoadHandle.OperationException;
-            }
-
-            _resourcePathToHandle[resourcePath] = assetLoadHandle;
-
-            var differentAmount = amount - pool.Count;
-
-            for (var i = 0; i < differentAmount; i++)
-            {
-                InstantiateToPool(resourcePath, assetLoadHandle, pool);
+                RemoveReference(resourcePath);
             }
         }
 
@@ -224,8 +240,12 @@ namespace TW.UGUI.Core.Views
                     , instance
                 );
 
+                Destroy(instance);
                 return;
             }
+
+            AddReference(resourcePath);
+            _referencedViews.Add(view);
 
             view.Settings = Settings;
             view.RectTransform.SetParent(PoolTransform);
@@ -249,19 +269,56 @@ namespace TW.UGUI.Core.Views
                 return existView;
             }
 
-            AssetLoadHandle<GameObject> assetLoadHandle;
-            var handleInMap = false;
+            // Taken before awaiting: a load in progress keeps the handle alive
+            // even if the last live view of this path is destroyed meanwhile.
+            AddReference(resourcePath);
 
-            if (_resourcePathToHandle.TryGetValue(resourcePath, out var handle))
+            T view = null;
+
+            try
             {
-                assetLoadHandle = handle;
-                handleInMap = true;
+                var assetLoadHandle = await GetLoadedHandleAsync(resourcePath, loadAsync);
+                var instance = Instantiate(assetLoadHandle.Result);
+
+                if (instance.TryGetComponent(out view) == false)
+                {
+                    Debug.LogError(
+                        $"Cannot find the {typeof(T).Name} component on the specified resource `{resourcePath}`."
+                        , instance
+                    );
+
+                    Destroy(instance);
+                    return null;
+                }
+
+                view.Settings = Settings;
+                _referencedViews.Add(view);
+                return view;
             }
-            else
+            finally
+            {
+                // No view came out of this call (load failed, wrong prefab): give the reference back.
+                if (view == false)
+                {
+                    RemoveReference(resourcePath);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the loaded handle of <paramref name="resourcePath"/>, starting the load if none is in progress.
+        /// The caller must hold a reference (<see cref="AddReference"/>) for the whole call.
+        /// </summary>
+        private async UniTask<AssetLoadHandle<GameObject>> GetLoadedHandleAsync(string resourcePath, bool loadAsync)
+        {
+            if (_resourcePathToHandle.TryGetValue(resourcePath, out var assetLoadHandle) == false)
             {
                 assetLoadHandle = loadAsync
                     ? AssetLoader.LoadAsync<GameObject>(resourcePath)
                     : AssetLoader.Load<GameObject>(resourcePath);
+
+                // Registered before the load completes so concurrent requests for the same path share it.
+                _resourcePathToHandle[resourcePath] = assetLoadHandle;
             }
 
             while (assetLoadHandle.IsDone == false)
@@ -271,29 +328,48 @@ namespace TW.UGUI.Core.Views
 
             if (assetLoadHandle.Status == AssetLoadStatus.Failed)
             {
-                throw assetLoadHandle.OperationException;
+                // The failed handle stays registered until its last reference is removed, then it is released.
+                throw assetLoadHandle.OperationException
+                      ?? new InvalidOperationException($"Failed to load the resource `{resourcePath}`.");
             }
 
-            var instance = Instantiate(assetLoadHandle.Result);
+            return assetLoadHandle;
+        }
 
-            if (instance.TryGetComponent<T>(out var view) == false)
+        private void AddReference(string resourcePath)
+        {
+            _resourcePathToRefCount.TryGetValue(resourcePath, out var count);
+            _resourcePathToRefCount[resourcePath] = count + 1;
+        }
+
+        private void RemoveReference(string resourcePath)
+        {
+            if (_resourcePathToRefCount.TryGetValue(resourcePath, out var count) == false)
             {
-                Debug.LogError(
-                    $"Cannot find the {typeof(T).Name} component on the specified resource `{resourcePath}`."
-                    , instance
-                );
-
-                return null;
+                return;
             }
 
-            view.Settings = Settings;
-
-            if (handleInMap == false)
+            if (count > 1)
             {
-                _resourcePathToHandle[resourcePath] = assetLoadHandle;
+                _resourcePathToRefCount[resourcePath] = count - 1;
+                return;
             }
 
-            return view;
+            _resourcePathToRefCount.Remove(resourcePath);
+
+            if (_resourcePathToHandle.Remove(resourcePath, out var handle))
+            {
+                AssetLoader.Release(handle.Id);
+            }
+        }
+
+        /// <summary>
+        /// True if <paramref name="view"/> held a reference, which the caller must now remove.
+        /// Compared by reference, so a view that is already destroyed still gives its reference back.
+        /// </summary>
+        private bool StopReferencing(View view)
+        {
+            return ReferenceEquals(view, null) == false && _referencedViews.Remove(view);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -308,21 +384,19 @@ namespace TW.UGUI.Core.Views
                 return;
             }
 
+            // Taken out before the await so destroying the same view twice never releases twice.
+            var hadReference = StopReferencing(view);
+
             if (view && view.Owner)
             {
                 Destroy(view.Owner);
                 await UniTask.NextFrame();
             }
 
-            if (ContainsInPool(resourcePath))
+            // Other views of this path (in use or pooled) keep the handle; the last one releases it.
+            if (hadReference)
             {
-                return;
-            }
-
-            if (_resourcePathToHandle.TryGetValue(resourcePath, out var handle))
-            {
-                AssetLoader.Release(handle.Id);
-                _resourcePathToHandle.Remove(resourcePath);
+                RemoveReference(resourcePath);
             }
         }
 
@@ -342,10 +416,7 @@ namespace TW.UGUI.Core.Views
                     return true;
                 }
 
-                if (typelessView && typelessView.gameObject)
-                {
-                    Destroy(typelessView.Owner);
-                }
+                DestroyAndForget(typelessView, resourcePath, PoolingPolicy.DisablePooling).Forget();
             }
 
             view = default;
